@@ -113,11 +113,15 @@ public:
 	void removeAssociate(int uniqueID);
 
 
-	void updateYear();
+
+	void updateAllAssociates();
 
 
+
+
+	//Association Type Functions==================================================
 	void addToFund(float income);
-
+	void updateYear();
 
 private:
 	std::string name;

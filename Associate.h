@@ -63,6 +63,7 @@ public:
 	void payFromWallet(int less_money);
 	void addPaidYear(int year);
 	void payYear(int year);
+	void updateStatus();
 
 
 

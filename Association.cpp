@@ -74,6 +74,23 @@ void Association::removeAssociate(int uniqueID){
 
 }
 
+void Association::updateAllAssociates(){
+	for (size_t t = 0; t < this->associates.size(); t++){
+
+		this->associates.at(t)->updateStatus();
+
+	}
+}
+
+
+
+
+
+
+
+
+//Association Type Functions
+
 void Association::updateYear(){
 	Association::currentYear++;
 }

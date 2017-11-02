@@ -79,16 +79,28 @@ void Associate::addPaidYear(int year){
 }
 
 
-void Associate::payYear(int year){
+void Associate::payYear(int year) {
 
 	int lastYearPaid = this->paidYears.back();
 
-	if (lastYearPaid < (Association::getCurrentYear() - 1))//if his payments are not up to date
-		throw  NotUpToDate(year, this->uniqueID);
+	if (lastYearPaid < (Association::getCurrentYear() - 1)) //if his payments are not up to date
+		throw NotUpToDate(year, this->uniqueID);
 	else if (this->personalWallet < this->association->getAnnualPay())
 		throw NotEnoughMoney(this->uniqueID);
-	else{
+	else {
 		this->paidYears.push_back(Association::getCurrentYear());
 		this->payFromWallet(this->association->getAnnualPay());
 	}
+}
+
+void Associate::updateStatus() {
+
+	int lastYearPaid = this->paidYears.back();
+
+	if (lastYearPaid >= Association::getCurrentYear() - 1) //if the last year he paid is the current last year or if he paid ahead
+		this->status = "contributor";
+	else if(lastYearPaid > (Association::getCurrentYear() - 5))
+		this->status = "subscriber";
+	else
+		this->status = "normal";
 }
