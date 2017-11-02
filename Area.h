@@ -6,6 +6,9 @@
 #define AREA_H_
 
 #include <string>
+#include <vector>
+
+class SubArea;
 
 
 class Area {
@@ -14,6 +17,7 @@ public:
 	//Constructors
 	Area();
 	Area(std::string name);
+	Area(std::string file_string);
 
 
 	//Destructors
@@ -23,8 +27,14 @@ public:
 	//Get Methods
 	std::string getName() const;
 
+
+	//SubArea
+	void addSubarea(SubArea * newSub);
+
 private:
 	std::string name;
+	std::vector <SubArea *> subareas;
+
 
 };
 

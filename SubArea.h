@@ -15,6 +15,7 @@ public:
 
 	//Constructors
 	SubArea();
+	SubArea(std::string name, std::string initials);
 
 
 	//Destructors
@@ -28,6 +29,7 @@ public:
 
 private:
 	std::string name;
+	std::string initials;
 };
 
 #endif /* SUBAREA_H_ */

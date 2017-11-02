@@ -12,6 +12,8 @@ SubArea::SubArea() {
 
 }
 
+SubArea::SubArea(string name, string initials) : name(name), initials(initials) {}
+
 
 SubArea::~SubArea() {
 	// TODO Auto-generated destructor stub
