@@ -2,7 +2,6 @@
  * Association.cpp
  *
  */
-
 #include "Association.h"
 #include "Associate.h"
 #include <algorithm>
@@ -13,7 +12,6 @@ int Association::currentYear = 0;
 
 Association::Association() {
 	// TODO Auto-generated constructor stub
-
 }
 
 Association::~Association() {
