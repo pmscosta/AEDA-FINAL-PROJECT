@@ -22,7 +22,7 @@ void Area::addSubarea(SubArea * newSub) {
 
 Area::Area(string file_string) {
 
-	istringstream input = file_string;
+	istringstream input(file_string);
 
 	string areaName, subAreaName, subAreaInitials;
 
