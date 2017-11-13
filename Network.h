@@ -29,7 +29,7 @@ public:
 
 	//Get Methods
 
-	std::vector<Mail> getMails() const;
+	std::vector<Mail *> getMails() const;
 
 
 

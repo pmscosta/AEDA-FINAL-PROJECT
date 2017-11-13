@@ -24,7 +24,7 @@ public:
 
 
 	//Get Methods
-	std::string getName() const;
+	virtual std::string getName() const;
 
 
 	//SubArea

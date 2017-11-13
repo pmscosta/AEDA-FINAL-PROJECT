@@ -30,15 +30,18 @@ class Association {
 
 public:
 
-	//Constructors
+	//=========================================Constructors===================================================
+	//========================================================================================================
 
 	/**
 	 * @brief Default Constructor
 	 */
 	Association();
 
-	//Destructors
 
+
+	//=========================================Destructors====================================================
+	//========================================================================================================
 	/**
 	 * @brief Default Destructor
 	 */
@@ -46,7 +49,8 @@ public:
 
 
 
-	//Set Methods==========================================================
+	//===================================Set Methods==========================================================
+	//========================================================================================================
 
 	/**
 	 * @brief Sets/Changes the name of the association
@@ -72,8 +76,8 @@ public:
 
 
 
-	//Get Methods==========================================================
-
+	//=============================================Get Methods================================================
+    //========================================================================================================
 	/**
 	 * @brief Returns the name of the association
 	 */
@@ -93,7 +97,8 @@ public:
 	static int getCurrentYear();
 
 
-	//Associate Type Functions=================================================
+	//===============================Associate Type Functions=================================================
+	//========================================================================================================
 
 	/**
 	 * @brief Adds a new Associate to the association
@@ -118,10 +123,20 @@ public:
 	 */
 	void updateAllAssociates();
 
+	/*
+	 * @brief Returns a pointer to an Associate with a certain ID
+	 *
+	 * Throws an exception, NoSuchID, if no Associate has that ID
+	 *
+	 * @param ID - an integer representing the uniqueID of each Associate
+	 */
+	Associate * getAssoById(int uniqueID);
 
 
 
-	//Association Type Functions==================================================
+
+	//============================Association Type Functions==================================================
+	//========================================================================================================
 
 	/**
 	 * @brief Adds the money received from the annual payments to se Association fund

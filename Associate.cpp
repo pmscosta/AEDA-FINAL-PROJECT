@@ -24,10 +24,10 @@ Associate::~Associate() {
 //Get Methods
 
 /*
-string Associate::getWorkName() const {
-	return this->workingArea->getName();
-}
-*/
+ string Associate::getWorkName() const {
+ return this->workingArea->getName();
+ }
+ */
 
 int Associate::getUniqueID() const {
 	return this->uniqueID;
@@ -48,10 +48,10 @@ float Associate::getPersonalWallet() const {
 //Set Methods
 
 /*
-void Associate::setWork(SubArea* sub) {
-	this->workingArea = sub;
-}
-*/
+ void Associate::setWork(SubArea* sub) {
+ this->workingArea = sub;
+ }
+ */
 
 void Associate::setInterestAreas(vector<Area *> interest) {
 	this->interestAreas = interest;

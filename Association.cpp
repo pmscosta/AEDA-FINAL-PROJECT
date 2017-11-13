@@ -57,14 +57,16 @@ void Association::addAssociate(Associate * newAsso) {
 }
 
 void Association::removeAssociate(int uniqueID) {
+
+	//invoking a lambda function
 	auto it = find_if(this->associates.begin(), this->associates.end(),
 			[uniqueID](Associate * obj)
 			{	return obj->getUniqueID() == uniqueID;});
 
 	if (it != this->associates.end())
 		this->associates.erase(it);
-
-	throw NoSuchID(uniqueID);
+	else
+		throw NoSuchID(uniqueID);
 
 }
 
@@ -74,6 +76,20 @@ void Association::updateAllAssociates() {
 		this->associates.at(t)->updateStatus();
 
 	}
+}
+
+Associate * Association::getAssoById(int uniqueID)  {
+
+	//invoking a lambda function
+	auto it = find_if(this->associates.begin(), this->associates.end(),
+			[uniqueID](Associate * obj)
+			{	return obj->getUniqueID() == uniqueID;});
+
+	if (it != this->associates.end())
+		return (*it);
+	else
+		throw NoSuchID(uniqueID);
+
 }
 
 //Association Type Functions
