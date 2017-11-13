@@ -16,26 +16,74 @@ class Mail {
 public:
 
 	//Constructor
+
+	/**
+	 * @brief Default Constructor
+	 */
 	Mail();
+
+	/**
+	 * @briefs Creates a new mail from the associate with a title and a body
+	 *
+	 * @param associate - The Associate who sent the email
+	 * @param title - string with the mail name
+	 * @param body - string with all the mail body text
+	 */
 	Mail(Associate * associate, std::string title, std::string body);
 
 	//Destructor
+
+	/**
+	 * @brief Default Destructor
+	 */
 	virtual ~Mail();
 
 	//Get Methods
+
+	/**
+	 * @briefs Returns the author from the mail
+	 */
 	Associate * getAuthor() const;
+
+	/**
+	 * @briefs Returns the mail title
+	 */
 	std::string getTitle() const;
+
+	/**
+	 * @briefs Returns the mail body
+	 */
 	std::string getBody() const;
 
+
+
 	//Set Methods
-	void setAuthor(Associate *);
+
+	/**
+	 * @briefs Sets/Changes the author from a mail
+	 *
+	 * @param author - Associate who wrote the mail
+	 */
+	void setAuthor(Associate * author);
+
+	/**
+	 * @briefs Sets/Changes the title from a mail
+	 *
+	 * @param author - Associate who wrote the mail
+	 */
 	void setTitle(std::string title);
+
+	/**
+	 * @briefs Sets/Changes the body from a mail
+	 *
+	 * @param author - Associate who wrote the mail
+	 */
 	void setBody(std::string body);
 
 private:
-	Associate * author;
-	std::string title;
-	std::string body;
+	Associate * author; ///< The mail author
+	std::string title; ///< The mail title
+	std::string body; ///< The mail body
 };
 
 #endif /* MAIL_H_ */
