@@ -13,7 +13,7 @@ int Associate::id_provider = 0;
 
 //Constructors
 Associate::Associate() :
-		uniqueID(++id_provider), workingArea(nullptr) {
+		uniqueID(++id_provider) {
 }
 
 //Destructors
