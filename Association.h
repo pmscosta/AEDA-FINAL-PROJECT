@@ -137,7 +137,7 @@ public:
 	void updateYear();
 
 private:
-	std::string name;
+	std::string name; ///< The Association name
 	long double fund;  ///< The Association initial fund to manage events,associates etc..
 	int annualPay; ///< The annual pay given by each and every associate
 	std::vector<Associate * > associates; ///< Vector of pointers to all the Associates from the Association
