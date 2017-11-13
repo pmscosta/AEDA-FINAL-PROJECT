@@ -27,18 +27,17 @@ Mail::~Mail() {
 
 //Set Methods
 
-void Mail::setAuthor(Associate * associate) :
-		author(associate) {
+void Mail::setAuthor(Associate * associate) {
+	this->author = associate;
 }
-;
-void Mail::setBody(string body) :
-		body(body) {
+
+void Mail::setBody(string body) {
+	this->body = body;
 }
-;
-void Mail::setTitle(string title) :
-		title(title) {
+
+void Mail::setTitle(string title) {
+	this->title = title;
 }
-;
 
 //Get Methods
 
