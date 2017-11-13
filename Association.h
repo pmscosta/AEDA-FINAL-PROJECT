@@ -113,23 +113,36 @@ public:
 	void removeAssociate(int uniqueID);
 
 
-
+	/**
+	 * @brief Updates the status from all associates to prevent ignoring new changes made to them
+	 */
 	void updateAllAssociates();
 
 
 
 
 	//Association Type Functions==================================================
+
+	/**
+	 * @brief Adds the money received from the annual payments to se Association fund
+	 *
+	 * @param income - money received from the annual payments
+	 */
 	void addToFund(float income);
+
+
+	/**
+	 * @brief Updates the current year
+	 */
 	void updateYear();
 
 private:
 	std::string name;
 	long double fund;  ///< The Association initial fund to manage events,associates etc..
 	int annualPay; ///< The annual pay given by each and every associate
-	std::vector<Associate * > associates;
-	std::vector<Area *> areas;
-	static int currentYear;
+	std::vector<Associate * > associates; ///< Vector of pointers to all the Associates from the Association
+	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
+	static int currentYear; ///< The current year
 
 };
 
