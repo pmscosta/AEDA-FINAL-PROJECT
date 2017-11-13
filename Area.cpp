@@ -14,10 +14,6 @@ Area::Area() {
 
 }
 
-Area::Area(string name) {
-	this->name = name;
-}
-
 void Area::addSubarea(SubArea * newSub) {
 
 	this->subareas.push_back(newSub);

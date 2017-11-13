@@ -16,7 +16,6 @@ public:
 
 	//Constructors
 	Area();
-	Area(std::string name);
 	Area(std::string file_string);
 
 
