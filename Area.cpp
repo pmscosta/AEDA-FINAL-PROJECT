@@ -40,7 +40,7 @@ Area::Area(string file_string) {
 		input >> subAreaInitials;
 		if (!input.eof())
 			subAreaInitials = subAreaInitials.substr(0,
-					subAreaInitials.size() - 1);  //removing the comma only if it is not the last initials
+					subAreaInitials.size() - 1); //removing the comma only if it is not the last initials
 
 		SubArea * subarea = new SubArea(subAreaName, subAreaInitials);
 

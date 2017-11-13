@@ -18,13 +18,13 @@ public:
 
 	//Constructors
 	Network();
-	Network(std::vector<Mail> mails);
+	Network(std::vector<Mail *> mails);
 
 	virtual ~Network();
 
 
 	//Set Methods
-	void setMails(std::vector<Mail> mails);
+	void setMails(std::vector<Mail *> mails);
 
 
 	//Get Methods
@@ -34,7 +34,7 @@ public:
 
 
 private:
-	std::vector<Mail> mails;
+	std::vector<Mail *> mails;
 };
 
 #endif /* NETWORK_H_ */
