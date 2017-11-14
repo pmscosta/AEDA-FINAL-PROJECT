@@ -15,7 +15,8 @@ Association::Association() {
 	this->fund = 10000.0;
 }
 
-Association::Association(string name) : name(name) {
+Association::Association(string name) :
+		name(name) {
 	this->annualPay = 250.0;
 	this->fund = 10000.0;
 }
@@ -56,7 +57,7 @@ int Association::getCurrentYear() {
 	return Association::currentYear;
 }
 
-vector<Associate *> Association::getAssociates() const{
+vector<Associate *> Association::getAssociates() const {
 	return associates;
 }
 
@@ -88,7 +89,7 @@ void Association::updateAllAssociates() {
 	}
 }
 
-Associate * Association::getAssoById(int uniqueID)  {
+Associate * Association::getAssoById(int uniqueID) {
 
 	//invoking a lambda function
 	auto it = find_if(this->associates.begin(), this->associates.end(),
@@ -112,15 +113,36 @@ void Association::addToFund(float income) {
 	this->fund += income;
 }
 
+string Association::updatePayment() {
+	string log = 0;
+	for (size_t t = 0; t < this->associates.size(); t++) {
 
+		try {
+			this->associates.at(t)->payYear(Association::currentYear);
+
+		} catch (const NotEnoughMoney & e) {
+			log += "Nao foi possivel efetuar o pagamento do  Associado "
+					+ getAssoById(e.getID())->getName() + " com o ID "
+					+ to_string(e.getID())
+					+ " pois nao tem dinheiro suficiente.\n";
+		} catch (const NotUpToDate & e) {
+			log += "Nao foi possivel efetuar o pagamento do Associado "
+					+ getAssoById(e.getID())->getName() + " com o ID "
+					+  to_string(e.getID())
+					+ " pois tentou efetuar o pagamento do ano "
+					+ to_string(e.getYear()) + " quando o ultimo pago foi "
+					+ to_string(e.getLast()) + ".\n";
+		}
+
+	}
+}
 
 //Area Type Functions
 
-
-vector<Area*> Association::getAreas() const{
-	return this->areas;
+vector<Area*> Association::getAreas() const {
+return this->areas;
 }
 
-void Association::addArea(Area * newArea){
-	this->areas.push_back(newArea);
+void Association::addArea(Area * newArea) {
+this->areas.push_back(newArea);
 }

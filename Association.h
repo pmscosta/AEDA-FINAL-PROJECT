@@ -161,6 +161,11 @@ public:
 	 */
 	void updateYear();
 
+	/**
+	 * @brief Makes the annual payment of every associate automatically
+	 */
+	std::string updatePayment();
+
 
 	//============================Area Type Functions=========================================================
 	//========================================================================================================

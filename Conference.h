@@ -28,9 +28,21 @@ public:
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association,
 			int estimative);
+
+
+
+	//=========================DESTRUCTORS================================
+	//====================================================================
 	virtual ~Conference();
+
+
+	//=========================GET METHODS================================
+	//====================================================================
+
+	int getEstimative() const;
+
 private:
-	int trainers_estimative;
+	int estimative; ///< Initial Estimative to the amount of participants
 };
 
 #endif /* SUPER_MEME_CONFERENCE_H_ */
