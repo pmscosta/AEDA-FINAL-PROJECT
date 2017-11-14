@@ -97,10 +97,10 @@ void submenu1(){
 		cin >> opcao;
 		switch(opcao){
 		case 1:
-			//Funcao adicionar um novo associado
+			adicionarAssociado();
 			break;
 		case 2:
-			//Funcao remover um associado
+			removerAssociado();
 			break;
 		case 3:
 			//Funcao alterar informacoes de um associado

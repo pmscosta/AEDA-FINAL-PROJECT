@@ -50,6 +50,10 @@ int Association::getCurrentYear() {
 	return Association::currentYear;
 }
 
+vector<Associate *> Association::getAssociates() const{
+	return associates;
+}
+
 //Associate Type Functions
 
 void Association::addAssociate(Associate * newAsso) {

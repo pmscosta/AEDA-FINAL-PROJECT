@@ -58,6 +58,8 @@ public:
 	*/
 
 
+	std::string getName() const;
+
 	/**
 	 * @brief Returns the uniqueID of the Associate
 	 *
