@@ -26,7 +26,9 @@ Network::~Network() {
 
 //Set Methods
 
-void Network::setMails(vector<Mail*> mails) : mails(mails) {};
+void Network::setMails(vector<Mail*> mails){
+	this->mails = mails;
+}
 
 
 //Get Methods
