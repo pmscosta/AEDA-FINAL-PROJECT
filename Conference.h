@@ -12,7 +12,22 @@
 
 class Conference: public Event {
 public:
+
+	//=========================CONSTRUCTORS===============================
+	//====================================================================
+	/*
+	 * @brief Default Constructor
+	 */
 	Conference();
+
+	/*
+	 * @brief Full Conference Constructor
+	 *
+	 */
+	Conference(std::vector<Associate *> event_request,
+			std::vector<Associate *> event_organizers, std::string date,
+			std::string local, std::string theme, Association * association,
+			int estimative);
 	virtual ~Conference();
 private:
 	int trainers_estimative;

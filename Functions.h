@@ -19,7 +19,6 @@
 #include <vector>
 #include <unistd.h> //for usleep(miliseconds) function
 
-
 //-----------------------FILES--------------------------//
 
 void lerficheiroAreas();
@@ -27,7 +26,6 @@ void lerficheiroAreas();
 void criarficheiro();
 
 void guardarficheiro();
-
 
 //----------------------ASSOCIATES---------------------//
 
@@ -39,12 +37,8 @@ void alterarAssociado();
 
 void verInfoAssociado();
 
-
 //----------------------AREAS-------------------------//
 
 void verAreas();
-
-
-
 
 #endif /* SUPER_MEME_FUNCTIONS_H_ */
