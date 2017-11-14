@@ -14,7 +14,21 @@ class Associate;
 
 class SummerSchool: public Event {
 public:
+
+	//=========================CONSTRUCTORS===============================
+	//====================================================================
+	/*
+	 * @brief Default Constructor
+	 */
 	SummerSchool();
+
+	/*
+	 * @brief Full SummerSchool Constructor
+	 */
+	SummerSchool(std::vector<Associate *> event_request,
+				std::vector<Associate *> event_organizers, std::string date,
+				std::string local, std::string theme, Association * association,
+				std::list<Associate *> involved);
 	virtual ~SummerSchool();
 private:
 	std::list<Associate *> persons_involved;
