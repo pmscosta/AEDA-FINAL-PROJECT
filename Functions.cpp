@@ -6,15 +6,16 @@
  */
 
 #include "Functions.h"
+#include <sstream>
 
 using namespace std;
 
-Association Associacao;
+Association  * Associacao = new Association("ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
 
 //-----------------------FILES--------------------------//
 string filename;
 
-void lerficheiro(){
+void lerficheiroAreas(){
 	ifstream file;
 	cout << endl;
 	cout << "Introduza o nome do ficheiro: ";
@@ -26,11 +27,13 @@ void lerficheiro(){
 	} while(!file.is_open());
 
 
-	//Tratamento de ler o ficheiro aqui
-	/*
+
 	string line;
-	getline(file, line);
-	cout << line;*/
+	while(getline(file, line)){
+		Area * newArea = new Area(line);
+		Associacao->addArea(newArea);
+	}
+
 
 	file.close();
 }
@@ -81,42 +84,60 @@ void adicionarAssociado(){
 
 	//agora dar cout das areas da associacao numeradas...
 	cout << "Indique quais as areas de interesse do Associado: ";
-	//o utilizador agora tem de escolher quais sao, por exemplo, com numeros
 
+	vector<Area *> areas = Associacao->getAreas();
+	for (size_t t = 0; t < areas.size(); t++){
+		cout << t << ": " << areas.at(t)->getName() << endl;
+	}
 
-	//falta o construtor do Associate
+	string list;
+	getline(cin, list);
+
+	stringstream numbers (list);
+
+	vector<Area *> newInterest;  //O VETOR QUE IRA CONTER AS AREAS DE INTERESSE DO ASSOCIADO
+
+	while(!numbers.eof()){
+		int selected = 0;
+		numbers >> selected;
+		if (selected >= areas.size() || selected < 0) {  //SE UM DOS INDICES ESCOLHIDOS NAO CORRESPONDE A NENHUM DOS APRESENTADOS
+			cout << "Nao existe a opcao " << selected
+					<< ".\nVoltando ao menu anterior.";
+			return;
+		}
+
+		newInterest.push_back(areas.at(selected));
+
+	}
+
+	Associate * newAsso = new Associate(Associacao, nome, instituicao, newInterest);
+
+	Associacao->addAssociate(newAsso);
+
+	cout << "Associado adicionado com sucesso!\n";
 
 	//no fim podemos perguntar se deseja pagar ou assim e chamar outra funcao
 }
 
 void removerAssociado(){
-	string name;
-	int ID = -1;
+	int uniqueID;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cout << "Introduza o nome do Associado: ";
-	getline(cin, name);
+	cout << "Introduza o Identificador Unico do Associado a remover: ";
+	cin >> uniqueID;
 
-	/*
-	for(auto i = Associacao.getAssociates().begin(); i != Associacao.getAssociates().end(); i++){
-		if(Associacao.getAssociates().at(i)->getName() == name)
-			ID = Associacao.getAssociates().at(i)->getUniqueID();
-	}*/
+	//compor a cena do cin
 
-	vector<Associate> associados = Associacao.getAssociates();
-	for(auto i = 0; i < associados.size(); i++){
-		if(associados.at(i).getName() == name)
-			ID = associados.at(i).getUniqueID();
+	try{
+		Associacao->removeAssociate(uniqueID);
+	}catch(NoSuchID & e){
+		cout << "Nao existe nenhum associado com o ID: " << e.getID() << ".\nVoltando ao menu anterior...\n";
+		return;
 	}
 
-
-	if(ID != -1)
-		Associacao.removeAssociate(ID);
-
-	//o que fazer se o associado não existir??
-
+	cout << "\nAssociado removido com sucesso!\n";
 }
 
 
@@ -149,6 +170,22 @@ void verInfoAssociado(){
 
 }
 
+
+//-------------------------AREAS----------------------------
+
+void verAreas(){
+
+	vector<Area*> areas = Associacao->getAreas();
+
+	for(size_t t = 0; t < areas.size(); t++){
+		cout << areas.at(t)->getName() << ":\n";
+		for (size_t k = 0; k < areas.at(t)->getSubAreas().size(); k++){
+			cout << areas.at(t)->getSubAreas().at(k)->getName() << " - " << areas.at(t)->getSubAreas().at(k)->getInitials() << endl;
+		}
+		cout << endl;
+	}
+
+}
 
 
 

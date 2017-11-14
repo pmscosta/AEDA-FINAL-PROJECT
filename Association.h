@@ -38,6 +38,8 @@ public:
 	 */
 	Association();
 
+	Association(std::string name);
+
 
 
 	//=========================================Destructors====================================================
@@ -96,6 +98,10 @@ public:
 
 	static int getCurrentYear();
 
+
+	/**
+	 * @brief Returns the vector containing pointers to all the associates
+	 */
 	std::vector<Associate *> getAssociates() const;
 
 
@@ -148,10 +154,27 @@ public:
 	void addToFund(float income);
 
 
+
 	/**
 	 * @brief Updates the current year
 	 */
 	void updateYear();
+
+
+	//============================Area Type Functions=========================================================
+	//========================================================================================================
+
+	/**
+	 * @brief Returns the vector containing pointers to all the areas
+	 */
+	std::vector<Area *> getAreas() const;
+
+	/**
+	 * @brief Adds a new Area to the association
+	 *
+	 * @param newArea - Area pointer of the new Area to be added
+	 */
+	void addArea(Area * newArea);
 
 private:
 	std::string name; ///< The Association name

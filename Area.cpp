@@ -57,3 +57,7 @@ Area::~Area() {
 string Area::getName() const {
 	return this->name;
 }
+
+vector<SubArea *> Area::getSubAreas() const{
+	return this->subareas;
+}

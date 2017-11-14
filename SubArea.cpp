@@ -24,3 +24,8 @@ SubArea::~SubArea() {
 string SubArea::getName() const{
 	return this->name;
 }
+
+
+string SubArea::getInitials() const{
+	return this->initials;
+}

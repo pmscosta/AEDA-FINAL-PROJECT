@@ -16,6 +16,14 @@ Associate::Associate() :
 		uniqueID(++id_provider) {
 }
 
+Associate::Associate(Association * asso, string name, string institution, vector<Area *> interests) : uniqueID(++id_provider){
+	this->association = asso;
+	this->name = name;
+	this->institution = institution;
+	this->interestAreas = interests;
+	this->personalWallet = 500.0;  //DEFAULT FOR EVERY ASSOCIATE
+}
+
 //Destructors
 Associate::~Associate() {
 	// TODO Auto-generated destructor stub

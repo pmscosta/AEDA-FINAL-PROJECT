@@ -11,8 +11,9 @@ using namespace std;
 int Association::currentYear = 0;
 
 Association::Association() {
-	// TODO Auto-generated constructor stub
 }
+
+Association::Association(string name) : name(name) {};
 
 Association::~Association() {
 	// TODO Auto-generated destructor stub
@@ -104,4 +105,17 @@ void Association::updateYear() {
 
 void Association::addToFund(float income) {
 	this->fund += income;
+}
+
+
+
+//Area Type Functions
+
+
+vector<Area*> Association::getAreas() const{
+	return this->areas;
+}
+
+void Association::addArea(Area * newArea){
+	this->areas.push_back(newArea);
 }
