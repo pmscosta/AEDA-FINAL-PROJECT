@@ -122,7 +122,7 @@ public:
 	void setPaidYears(std::vector<int> paid);
 
 	/**
-	 * @briefs Sets/Changes the amount of money the associate has
+	 * @briefs Sets/Changes the amount of money the associate has paid
 	 *
 	 * @param money - the new amount of money (float)
 	 */
@@ -185,7 +185,7 @@ public:
 
 private:
 	Association * association; ///< The connection between the associate and the association
-	std::string name;  ///< The associate name
+	std::string name;  ///< The associate's name
  	float personalWallet;  ///< The amount of money the associate has
 	std::string institution;  ///< The institution to which the associate is connected
 	std::vector<Area *> interestAreas;  ///< A vector containing pointers to all the Associate interest areas

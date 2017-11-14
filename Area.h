@@ -24,15 +24,26 @@ public:
 
 
 	//Get Methods
+
+	/**
+	 * @brief Returns the name of the Area
+	 *
+	 */
 	virtual std::string getName() const;
 
 
 	//SubArea
+
+	/**
+	 * @briefs Adds a SubArea to the vector containing all the SubAreas of the Area
+	 *
+	 * @param newSub - The SubArea that is supposed to add to the vector
+	 */
 	void addSubarea(SubArea * newSub);
 
 private:
-	std::string name;
-	std::vector <SubArea *> subareas;
+	std::string name; ///< The Area's name
+	std::vector <SubArea *> subareas; ///< The Area's SubAreas
 
 
 };

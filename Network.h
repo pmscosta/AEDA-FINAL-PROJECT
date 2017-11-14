@@ -20,21 +20,31 @@ public:
 	Network();
 	Network(std::vector<Mail *> mails);
 
+	//Destructors
 	virtual ~Network();
 
 
 	//Set Methods
+	/**
+	 * @briefs Sets/Changes the vector containing the mails the network has in it
+	 *
+	 * @param mails - vector of pointers to mails
+	 */
 	void setMails(std::vector<Mail *> mails);
 
 
 	//Get Methods
 
+	/**
+	 * @brief Returns, in a vector, all the mails the network has in it
+	 *
+	 */
 	std::vector<Mail *> getMails() const;
 
 
 
 private:
-	std::vector<Mail *> mails;
+	std::vector<Mail *> mails; ///< A vector of mails containing all the mails the network has in it
 };
 
 #endif /* NETWORK_H_ */

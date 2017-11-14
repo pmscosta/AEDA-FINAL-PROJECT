@@ -23,13 +23,17 @@ public:
 
 
 	//Get Methods
+	/**
+	 * @brief Returns the name of the SubArea
+	 *
+	 */
 	std::string getName() const;
 
 
 
 private:
-	std::string name;
-	std::string initials;
+	std::string name; ///< The SubArea's name
+	std::string initials; ///< The SubArea's initials
 };
 
 #endif /* SUBAREA_H_ */
