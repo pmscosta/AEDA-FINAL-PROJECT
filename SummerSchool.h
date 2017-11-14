@@ -29,10 +29,6 @@ public:
 				std::vector<Associate *> event_organizers, std::string date,
 				std::string local, std::string theme, Association * association,
 				std::list<Associate *> involved);
-
-
-	//=========================DESTRUCTORS================================
-	//====================================================================
 	virtual ~SummerSchool();
 private:
 	std::list<Associate *> persons_involved;
