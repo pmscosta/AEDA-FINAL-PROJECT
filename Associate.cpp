@@ -16,12 +16,15 @@ Associate::Associate() :
 		uniqueID(++id_provider) {
 }
 
-Associate::Associate(Association * asso, string name, string institution, vector<Area *> interests) : uniqueID(++id_provider){
+Associate::Associate(Association * asso, string name, string institution,
+		vector<Area *> interests) :
+		uniqueID(++id_provider) {
 	this->association = asso;
 	this->name = name;
 	this->institution = institution;
 	this->interestAreas = interests;
 	this->personalWallet = 500.0;  //DEFAULT FOR EVERY ASSOCIATE
+	this->divulgations = 0;
 }
 
 //Destructors
@@ -37,7 +40,7 @@ Associate::~Associate() {
  }
  */
 
-string Associate::getName() const{
+string Associate::getName() const {
 	return name;
 }
 
@@ -58,12 +61,6 @@ float Associate::getPersonalWallet() const {
 }
 
 //Set Methods
-
-/*
- void Associate::setWork(SubArea* sub) {
- this->workingArea = sub;
- }
- */
 
 void Associate::setInterestAreas(vector<Area *> interest) {
 	this->interestAreas = interest;
@@ -99,13 +96,15 @@ void Associate::payYear(int year) {
 
 	int lastYearPaid = this->paidYears.back();
 
-	if (lastYearPaid < (Association::getCurrentYear() - 1)) //if his payments are not up to date
-		throw NotUpToDate(year, this->uniqueID);
+	if (lastYearPaid < (Association::getCurrentYear() - 1)
+			&& year > (lastYearPaid + 1)) //if his payments are not up to date, he has to strictly pay the year after the last one paid
+		throw NotUpToDate(year, this->uniqueID, lastYearPaid);
 	else if (this->personalWallet < this->association->getAnnualPay())
 		throw NotEnoughMoney(this->uniqueID);
 	else {
-		this->paidYears.push_back(Association::getCurrentYear());
-		this->payFromWallet(this->association->getAnnualPay());
+		this->addPaidYear(year);
+		this->payFromWallet(this->association->getAnnualPay()); //Makes the payment from the associate wallet
+		this->association->addToFund(this->association->getAnnualPay()); //Adds the payment to the fund
 	}
 }
 
@@ -119,4 +118,16 @@ void Associate::updateStatus() {
 		this->status = "subscriber";
 	else
 		this->status = "normal";
+}
+
+void Associate::incDivulgations() {
+	this->divulgations++;
+}
+
+bool Associate::accessNetwork() {
+	return !(this->status == "normal"); //can always see except when its a normal associate
+}
+
+bool Associate::shareNetwork() {
+	return this->status == "contributor"; //can only share if it is a contributor
 }
