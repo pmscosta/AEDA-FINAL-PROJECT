@@ -11,9 +11,14 @@ using namespace std;
 int Association::currentYear = 0;
 
 Association::Association() {
+	this->annualPay = 250.0;
+	this->fund = 10000.0;
 }
 
-Association::Association(string name) : name(name) {};
+Association::Association(string name) : name(name) {
+	this->annualPay = 250.0;
+	this->fund = 10000.0;
+}
 
 Association::~Association() {
 	// TODO Auto-generated destructor stub
@@ -29,7 +34,7 @@ void Association::setFund(long double fund) {
 	this->fund = fund;
 }
 
-void Association::setAnnualPay(int annualPay) {
+void Association::setAnnualPay(float annualPay) {
 	this->annualPay = annualPay;
 }
 
@@ -43,7 +48,7 @@ long double Association::getFund() const {
 	return this->fund;
 }
 
-int Association::getAnnualPay() const {
+float Association::getAnnualPay() const {
 	return this->annualPay;
 }
 
