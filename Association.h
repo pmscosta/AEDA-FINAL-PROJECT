@@ -139,7 +139,7 @@ public:
 	//========================================================================================================
 
 	/**
-	 * @brief Adds the money received from the annual payments to se Association fund
+	 * @brief Adds the money received from the annual payments to the Association fund
 	 *
 	 * @param income - money received from the annual payments
 	 */

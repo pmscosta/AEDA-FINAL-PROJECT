@@ -13,6 +13,7 @@
 #include "Area.h"
 #include "Association.h"
 #include "SubArea.h"
+#include "Functions.h"
 
 #include <iostream>
 #include <unistd.h> //for usleep(miliseconds) function

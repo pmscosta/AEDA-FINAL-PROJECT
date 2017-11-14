@@ -50,7 +50,6 @@ public:
 
 
 	/*
-
 	 * @brief Returns the name of the sub-area where this associate works
 	 *
 
