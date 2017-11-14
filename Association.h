@@ -11,6 +11,7 @@
 
 class Associate;
 class Area;
+class Event;
 
 
 //Exception Classes
@@ -182,6 +183,7 @@ private:
 	float annualPay; ///< The annual pay given by each and every associate
 	std::vector<Associate * > associates; ///< Vector of pointers to all the Associates from the Association
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
+	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
 	static int currentYear; ///< The current year
 
 };
