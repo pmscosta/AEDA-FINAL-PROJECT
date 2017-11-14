@@ -9,7 +9,7 @@
 
 using namespace std;
 
-
+Association Associacao;
 
 //-----------------------FILES--------------------------//
 string filename;
@@ -88,4 +88,69 @@ void adicionarAssociado(){
 
 	//no fim podemos perguntar se deseja pagar ou assim e chamar outra funcao
 }
+
+void removerAssociado(){
+	string name;
+	int ID = -1;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	cout << "Introduza o nome do Associado: ";
+	getline(cin, name);
+
+	/*
+	for(auto i = Associacao.getAssociates().begin(); i != Associacao.getAssociates().end(); i++){
+		if(Associacao.getAssociates().at(i)->getName() == name)
+			ID = Associacao.getAssociates().at(i)->getUniqueID();
+	}*/
+
+	vector<Associate> associados = Associacao.getAssociates();
+	for(auto i = 0; i < associados.size(); i++){
+		if(associados.at(i).getName() == name)
+			ID = associados.at(i).getUniqueID();
+	}
+
+
+	if(ID != -1)
+		Associacao.removeAssociate(ID);
+
+	//o que fazer se o associado não existir??
+
+}
+
+
+void alterarAssociado(){
+	string name;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	cout << "Introduza o nome do Associado: ";
+	getline(cin, name);
+
+
+	//completar...
+
+
+
+}
+
+void verInfoAssociado(){
+	string name;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	cout << "Introduza o nome do Associado: ";
+	getline(cin, name);
+
+	//completar...
+
+}
+
+
+
+
+
 

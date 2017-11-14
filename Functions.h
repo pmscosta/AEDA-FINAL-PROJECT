@@ -33,6 +33,11 @@ void guardarficheiro();
 
 void adicionarAssociado();
 
+void removerAssociado();
+
+void alterarAssociado();
+
+void verInfoAssociado();
 
 
 

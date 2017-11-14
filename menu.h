@@ -26,9 +26,6 @@ void submenu1();
 void submenu2();
 void submenu3();
 void submenu4();
-void lerficheiro();
-void criarficheiro();
-void guardarficheiro();
 void sair();
 
 

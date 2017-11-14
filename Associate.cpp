@@ -29,6 +29,10 @@ Associate::~Associate() {
  }
  */
 
+string Associate::getName() const{
+	return name;
+}
+
 int Associate::getUniqueID() const {
 	return this->uniqueID;
 }
