@@ -30,7 +30,7 @@ public:
 	 *
 	 */
 	virtual std::string getName() const;
-
+	std::vector<SubArea *> getSubAreas() const;
 
 	//SubArea
 

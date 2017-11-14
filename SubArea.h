@@ -29,6 +29,8 @@ public:
 	 */
 	std::string getName() const;
 
+	std::string getInitials() const;
+
 
 
 private:

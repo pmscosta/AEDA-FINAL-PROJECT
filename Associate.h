@@ -41,6 +41,8 @@ public:
 	//constructors
 	Associate();
 
+	Associate(Association * asso, std::string name, std::string institution, std::vector<Area*> interests);
+
 	//destructors
 	virtual ~Associate();
 

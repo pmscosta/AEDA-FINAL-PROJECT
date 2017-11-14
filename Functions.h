@@ -22,7 +22,7 @@
 
 //-----------------------FILES--------------------------//
 
-void lerficheiro();
+void lerficheiroAreas();
 
 void criarficheiro();
 
@@ -38,6 +38,11 @@ void removerAssociado();
 void alterarAssociado();
 
 void verInfoAssociado();
+
+
+//----------------------AREAS-------------------------//
+
+void verAreas();
 
 
 

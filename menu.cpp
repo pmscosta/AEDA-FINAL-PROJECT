@@ -22,7 +22,7 @@ void menu(){
 		cin >> opcao;
 		switch(opcao){
 			case 1:
-				lerficheiro();
+				lerficheiroAreas();
 				break;
 			case 2:
 				criarficheiro();
