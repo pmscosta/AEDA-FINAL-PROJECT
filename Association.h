@@ -74,7 +74,7 @@ public:
 	 *
 	 * @param annualPay - int value
 	 */
-	void setAnnualPay(int annualPay);
+	void setAnnualPay(float annualPay);
 
 
 
@@ -93,7 +93,7 @@ public:
 	/**
 	 * @brief Returns the value of the annual pay for every associate
 	 */
-	int getAnnualPay() const;
+	float getAnnualPay() const;
 
 
 	static int getCurrentYear();
@@ -179,7 +179,7 @@ public:
 private:
 	std::string name; ///< The Association name
 	long double fund;  ///< The Association initial fund to manage events,associates etc..
-	int annualPay; ///< The annual pay given by each and every associate
+	float annualPay; ///< The annual pay given by each and every associate
 	std::vector<Associate * > associates; ///< Vector of pointers to all the Associates from the Association
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
 	static int currentYear; ///< The current year

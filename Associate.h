@@ -39,9 +39,20 @@ class Associate {
 public:
 
 	//constructors
+	/**
+	 * @brief Default Associate Constructor
+	 *
+	 */
 	Associate();
-
-	Associate(Association * asso, std::string name, std::string institution, std::vector<Area*> interests);
+	/**
+	 * @brief Full Associate Constructor
+	 *
+	 * The uniqueID is given automatically and incrementally.
+	 * Every associate has a predefined 500 personal Wallet start.
+	 *
+	 */
+	Associate(Association * asso, std::string name, std::string institution,
+			std::vector<Area*> interests);
 
 	//destructors
 	virtual ~Associate();
@@ -51,14 +62,11 @@ public:
 	//Get Methods
 
 
-	/*
-	 * @brief Returns the name of the sub-area where this associate works
+
+	/**
+	 * @brief Returns the name of the Associate
 	 *
-
-	std::string getWorkName() const;
-
-	*/
-
+	 */
 
 	std::string getName() const;
 
