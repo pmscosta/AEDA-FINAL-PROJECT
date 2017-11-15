@@ -224,17 +224,17 @@ string Associate::showInfo() const{
 	string info = "";
 
 	info += "Associado nº " + to_string(this->uniqueID) + ":\n"
-			+ "\t -Nome: " + this->name + ";\n" +
-			"\t -Instituicao: " + this->institution + ";\n"
-			+ "\t -Status: " + this->status + ";\n" +
-			"\t -Wallet: " + to_string(this->personalWallet) + ";\n" +
-			"\t -Divulgations: " + to_string(this->divulgations) + ";\n" +
+			+ "\t -Nome: " + this->name + "\n" +
+			"\t -Instituicao: " + this->institution + "\n"
+			+ "\t -Status: " + this->status + "\n" +
+			"\t -Wallet: " + to_string(this->personalWallet) + "\n" +
+			"\t -Divulgations: " + to_string(this->divulgations) + "\n" +
 			"\t -Interest Areas: ";
 
 	for (size_t t = 0; t < this->interestAreas.size(); t++) {
 
 		if (t == (this->interestAreas.size() - 1)){
-			info += this->interestAreas.at(t)->getName() + ";";
+			info += this->interestAreas.at(t)->getName();
 			break;
 		}
 		info += this->interestAreas.at(t)->getName() + "/ ";
@@ -246,7 +246,7 @@ string Associate::showInfo() const{
 	for (size_t t = 0; t < this->paidYears.size(); t++) {
 
 		if (t == (this->paidYears.size() - 1)){
-			info += to_string(this->paidYears.at(t)) + ";";
+			info += to_string(this->paidYears.at(t));
 			break;
 		}
 		info += to_string(this->paidYears.at(t)) + ", ";

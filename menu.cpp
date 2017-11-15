@@ -102,19 +102,19 @@ void submenu1() {
 		switch (opcao) {
 		case 1:
 			adicionarAssociado();
-			menu2();
+			regressar();
 			break;
 		case 2:
 			removerAssociado();
-			menu2();
+			regressar();
 			break;
 		case 3:
 			alterarAssociado();
-			menu2();
+			regressar();
 			break;
 		case 4:
 			verInfoAssociado();
-			menu2();
+			regressar();
 			break;
 		case 5:
 			menu2();
@@ -149,19 +149,19 @@ void submenu2() {
 		switch (opcao) {
 		case 1:
 			criarEvento();
-			menu2();
+			regressar();
 			break;
 		case 2:
 			removerEvento();
-			menu2();
+			regressar();
 			break;
 		case 3:
 			alterarEvento();
-			menu2();
+			regressar();
 			break;
 		case 4:
 			verInfoEvento();
-			menu2();
+			regressar();
 			break;
 		case 5:
 			menu2();
@@ -194,11 +194,11 @@ void submenu3() {
 		switch (opcao) {
 		case 1:
 			pagarCotas();
-			menu2();
+			regressar();
 			break;
 		case 2:
 			verAssociadosCotas();
-			menu2();
+			regressar();
 			break;
 		case 3:
 			menu2();
@@ -231,11 +231,11 @@ void submenu4() {
 		switch (opcao) {
 		case 1:
 			divulgarEmail();
-			menu2();
+			regressar();
 			break;
 		case 2:
 			verEmails();
-			menu2();
+			regressar();
 			break;
 		case 3:
 			menu2();
@@ -248,6 +248,29 @@ void submenu4() {
 		}
 	}
 
+}
+
+void regressar(){
+	cout << endl << endl;
+	cout << " 1 - Regressar ao Menu principal" << endl;
+	cout << " 2 - Sair" << endl;
+
+	int opcao = 0;
+	cout << endl;
+	cout << "Introduza uma opcao: ";
+	while (opcao < 1 || opcao > 2) {
+		cin >> opcao;
+		switch (opcao) {
+		case 1:
+			menu2();
+			break;
+		case 2:
+			sair();
+			break;
+		default:
+			cout << "Opcao invalida. Introduza uma nova opcao: ";
+		}
+	}
 }
 
 void sair() {
