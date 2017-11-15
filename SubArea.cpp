@@ -12,20 +12,19 @@ SubArea::SubArea() {
 
 }
 
-SubArea::SubArea(string name, string initials) : name(name), initials(initials) {}
-
+SubArea::SubArea(string name, string initials) :
+		name(name), initials(initials) {
+}
 
 SubArea::~SubArea() {
 	// TODO Auto-generated destructor stub
 }
 
-
 //Get Methods
-string SubArea::getName() const{
+string SubArea::getName() const {
 	return this->name;
 }
 
-
-string SubArea::getInitials() const{
+string SubArea::getInitials() const {
 	return this->initials;
 }

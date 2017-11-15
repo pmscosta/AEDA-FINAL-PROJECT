@@ -5,6 +5,7 @@
 #include "Association.h"
 #include "Associate.h"
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
@@ -15,10 +16,21 @@ Association::Association() {
 	this->fund = 10000.0;
 }
 
-Association::Association(string name) :
-		name(name) {
-	this->annualPay = 250.0;
-	this->fund = 10000.0;
+Association::Association(string file) {
+
+	istringstream input(file);
+
+	std: string name;
+	long double fund;
+	float annualPay;
+	char garbage;
+
+	input >> name >> garbage >> annualPay >> Association::currentYear;
+
+	this->name = name;
+	this->fund = fund;
+	this->annualPay = annualPay;
+
 }
 
 Association::~Association() {
@@ -57,7 +69,7 @@ int Association::getCurrentYear() {
 	return Association::currentYear;
 }
 
-vector<Associate *> Association::getAssociates() const{
+vector<Associate *> Association::getAssociates() const {
 	return associates;
 }
 
@@ -89,7 +101,7 @@ void Association::updateAllAssociates() {
 	}
 }
 
-Associate * Association::getAssoById(int uniqueID)  {
+Associate * Association::getAssoById(int uniqueID) {
 
 	//invoking a lambda function
 	auto it = find_if(this->associates.begin(), this->associates.end(),
@@ -155,11 +167,10 @@ string Association::updatePayment() {
 
 //Area Type Functions
 
-
-vector<Area*> Association::getAreas() const{
+vector<Area*> Association::getAreas() const {
 	return this->areas;
 }
 
-void Association::addArea(Area * newArea){
+void Association::addArea(Area * newArea) {
 	this->areas.push_back(newArea);
 }

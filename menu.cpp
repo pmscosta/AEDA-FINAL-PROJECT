@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void menu(){
+void menu() {
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -18,29 +18,29 @@ void menu(){
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while(opcao < 1 || opcao > 3){
+	while (opcao < 1 || opcao > 3) {
 		cin >> opcao;
-		switch(opcao){
-			case 1:
-				lerficheiro();
-				cout << endl << endl;
-				menu2();
-				break;
-			case 2:
-				criarficheiro();
-				cout << endl << endl;
-				menu2();
-				break;
-			case 3:
-				sair();
-				break;
-			default:
-				cout << "Opcao invalida. Introduza uma nova opcao: ";
+		switch (opcao) {
+		case 1:
+			lerficheiro();
+			cout << endl << endl;
+			menu2();
+			break;
+		case 2:
+			criarficheiro();
+			cout << endl << endl;
+			menu2();
+			break;
+		case 3:
+			sair();
+			break;
+		default:
+			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
 }
 
-void menu2(){
+void menu2() {
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -55,9 +55,9 @@ void menu2(){
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while(opcao < 1 || opcao > 6){
+	while (opcao < 1 || opcao > 6) {
 		cin >> opcao;
-		switch(opcao){
+		switch (opcao) {
 		case 1:
 			submenu1();
 			break;
@@ -82,7 +82,7 @@ void menu2(){
 	}
 }
 
-void submenu1(){
+void submenu1() {
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
@@ -98,9 +98,9 @@ void submenu1(){
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while(opcao < 1 || opcao > 6){
+	while (opcao < 1 || opcao > 6) {
 		cin >> opcao;
-		switch(opcao){
+		switch (opcao) {
 		case 1:
 			adicionarAssociado();
 			menu2();
@@ -129,7 +129,7 @@ void submenu1(){
 	}
 }
 
-void submenu2(){
+void submenu2() {
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
@@ -145,9 +145,9 @@ void submenu2(){
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while(opcao < 1 || opcao > 6){
+	while (opcao < 1 || opcao > 6) {
 		cin >> opcao;
-		switch(opcao){
+		switch (opcao) {
 		case 1:
 			//Funcao que cria um evento
 			break;
@@ -172,7 +172,7 @@ void submenu2(){
 	}
 }
 
-void submenu3(){
+void submenu3() {
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
@@ -186,9 +186,9 @@ void submenu3(){
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while(opcao < 1 || opcao > 4){
+	while (opcao < 1 || opcao > 4) {
 		cin >> opcao;
-		switch(opcao){
+		switch (opcao) {
 		case 1:
 			//Funcao para pagar a cota anual de um associado
 			break;
@@ -207,7 +207,7 @@ void submenu3(){
 	}
 }
 
-void submenu4(){
+void submenu4() {
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
@@ -221,9 +221,9 @@ void submenu4(){
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while(opcao < 1 || opcao > 6){
+	while (opcao < 1 || opcao > 6) {
 		cin >> opcao;
-		switch(opcao){
+		switch (opcao) {
 		case 1:
 			//Funcao para enviar um email para a rede
 			break;
@@ -243,13 +243,13 @@ void submenu4(){
 
 }
 
-void sair(){
+void sair() {
 	char opcao;
 	cout << endl;
 	cout << "Deseja guardar as alteracoes feitas? (S/N): ";
-	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N'){
+	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
 		cin >> opcao;
-		switch(opcao){
+		switch (opcao) {
 		case 's':
 			guardarficheiro();
 			break;

@@ -22,30 +22,19 @@ void Area::addSubarea(SubArea * newSub) {
 
 Area::Area(string file_string) {
 
-	istringstream input(file_string);
-
 	string areaName, subAreaName, subAreaInitials;
+	string garbage;
+	istringstream infoArea(file_string);
 
-	input >> areaName;
-
-	areaName = areaName.substr(0, areaName.size() - 1);
-
+	getline(infoArea, areaName, '/');
 	this->name = areaName;
-
-	while (!input.eof()) {
-
-		input >> subAreaName;
-		subAreaName = subAreaName.substr(0, subAreaName.size() - 1);
-
-		input >> subAreaInitials;
-		if (!input.eof())
-			subAreaInitials = subAreaInitials.substr(0,
-					subAreaInitials.size() - 1); //removing the comma only if it is not the last initials
-
+	while (!infoArea.eof()) {  //num xei shié eofê
+		getline(infoArea, subAreaName, '/');
+		getline(infoArea, subAreaInitials, '/');
 		SubArea * subarea = new SubArea(subAreaName, subAreaInitials);
-
 		this->addSubarea(subarea);
 	}
+
 }
 
 Area::~Area() {
@@ -58,6 +47,6 @@ string Area::getName() const {
 	return this->name;
 }
 
-vector<SubArea *> Area::getSubAreas() const{
+vector<SubArea *> Area::getSubAreas() const {
 	return this->subareas;
 }

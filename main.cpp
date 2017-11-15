@@ -6,7 +6,7 @@
 #include "menu.h"
 #include "Functions.h"
 
-int main(){
+int main() {
 	initialize();
 	menu();
 	return 0;

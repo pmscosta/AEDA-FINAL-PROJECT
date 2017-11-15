@@ -1,4 +1,3 @@
-
 /*
  * menu.h
  *
@@ -19,7 +18,6 @@
 #include <unistd.h> //for usleep(miliseconds) function
 #include <fstream>
 
-
 void menu();
 void menu2();
 void submenu1();
@@ -27,7 +25,5 @@ void submenu2();
 void submenu3();
 void submenu4();
 void sair();
-
-
 
 #endif /* MENU_H_ */

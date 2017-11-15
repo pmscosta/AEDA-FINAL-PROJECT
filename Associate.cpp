@@ -16,7 +16,9 @@ Associate::Associate() :
 		uniqueID(++id_provider) {
 }
 
-Associate::Associate(Association * asso, string name, string institution, vector<Area *> interests) : uniqueID(++id_provider){
+Associate::Associate(Association * asso, string name, string institution,
+		vector<Area *> interests) :
+		uniqueID(++id_provider) {
 	this->association = asso;
 	this->name = name;
 	this->institution = institution;
@@ -32,7 +34,7 @@ Associate::~Associate() {
 
 //Get Methods
 
-string Associate::getName() const{
+string Associate::getName() const {
 	return name;
 }
 
@@ -90,18 +92,18 @@ void Associate::payYear(int year) {
 
 	if (lastYearPaid < (Association::getCurrentYear() - 1)
 
-	      && year > (lastYearPaid + 1)) //if his payments are not up to date, he has to strictly pay the year after the last one paid
+	&& year > (lastYearPaid + 1)) //if his payments are not up to date, he has to strictly pay the year after the last one paid
 
-	    throw NotUpToDate(year, this->uniqueID, lastYearPaid);
+		throw NotUpToDate(year, this->uniqueID, lastYearPaid);
 
 	else if (this->personalWallet < this->association->getAnnualPay())
 		throw NotEnoughMoney(this->uniqueID);
 	else {
-		 this->addPaidYear(year);
+		this->addPaidYear(year);
 
-		    this->payFromWallet(this->association->getAnnualPay()); //Makes the payment from the associate wallet
+		this->payFromWallet(this->association->getAnnualPay()); //Makes the payment from the associate wallet
 
-		    this->association->addToFund(this->association->getAnnualPay()); //Adds the payment to the fund
+		this->association->addToFund(this->association->getAnnualPay()); //Adds the payment to the fund
 
 	}
 }
@@ -120,23 +122,19 @@ void Associate::updateStatus() {
 
 void Associate::incDivulgations() {
 
-  this->divulgations++;
+	this->divulgations++;
 
 }
-
-
 
 bool Associate::accessNetwork() {
 
-  return !(this->status == "normal"); //can always see except when its a normal associate
+	return !(this->status == "normal"); //can always see except when its a normal associate
 
 }
 
-
-
 bool Associate::shareNetwork() {
 
-  return this->status == "contributor"; //can only share if it is a contributor
+	return this->status == "contributor"; //can only share if it is a contributor
 
 }
 

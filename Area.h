@@ -10,7 +10,6 @@
 
 class SubArea;
 
-
 class Area {
 public:
 
@@ -18,10 +17,8 @@ public:
 	Area();
 	Area(std::string file_string);
 
-
 	//Destructors
 	virtual ~Area();
-
 
 	//Get Methods
 
@@ -43,8 +40,7 @@ public:
 
 private:
 	std::string name; ///< The Area's name
-	std::vector <SubArea *> subareas; ///< The Area's SubAreas
-
+	std::vector<SubArea *> subareas; ///< The Area's SubAreas
 
 };
 

@@ -11,8 +11,9 @@ using namespace std;
 
 Association * Associacao;
 
-void initialize(){
-	Associacao = new Association("ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
+void initialize() {
+	Associacao = new Association(
+			"ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
 	lerficheiroAreas();
 }
 
@@ -38,7 +39,8 @@ void lerficheiro() {
 		cin >> filename;
 		file.open(filename);
 		if (!file.is_open())
-			cout << "Nome ficheiro invalido. Introduza novamente o nome do ficheiro: ";
+			cout
+					<< "Nome ficheiro invalido. Introduza novamente o nome do ficheiro: ";
 	} while (!file.is_open());
 
 	// falta codigo para ler o ficheiro
@@ -80,8 +82,8 @@ void adicionarAssociado() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-    cin.clear();
-    cin.ignore(10000,'\n');
+	cin.clear();
+	cin.ignore(10000, '\n');
 	cout << "Introduza o nome do Associado: ";
 	getline(cin, nome);
 	cout << "\nIntroduza a instituicao do Associado: ";
@@ -115,7 +117,8 @@ void adicionarAssociado() {
 		newInterest.push_back(areas.at(selected));
 	}
 
-	Associate * newAsso = new Associate(Associacao, nome, instituicao, newInterest);
+	Associate * newAsso = new Associate(Associacao, nome, instituicao,
+			newInterest);
 
 	Associacao->addAssociate(newAsso);
 
@@ -147,7 +150,7 @@ void removerAssociado() {
 		return;
 	}
 
-	cout << "\nAssociado removido com sucesso!"<< endl << endl;
+	cout << "\nAssociado removido com sucesso!" << endl << endl;
 
 	sleep(1);
 }

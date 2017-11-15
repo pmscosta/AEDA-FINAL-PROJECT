@@ -218,33 +218,23 @@ public:
 	void updateStatus();
 
 	/**
-
 	 *
-
 	 * @brief Increments the number of divulgations to the network by the associate.
-
 	 * Occurs every time a new Mail is sent.
-
 	 */
 
 	void incDivulgations();
 
 	/**
-
 	 * @brief Determines if the associate has access to see the contents of the network.
-
 	 * Return true if so, false otherwise;
-
 	 */
 
 	bool accessNetwork();
 
 	/*
-
 	 * @brief Determines if the associate can share a Mail in the network.
-
 	 * Return true if so, false otherwise.
-
 	 */
 
 	bool shareNetwork();

@@ -10,7 +10,6 @@
 
 #include <vector>
 
-
 class Mail;
 
 class Network {

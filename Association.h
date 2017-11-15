@@ -13,19 +13,21 @@ class Associate;
 class Area;
 class Event;
 
-
 //Exception Classes
 
-class NoSuchID{
+class NoSuchID {
 private:
 	int ID;
 public:
-	NoSuchID(int id) : ID(id) {};
-	int getID() const {return this->ID;};
+	NoSuchID(int id) :
+			ID(id) {
+	}
+	;
+	int getID() const {
+		return this->ID;
+	}
+	;
 };
-
-
-
 
 class Association {
 
@@ -39,9 +41,15 @@ public:
 	 */
 	Association();
 
-	Association(std::string name);
-
-
+	/*
+	 * @brief Association Constructor
+	 *
+	 * @param file - a string from a file containing all the info in the following order:
+	 *  Name/ Fund/ annualPay/ CurrentYear
+	 *
+	 *  It's vector will be later on initialized
+	 */
+	Association(std::string file);
 
 	//=========================================Destructors====================================================
 	//========================================================================================================
@@ -49,8 +57,6 @@ public:
 	 * @brief Default Destructor
 	 */
 	virtual ~Association();
-
-
 
 	//===================================Set Methods==========================================================
 	//========================================================================================================
@@ -77,10 +83,8 @@ public:
 	 */
 	void setAnnualPay(float annualPay);
 
-
-
 	//=============================================Get Methods================================================
-    //========================================================================================================
+	//========================================================================================================
 	/**
 	 * @brief Returns the name of the association
 	 */
@@ -96,15 +100,12 @@ public:
 	 */
 	float getAnnualPay() const;
 
-
 	static int getCurrentYear();
-
 
 	/**
 	 * @brief Returns the vector containing pointers to all the associates
 	 */
 	std::vector<Associate *> getAssociates() const;
-
 
 	//===============================Associate Type Functions=================================================
 	//========================================================================================================
@@ -116,7 +117,6 @@ public:
 	 */
 	void addAssociate(Associate * newAsso);
 
-
 	/**
 	 * @brief Removes a Associate from the association (does not delete it, since it can exist out of the Association scope)
 	 *
@@ -125,7 +125,6 @@ public:
 	 * @param uniqueID
 	 */
 	void removeAssociate(int uniqueID);
-
 
 	/**
 	 * @brief Updates the status from all associates to prevent ignoring new changes made to them
@@ -141,9 +140,6 @@ public:
 	 */
 	Associate * getAssoById(int uniqueID);
 
-
-
-
 	//============================Association Type Functions==================================================
 	//========================================================================================================
 
@@ -154,18 +150,15 @@ public:
 	 */
 	void addToFund(float income);
 
-
-
 	/**
 	 * @brief Updates the current year
 	 */
 	void updateYear();
 
-
-	  /**
-	   * @brief Makes the annual payment of every associate automatically
-	   */
-	  std::string updatePayment();
+	/**
+	 * @brief Makes the annual payment of every associate automatically
+	 */
+	std::string updatePayment();
 
 	//============================Area Type Functions=========================================================
 	//========================================================================================================
@@ -184,9 +177,9 @@ public:
 
 private:
 	std::string name; ///< The Association name
-	long double fund;  ///< The Association initial fund to manage events,associates etc..
+	long double fund; ///< The Association initial fund to manage events,associates etc..
 	float annualPay; ///< The annual pay given by each and every associate
-	std::vector<Associate * > associates; ///< Vector of pointers to all the Associates from the Association
+	std::vector<Associate *> associates; ///< Vector of pointers to all the Associates from the Association
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
 	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
 	static int currentYear; ///< The current year

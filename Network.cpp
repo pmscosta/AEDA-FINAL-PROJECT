@@ -16,31 +16,28 @@ Network::Network() {
 
 }
 
-
 //Destructors
 
 Network::~Network() {
 	// TODO Auto-generated destructor stub
 }
 
-
 //Set Methods
 
-void Network::setMails(vector<Mail*> mails){
+void Network::setMails(vector<Mail*> mails) {
 	this->mails = mails;
 }
 
-
 //Get Methods
 
-vector<Mail *> Network::getMails() const{
+vector<Mail *> Network::getMails() const {
 	return this->mails;
 }
 
 //General
 
-void Network::addMail(Mail * newMail){
+void Network::addMail(Mail * newMail) {
 
-  this->mails.push_back(newMail);
+	this->mails.push_back(newMail);
 
 }

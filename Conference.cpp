@@ -28,13 +28,10 @@ Conference::~Conference() {
 	// TODO Auto-generated destructor stub
 }
 
-
 //Get Methods
 
+int Conference::getEstimative() const {
 
-
-int Conference::getEstimative() const{
-
-  return this->estimative;
+	return this->estimative;
 
 }
