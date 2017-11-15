@@ -114,6 +114,7 @@ void limparficheiros(){
 	file.close();
 }
 
+
 //----------------------ASSOCIATES---------------------//
 
 void adicionarAssociado() {
@@ -223,3 +224,154 @@ void verInfoAssociado() {
 }
 
 
+//-----------------------EVENTOS----------------------//
+
+void criarEvento(){
+	int uniqueID, numAsso;
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	Associate * associado;
+	vector<Associate *> event_request, event_organizers;
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+	cout << "Introduza o numero de Associados que querem criar um Evento: ";
+	cin >> numAsso;
+
+	for(int i = 0; i < numAsso; i++){
+		cout << "Introduza o Identificador Unico do "<< i+1 << "º Associado que quer criar um Evento: ";
+		cin >> uniqueID;
+		try {
+			associado = Associacao->getAssoById(uniqueID);
+		} catch (NoSuchID & e) {
+			cout << "\nNao existe nenhum associado com o ID: " << e.getID()
+						<< ".\nVoltando ao menu principal..." << endl << endl;
+			sleep(1);
+			return;
+		}
+		event_request.push_back(associado);
+	}
+
+	event_organizers = event_request;
+	cout << "Introduza o numero de Associados que vao ajudar a organizar o Evento: ";
+	cin >> numAsso;
+	for(int i = 0; i < numAsso; i++){
+		cout << "Introduza o Identificador Unico do "<< i+1 << "º Associado que quer ajudar a organizar o Evento: ";
+		cin >> uniqueID;
+		try {
+			associado = Associacao->getAssoById(uniqueID);
+		} catch (NoSuchID & e) {
+			cout << "\nNao existe nenhum associado com o ID: " << e.getID()
+						<< ".\nVoltando ao menu principal..." << endl << endl;
+			sleep(1);
+			return;
+		}
+		event_organizers.push_back(associado);
+	}
+
+	string date, local, theme;
+	cout << "Introduza a data do evento: ";
+	getline(cin, date);
+	cout << "Introduza o local do evento: ";
+	getline(cin, local);
+	cout << "Introduza o tema do evento: ";
+	getline(cin, theme);
+
+	Event * evento;
+	try {
+		evento = new Event(event_request,event_organizers,date,local,theme, Associacao);
+	} catch (const NoSupportGiven & e) {
+		cout << "\nEm " << e.getTotal() << " associados, " << e.getLate() << " tem pagamentos em atraso. Impossivel criar evento!"
+					<< ".\nVoltando ao menu principal..." << endl << endl;
+		sleep(1);
+		return;
+	}
+	Associacao->addEvent(evento);
+}
+
+void removerEvento(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}
+
+void alterarEvento(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}
+
+void verInfoEvento(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}
+
+
+//-----------------------COTAS-------------------------//
+
+void pagarCotas(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}
+
+void verAssociadosCotas(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}
+
+
+
+//-----------------------REDE--------------------------//
+
+void divulgarEmail(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}
+
+void verEmails(){
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+
+	//completar...
+
+}

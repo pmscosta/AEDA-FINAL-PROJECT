@@ -12,6 +12,7 @@
 #include "Area.h"
 #include "Association.h"
 #include "SubArea.h"
+#include "Event.h"
 
 #include <iostream>
 #include <fstream>
@@ -23,6 +24,7 @@
 void initialize();
 
 void initialize2();
+
 
 //-----------------------FILES--------------------------//
 
@@ -46,6 +48,7 @@ void guardarficheiroEventos();
 
 void limparficheiros();
 
+
 //----------------------ASSOCIATES---------------------//
 
 void adicionarAssociado();
@@ -56,7 +59,31 @@ void alterarAssociado();
 
 void verInfoAssociado();
 
+
 //----------------------EVENTS-------------------------//
 
+void criarEvento();
 
-#endif /* SUPER_MEME_FUNCTIONS_H_ */
+void removerEvento();
+
+void alterarEvento();
+
+void verInfoEvento();
+
+
+//-----------------------COTAS-------------------------//
+
+void pagarCotas();
+
+void verAssociadosCotas();
+
+
+//-----------------------REDE--------------------------//
+
+void divulgarEmail();
+
+void verEmails();
+
+
+
+#endif /* FUNCTIONS_H_ */
