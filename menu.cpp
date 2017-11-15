@@ -148,16 +148,20 @@ void submenu2() {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
-			//Funcao que cria um evento
+			criarEvento();
+			menu2();
 			break;
 		case 2:
-			//Funcao que remove um evento
+			removerEvento();
+			menu2();
 			break;
 		case 3:
-			//Funcao que altera informacoes de um evento
+			alterarEvento();
+			menu2();
 			break;
 		case 4:
-			//Funcao que mostra informacoes sobre um evento
+			verInfoEvento();
+			menu2();
 			break;
 		case 5:
 			menu2();
@@ -189,10 +193,12 @@ void submenu3() {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
-			//Funcao para pagar a cota anual de um associado
+			pagarCotas();
+			menu2();
 			break;
 		case 2:
-			//Funcao que mostra os associados com cotas em atraso
+			verAssociadosCotas();
+			menu2();
 			break;
 		case 3:
 			menu2();
@@ -224,10 +230,12 @@ void submenu4() {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
-			//Funcao para enviar um email para a rede
+			divulgarEmail();
+			menu2();
 			break;
 		case 2:
-			//Funcao que mostra os emails da rede
+			verEmails();
+			menu2();
 			break;
 		case 3:
 			menu2();

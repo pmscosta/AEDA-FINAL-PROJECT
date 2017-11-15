@@ -196,3 +196,10 @@ string Association::showAreas() const {
 	return info;
 }
 
+
+//Event Type Functions
+
+void Association::addEvent(Event * newEvent){
+	this->events.push_back(newEvent);
+}
+

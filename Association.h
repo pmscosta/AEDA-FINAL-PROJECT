@@ -189,6 +189,11 @@ public:
 	 */
 	std::string showAreas() const;
 
+	//============================Event Type Functions==================================================
+	//========================================================================================================
+
+	void addEvent(Event * newEvent);
+
 private:
 	std::string name; ///< The Association name
 	long double fund; ///< The Association initial fund to manage events,associates etc..
