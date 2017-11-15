@@ -51,7 +51,8 @@ void lerficheiroAssociados() {
 	string line;
 	file.open("associates.txt");
 	while (getline(file, line)) {
-
+		Associate * newAsso = new Associate(Associacao, line);
+		Associacao->addAssociate(newAsso);
 	}
 	file.close();
 }
@@ -219,7 +220,7 @@ void verInfoAssociado() {
 	cout << "Introduza o nome do Associado: ";
 	getline(cin, name);
 
-	//completar...
+	cout << Associacao->showAllAssociates();
 
 }
 
