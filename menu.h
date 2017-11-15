@@ -24,6 +24,7 @@ void submenu1();
 void submenu2();
 void submenu3();
 void submenu4();
+void regressar();
 void sair();
 
 #endif /* MENU_H_ */

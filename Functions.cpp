@@ -180,8 +180,6 @@ void removerAssociado() {
 	cout << "Introduza o Identificador Unico do Associado a remover: ";
 	cin >> uniqueID;
 
-	//compor a cena do cin
-
 	try {
 		Associacao->removeAssociate(uniqueID);
 	} catch (NoSuchID & e) {
@@ -211,17 +209,29 @@ void alterarAssociado() {
 }
 
 void verInfoAssociado() {
-	string name;
+	int uniqueID;
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cout << "Introduza o nome do Associado: ";
-	getline(cin, name);
+	cout << "Introduza o Identificador Unico do Associado: ";
+	cin >> uniqueID;
 
-	cout << Associacao->showAllAssociates();
+	Associate * associado;
+	try {
+		associado = Associacao->getAssoById(uniqueID);
+	} catch (NoSuchID & e) {
+		cout << "\nNao existe nenhum associado com o ID: " << e.getID()
+				<< ".\nVoltando ao menu principal..." << endl << endl;
+		sleep(1);
+		return;
+	}
 
+	string associadoinfo = associado->showInfo();
+	cout << endl << associadoinfo;
+
+	sleep(1);
 }
 
 
@@ -356,7 +366,6 @@ void verAssociadosCotas(){
 	//completar...
 
 }
-
 
 
 //-----------------------REDE--------------------------//
