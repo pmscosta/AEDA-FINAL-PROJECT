@@ -11,15 +11,9 @@ using namespace std;
 
 Association * Associacao;
 
-<<<<<<< Updated upstream
-void initialize() {
-	Associacao = new Association(
-			"ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
-=======
 void initialize(){
 	Associacao = new Association("ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
 	lerficheiroAssociacao();
->>>>>>> Stashed changes
 	lerficheiroAreas();
 	lerficheiroAssociados();
 	lerficheiroEventos();
@@ -45,17 +39,6 @@ void lerficheiroAreas() {
 
 void lerficheiroAssociacao() {
 	ifstream file;
-<<<<<<< Updated upstream
-	cout << endl;
-	cout << "Introduza o nome do ficheiro: ";
-	do {
-		cin >> filename;
-		file.open(filename);
-		if (!file.is_open())
-			cout
-					<< "Nome ficheiro invalido. Introduza novamente o nome do ficheiro: ";
-	} while (!file.is_open());
-=======
 	string line;
 	file.open("association.txt");
 	while (getline(file, line)) {
@@ -63,7 +46,6 @@ void lerficheiroAssociacao() {
 	}
 	file.close();
 }
->>>>>>> Stashed changes
 
 void lerficheiroAssociados() {
 	ifstream file;
