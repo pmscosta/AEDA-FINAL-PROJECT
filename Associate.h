@@ -9,36 +9,73 @@
 #include <vector>
 #include <string>
 
-
 class Area;
 class SubArea;
 class Association;
 
-
-class NotUpToDate{
+class NotUpToDate {
 private:
 	int uniqueID;
 	int triedYear;
+	int lastPaid;
 
 public:
-	NotUpToDate(int triedYear, int uniqueID) : triedYear(triedYear), uniqueID(uniqueID) {};
+	NotUpToDate(int triedYear, int uniqueID, int lastPaid) :
+
+			triedYear(triedYear), uniqueID(uniqueID), lastPaid(lastPaid) {
+
+	}
+
+	;
+
+	int getID() const {
+
+		return this->uniqueID;
+
+	}
+
+	int getYear() const {
+
+		return this->triedYear;
+
+	}
+
+	int getLast() const {
+
+		return this->lastPaid;
+
+	}
 };
 
-class NotEnoughMoney{
+class NotEnoughMoney {
 private:
 	int uniqueID;
 
 public:
-	NotEnoughMoney(int uniqueID) : uniqueID(uniqueID) {};
+	NotEnoughMoney(int uniqueID) :
+
+			uniqueID(uniqueID) {
+
+	}
+
+	;
+
+	int getID() const {
+
+		return this->uniqueID;
+
+	}
+
 };
-
-
 
 class Associate {
 
 public:
 
-	//constructors
+	//=============================================Constructors================================================
+
+	//=========================================================================================================
+
 	/**
 	 * @brief Default Associate Constructor
 	 *
@@ -54,14 +91,15 @@ public:
 	Associate(Association * asso, std::string name, std::string institution,
 			std::vector<Area*> interests);
 
-	//destructors
+	//=============================================Destructors================================================
+
+	//========================================================================================================
+
 	virtual ~Associate();
 
-	//**************************************************************************//
+	//=============================================Get Methods================================================
 
-	//Get Methods
-
-
+	//========================================================================================================
 
 	/**
 	 * @brief Returns the name of the Associate
@@ -96,29 +134,19 @@ public:
 	 */
 	float getPersonalWallet() const;
 
+	//=============================================Set Methods================================================
 
-	//**************************************************************************//
-
-	//Set Methods
+	//========================================================================================================
 
 	/**
-	 * @briefs Sets/Changes the vector containing the interest areas of an associate
+	 * @brief Sets/Changes the vector containing the interest areas of an associate
 	 *
 	 * @param interest - vector of pointers to areas
 	 */
 	void setInterestAreas(std::vector<Area *> interest);
 
-	/*
-	 * @briefs Sets/Changes the sub-area/working area of an associate
-	 *
-	 * @param sub - SubArea pointer
-
-	void setWork(SubArea* sub);
-
-	*/
-
 	/**
-	 * @briefs Sets/Changes the string representing the current status of an associate
+	 * @brief Sets/Changes the string representing the current status of an associate
 	 *
 	 * The possible status are "normal", "subscriber", "normal".
 	 *
@@ -127,40 +155,39 @@ public:
 	void setStatus(std::string newStatus);
 
 	/**
-	 * @briefs Sets/Changes the vector containing the years that the associate has paid
+	 * @brief Sets/Changes the vector containing the years that the associate has paid
 	 *
 	 * @param paid - a vector of ints representing the years
 	 */
 	void setPaidYears(std::vector<int> paid);
 
 	/**
-	 * @briefs Sets/Changes the amount of money the associate has paid
+	 * @brief Sets/Changes the amount of money the associate has paid
 	 *
 	 * @param money - the new amount of money (float)
 	 */
 	void setPersonallWallet(float money);
 
-	//General Methods
+	//=============================================General Methods================================================
 
+	//============================================================================================================
 
 	/**
-	 * @briefs Adds a certain amount to the associate wallet
+	 * @brief Adds a certain amount to the associate wallet
 	 *
 	 * @param more_money - the amount to be added
 	 */
 	void addToWallet(float more_money);
 
-
-
 	/**
-	 * @briefs Subtracts a certain amount from the associate wallet
+	 * @brief Subtracts a certain amount from the associate wallet
 	 *
 	 * @param less_money - the amount to be subtracted
 	 */
 	void payFromWallet(float less_money);
 
 	/**
-	 * @briefs Adds a year to the vector containing all the paid years
+	 * @brief Adds a year to the vector containing all the paid years
 	 *
 	 * Applicable after doing a yearly payment
 	 *
@@ -168,9 +195,8 @@ public:
 	 */
 	void addPaidYear(int year);
 
-
 	/**
-	 * @briefs Effectuates the payment of a year
+	 * @brief Effectuates the payment of a year
 	 *
 	 * Checks if the associate has enough money to do such payment
 	 * and if the associate has all the years before paid up to date.
@@ -181,9 +207,8 @@ public:
 	 */
 	void payYear(int year);
 
-
 	/**
-	 * @briefs Update the string representing the status of the associate
+	 * @brief Update the string representing the status of the associate
 	 *
 	 * Checks with the static variable of the Association Current Year to see
 	 * if the associate has the payments up to date (with the 5 years delay)
@@ -192,22 +217,50 @@ public:
 	 */
 	void updateStatus();
 
+	/**
 
+	 *
 
+	 * @brief Increments the number of divulgations to the network by the associate.
+
+	 * Occurs every time a new Mail is sent.
+
+	 */
+
+	void incDivulgations();
+
+	/**
+
+	 * @brief Determines if the associate has access to see the contents of the network.
+
+	 * Return true if so, false otherwise;
+
+	 */
+
+	bool accessNetwork();
+
+	/*
+
+	 * @brief Determines if the associate can share a Mail in the network.
+
+	 * Return true if so, false otherwise.
+
+	 */
+
+	bool shareNetwork();
 
 private:
 	Association * association; ///< The connection between the associate and the association
 	std::string name;  ///< The associate's name
- 	float personalWallet;  ///< The amount of money the associate has
-	std::string institution;  ///< The institution to which the associate is connected
-	std::vector<Area *> interestAreas;  ///< A vector containing pointers to all the Associate interest areas
-	std::string status;  ///< contributor, subscriber, normal, the possible status
-	std::vector<int> paidYears;  ///< A vector of integers containing all the year the Associate has paid
-	//SubArea * workingArea;
+	float personalWallet;  ///< The amount of money the associate has
+	std::string institution; ///< The institution to which the associate is connected
+	std::vector<Area *> interestAreas; ///< A vector containing pointers to all the Associate interest areas
+	std::string status; ///< contributor, subscriber, normal, the possible status
+	std::vector<int> paidYears; ///< A vector of integers containing all the year the Associate has paid
 	int uniqueID;   ///< The unique Identifier
-	static int id_provider;   ///< Will ensure that every instance of this class gets a unique identifier
+	static int id_provider; ///< Will ensure that every instance of this class gets a unique identifier
+	int divulgations; ///< The number of divulgations to the network
+
 };
-
-
 
 #endif /* ASSOCIATE_H_ */

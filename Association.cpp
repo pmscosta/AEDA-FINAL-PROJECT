@@ -15,7 +15,8 @@ Association::Association() {
 	this->fund = 10000.0;
 }
 
-Association::Association(string name) : name(name) {
+Association::Association(string name) :
+		name(name) {
 	this->annualPay = 250.0;
 	this->fund = 10000.0;
 }
@@ -112,7 +113,45 @@ void Association::addToFund(float income) {
 	this->fund += income;
 }
 
+string Association::updatePayment() {
 
+	string log = 0;
+
+	for (size_t t = 0; t < this->associates.size(); t++) {
+
+		try {
+
+			this->associates.at(t)->payYear(Association::currentYear);
+
+		} catch (const NotEnoughMoney & e) {
+
+			log += "Nao foi possivel efetuar o pagamento do  Associado "
+
+			+ getAssoById(e.getID())->getName() + " com o ID "
+
+			+ to_string(e.getID())
+
+			+ " pois nao tem dinheiro suficiente.\n";
+
+		} catch (const NotUpToDate & e) {
+
+			log += "Nao foi possivel efetuar o pagamento do Associado "
+
+			+ getAssoById(e.getID())->getName() + " com o ID "
+
+			+ to_string(e.getID())
+
+			+ " pois tentou efetuar o pagamento do ano "
+
+			+ to_string(e.getYear()) + " quando o ultimo pago foi "
+
+			+ to_string(e.getLast()) + ".\n";
+
+		}
+
+	}
+
+}
 
 //Area Type Functions
 
