@@ -35,7 +35,7 @@ public:
 	//SubArea
 
 	/**
-	 * @brief Adds a SubArea to the vector containing all the SubAreas of the Area
+	 * @briefs Adds a SubArea to the vector containing all the SubAreas of the Area
 	 *
 	 * @param newSub - The SubArea that is supposed to add to the vector
 	 */

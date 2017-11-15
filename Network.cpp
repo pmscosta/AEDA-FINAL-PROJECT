@@ -36,9 +36,3 @@ void Network::setMails(vector<Mail*> mails){
 vector<Mail *> Network::getMails() const{
 	return this->mails;
 }
-
-
-//General
-void Network::addMail(Mail * newMail){
-	this->mails.push_back(newMail);
-}

@@ -23,7 +23,7 @@ public:
 	Mail();
 
 	/**
-	 * @brief Creates a new mail from the associate with a title and a body
+	 * @briefs Creates a new mail from the associate with a title and a body
 	 *
 	 * @param associate - The Associate who sent the email
 	 * @param title - string with the mail name
@@ -41,17 +41,17 @@ public:
 	//Get Methods
 
 	/**
-	 * @brief Returns the author from the mail
+	 * @briefs Returns the author from the mail
 	 */
 	Associate * getAuthor() const;
 
 	/**
-	 * @brief Returns the mail title
+	 * @briefs Returns the mail title
 	 */
 	std::string getTitle() const;
 
 	/**
-	 * @brief Returns the mail body
+	 * @briefs Returns the mail body
 	 */
 	std::string getBody() const;
 
@@ -60,23 +60,23 @@ public:
 	//Set Methods
 
 	/**
-	 * @brief Sets/Changes the author from a mail
+	 * @briefs Sets/Changes the author from a mail
 	 *
 	 * @param author - Associate who wrote the mail
 	 */
 	void setAuthor(Associate * author);
 
 	/**
-	 * @brief Sets/Changes the title from a mail
+	 * @briefs Sets/Changes the title from a mail
 	 *
-	 * @param title - The title of the mail
+	 * @param author - Associate who wrote the mail
 	 */
 	void setTitle(std::string title);
 
 	/**
-	 * @brief Sets/Changes the body from a mail
+	 * @briefs Sets/Changes the body from a mail
 	 *
-	 * @param body - The body of the mail
+	 * @param author - Associate who wrote the mail
 	 */
 	void setBody(std::string body);
 
