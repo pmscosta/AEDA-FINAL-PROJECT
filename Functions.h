@@ -18,19 +18,33 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <unistd.h> //for usleep(miliseconds) function
+#include <unistd.h>
 
 void initialize();
+
+void initialize2();
 
 //-----------------------FILES--------------------------//
 
 void lerficheiroAreas();
 
-void lerficheiro();
+void lerficheiroAssociacao();
 
-void criarficheiro();
+void lerficheiroAssociados();
 
-void guardarficheiro();
+void lerficheiroEventos();
+
+void guardarficheiros();
+
+void guardarficheiroAreas();
+
+void guardarficheiroAssociacao();
+
+void guardarficheiroAssociados();
+
+void guardarficheiroEventos();
+
+void limparficheiros();
 
 //----------------------ASSOCIATES---------------------//
 

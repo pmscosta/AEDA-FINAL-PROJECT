@@ -11,14 +11,26 @@ using namespace std;
 
 Association * Associacao;
 
+<<<<<<< Updated upstream
 void initialize() {
 	Associacao = new Association(
 			"ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
+=======
+void initialize(){
+	Associacao = new Association("ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
+	lerficheiroAssociacao();
+>>>>>>> Stashed changes
 	lerficheiroAreas();
+	lerficheiroAssociados();
+	lerficheiroEventos();
+}
+
+void initialize2(){
+	Associacao = new Association("ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
+	limparficheiros();
 }
 
 //-----------------------FILES--------------------------//
-string filename;
 
 void lerficheiroAreas() {
 	ifstream file;
@@ -31,8 +43,9 @@ void lerficheiroAreas() {
 	file.close();
 }
 
-void lerficheiro() {
+void lerficheiroAssociacao() {
 	ifstream file;
+<<<<<<< Updated upstream
 	cout << endl;
 	cout << "Introduza o nome do ficheiro: ";
 	do {
@@ -42,35 +55,82 @@ void lerficheiro() {
 			cout
 					<< "Nome ficheiro invalido. Introduza novamente o nome do ficheiro: ";
 	} while (!file.is_open());
+=======
+	string line;
+	file.open("association.txt");
+	while (getline(file, line)) {
 
-	// falta codigo para ler o ficheiro
+	}
+	file.close();
+}
+>>>>>>> Stashed changes
 
+void lerficheiroAssociados() {
+	ifstream file;
+	string line;
+	file.open("associates.txt");
+	while (getline(file, line)) {
+
+	}
 	file.close();
 }
 
-void criarficheiro() {
-	ofstream file;
-	cout << endl;
-	cout << "Introduza o nome para o ficheiro: ";
-	do {
-		cin >> filename;
-		file.open(filename);
-		if (!file.is_open())
-			cout << "Erro na criacao do ficheiro.";
-	} while (!file.is_open());
+void lerficheiroEventos() {
+	ifstream file;
+	string line;
+	file.open("events.txt");
+	while (getline(file, line)) {
 
+	}
 	file.close();
 }
 
-void guardarficheiro() {
-	ofstream file(filename);
+void guardarficheiroAreas() {
+	ofstream file("areas.txt");
 
 	//Guardar no ficheiro
 	//file << "";
 
 	file.close();
-	cout << "Ficheiro guardado!";
-	sleep(1);
+}
+
+void guardarficheiroAssociacao() {
+	ofstream file("association.txt");
+
+	//Guardar no ficheiro
+	//file << "";
+
+	file.close();
+}
+
+void guardarficheiroAssociados() {
+	ofstream file("associates.txt");
+
+	//Guardar no ficheiro
+	//file << "";
+
+	file.close();
+}
+
+void guardarficheiroEventos() {
+	ofstream file("events.txt");
+
+	//Guardar no ficheiro
+	//file << "";
+
+	file.close();
+}
+
+void limparficheiros(){
+	ofstream file;
+	file.open("areas.txt", ofstream::out | ofstream::trunc);
+	file.close();
+	file.open("associates.txt", ofstream::out | ofstream::trunc);
+	file.close();
+	file.open("association.txt", ofstream::out | ofstream::trunc);
+	file.close();
+	file.open("events.txt", ofstream::out | ofstream::trunc);
+	file.close();
 }
 
 //----------------------ASSOCIATES---------------------//
@@ -125,8 +185,6 @@ void adicionarAssociado() {
 	cout << "\nAssociado adicionado com sucesso!" << endl << endl;
 
 	sleep(1);
-
-	//no fim podemos perguntar se deseja pagar ou assim e chamar outra funcao
 }
 
 void removerAssociado() {

@@ -11,8 +11,8 @@ void menu() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cout << " 1 - Ler ficheiro com informacoes guardadas" << endl;
-	cout << " 2 - Criar novo ficheiro" << endl;
+	cout << " 1 - Carregar ficheiros com informacoes guardadas" << endl;
+	cout << " 2 - Criar novos ficheiros" << endl;
 	cout << " 3 - Sair" << endl;
 
 	int opcao = 0;
@@ -20,27 +20,26 @@ void menu() {
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 3) {
 		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			lerficheiro();
-			cout << endl << endl;
-			menu2();
-			break;
-		case 2:
-			criarficheiro();
-			cout << endl << endl;
-			menu2();
-			break;
-		case 3:
-			sair();
-			break;
-		default:
-			cout << "Opcao invalida. Introduza uma nova opcao: ";
+		switch(opcao){
+			case 1:
+				initialize();
+				menu2();
+				break;
+			case 2:
+				initialize2();
+				menu2();
+				break;
+			case 3:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
 }
 
-void menu2() {
+void menu2(){
+	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -251,10 +250,20 @@ void sair() {
 		cin >> opcao;
 		switch (opcao) {
 		case 's':
-			guardarficheiro();
+			guardarficheiroAssociacao();
+			guardarficheiroAreas();
+			guardarficheiroAssociados();
+			guardarficheiroEventos();
+			cout << "\nAlteracoes guardadas! \n";
+			sleep(1);
 			break;
 		case 'S':
-			guardarficheiro();
+			guardarficheiroAssociacao();
+			guardarficheiroAreas();
+			guardarficheiroAssociados();
+			guardarficheiroEventos();
+			cout << "\nAlteracoes guardadas! \n";
+			sleep(1);
 			break;
 		case 'n':
 			break;
