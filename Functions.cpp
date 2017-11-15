@@ -257,7 +257,7 @@ void criarEvento(){
 	}
 
 	event_organizers = event_request;
-	cout << "Introduza o numero de Associados que vao ajudar a organizar o Evento: ";
+	cout << "\nIntroduza o numero de Associados que vao ajudar a organizar o Evento: ";
 	cin >> numAsso;
 	for(int i = 0; i < numAsso; i++){
 		cout << "Introduza o Identificador Unico do "<< i+1 << "º Associado que quer ajudar a organizar o Evento: ";
@@ -273,12 +273,15 @@ void criarEvento(){
 		event_organizers.push_back(associado);
 	}
 
+	cin.clear();
+	cin.ignore(10000, '\n');
+
 	string date, local, theme;
-	cout << "Introduza a data do evento: ";
+	cout << "\nIntroduza a data do evento: ";
 	getline(cin, date);
-	cout << "Introduza o local do evento: ";
+	cout << "\nIntroduza o local do evento: ";
 	getline(cin, local);
-	cout << "Introduza o tema do evento: ";
+	cout << "\nIntroduza o tema do evento: ";
 	getline(cin, theme);
 
 	Event * evento;
@@ -291,6 +294,9 @@ void criarEvento(){
 		return;
 	}
 	Associacao->addEvent(evento);
+
+	cout << "Evento criado com sucesso!";
+	sleep(1);
 }
 
 void removerEvento(){
