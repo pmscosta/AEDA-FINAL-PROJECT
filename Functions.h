@@ -13,6 +13,8 @@
 #include "Association.h"
 #include "SubArea.h"
 #include "Event.h"
+#include "SummerSchool.h"
+#include "Conference.h"
 
 #include <iostream>
 #include <fstream>

@@ -106,6 +106,13 @@ Associate::Associate(Association * association, string file_string) {
 
 	this->status = "contributor";
 
+	/*When reading associates from the file
+	 * we must ensure that the id_provider static variable will be updated
+	 * accordingly, in order to maintain the add Associate function viable
+	 */
+	if (this->uniqueID > Associate::id_provider)
+		Associate::id_provider = uniqueID;
+
 }
 
 //Destructors
@@ -255,5 +262,13 @@ string Associate::showInfo() const{
 	info += "\n";
 
 	return info;
+}
+
+
+
+//Operators
+
+bool Associate::operator <(const Associate & lhs) const{
+	return this->uniqueID < lhs.uniqueID;
 }
 

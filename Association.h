@@ -194,6 +194,8 @@ public:
 
 	void addEvent(Event * newEvent);
 
+	std::string showEvents() const;
+
 private:
 	std::string name; ///< The Association name
 	long double fund; ///< The Association initial fund to manage events,associates etc..

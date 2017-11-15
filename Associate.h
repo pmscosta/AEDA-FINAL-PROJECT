@@ -237,6 +237,17 @@ public:
 	 */
 	std::string showInfo() const;
 
+
+	//=============================================Operators================================================
+
+	//=======================================================================================================
+
+	/*
+	 * @brief Overloading  < operator
+	 */
+
+	bool operator< (const Associate & lhs) const;
+
 private:
 	Association * association; ///< The connection between the associate and the association
 	std::string name;  ///< The associate's name

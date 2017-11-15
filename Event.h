@@ -132,21 +132,23 @@ public:
 	 */
 	std::string getTheme() const;
 
+
 	/*
 	 * Returns the value of the monetary support
 	 * given by the association to the e event
-	 *
 	 */
+	virtual long double getSupport() const = 0;
 
-	long double getSupport() const;
 
-private:
+	virtual std::string showInfo() const = 0;
+
+
+protected:
 	std::vector<Associate *> event_request; ///< The Associates that gave the initial request
 	std::vector<Associate *> event_organizers; ///< All the associates involved with the event
 	std::string date; ///< The event's date
 	std::string local; ///< The event's local
 	std::string theme; ///< The event's theme
-	long double given_support; ///< The value of the monetary support given by the association
 	Association * association; ///< The connection to the Association
 
 };
