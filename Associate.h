@@ -77,6 +77,12 @@ public:
 	Associate(Association * asso, std::string name, std::string institution,
 			std::vector<Area*> interests);
 
+	/*
+	 * @brief
+	 *
+	 */
+
+	Associate(Association * association, std::string file_string);
 	//=============================================Destructors================================================
 
 	//========================================================================================================
