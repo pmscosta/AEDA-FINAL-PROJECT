@@ -18,20 +18,11 @@ Conference::Conference(vector<Associate *> event_request,
 		vector<Associate *> event_organizers, string date, string local,
 		string theme, Association * association, int estimative) :
 		Event(event_request, event_organizers, date, local, theme, association) {
-	this->estimative = estimative;
+	this->trainers_estimative = estimative;
 
 }
 
-
-//Destructors
 Conference::~Conference() {
 	// TODO Auto-generated destructor stub
-}
-
-
-//Get Methods
-
-int Conference::getEstimative() const{
-	return this->estimative;
 }
 

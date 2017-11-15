@@ -26,7 +26,7 @@ public:
 
 	//Set Methods
 	/**
-	 * @brief Sets/Changes the vector containing the mails the network has in it
+	 * @briefs Sets/Changes the vector containing the mails the network has in it
 	 *
 	 * @param mails - vector of pointers to mails
 	 */
@@ -40,11 +40,6 @@ public:
 	 *
 	 */
 	std::vector<Mail *> getMails() const;
-
-
-	//General
-
-	void addMail(Mail * newMail);
 
 
 

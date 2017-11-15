@@ -12,45 +12,6 @@
 class Associate;
 class Association;
 
-//! The NoSupportGiven
-/*!
- * NoSupportGiven is a class which instances are called when
- * the main Association decides to not support financially an event.
- * Its useful in throwing exceptions, outside of that it has no real use implementation.
- */
-class NoSupportGiven {
-private:
-	int late; ///< The number of associates whose payments where not up to date, thus creating the decision to not give support
-	int total; ///< The total number of associates involved in the event
-public:
-
-	/*
-	 * @brief Default Construction
-	 */
-	NoSupportGiven(int late, int total) :
-			late(late), total(total) {
-	}
-	;
-
-	/*
-	 * @brief Returns the number of associates whose payments where not up to date.
-	 *
-	 */
-	int getLate() const {
-		return this->late;
-	}
-
-	/*
-	 * @brief Returns the total number of associates involved in the event
-	 *
-	 *
-	 */
-	int getTotal() const {
-		return this->total;
-	}
-
-};
-
 //!  The Super Event Class
 /*!
  An Event must be requested by at least 3 Associates.
@@ -81,64 +42,24 @@ public:
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association);
 
-	//=========================DESTRUCTORS================================
+	//=========================DESTRUCTORS===============================
 	//====================================================================
 	virtual ~Event();
 
-	//=========================SET METHODS================================
+	//=========================SET METHODS===============================
 	//====================================================================
 
-	//ACHO QUE NAO E NECESSARIO, DEPOIS DE CRIADO NAO SE VAI MUDAR UM EVENTO DIRIA
-
-	//=========================GET METHODS================================
+	//=========================GET METHODS===============================
 	//====================================================================
-
-	/*
-	 * Returns the associates that gave the initial request to the event
-	 *
-	 */
-	std::vector<Associate *> getRequest() const;
-
-	/*
-	 * Returns all the associates that are involved in the event
-	 *
-	 */
-	std::vector<Associate *> getOrganizers() const;
-
-	/*
-	 * Returns the Date of the event
-	 *
-	 */
-
-	std::string getDate() const;
-
-	/*
-	 * Returns the Local of the event
-	 *
-	 */
-	std::string getLocal() const;
-
-	/*
-	 * Returns the Theme of the event
-	 *
-	 */
-	std::string getTheme() const;
-
-	/*
-	 * Returns the value of the monetary support
-	 * given by the association to the e event
-	 *
-	 */
-	long double getSupport() const;
 
 private:
-	std::vector<Associate *> event_request; ///< The Associates that gave the initial request
-	std::vector<Associate *> event_organizers; ///< All the associates involved with the event
-	std::string date; ///< The event's date
-	std::string local; ///< The event's local
-	std::string theme; ///< The event's theme
-	long double given_support; ///< The value of the monetary support given by the association
-	Association * association; ///< The connection to the Association
+	std::vector<Associate *> event_request;
+	std::vector<Associate *> event_organizers;
+	std::string date;
+	std::string local;
+	std::string theme;
+	long double given_support;
+	Association * association;
 
 };
 

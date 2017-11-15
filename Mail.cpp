@@ -6,7 +6,6 @@
  */
 
 #include "Mail.h"
-#include "Associate.h"
 
 using namespace std;
 
@@ -18,7 +17,6 @@ Mail::Mail() {
 
 Mail::Mail(Associate * associate, string title, string body) :
 		author(associate), title(title), body(body) {
-	this->author->incDivulgations();
 }
 ;
 
