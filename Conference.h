@@ -2,11 +2,10 @@
  * Conference.h
  *
  *  Created on: Nov 14, 2017
- *      Author: jubas
  */
 
-#ifndef SUPER_MEME_CONFERENCE_H_
-#define SUPER_MEME_CONFERENCE_H_
+#ifndef CONFERENCE_H_
+#define CONFERENCE_H_
 
 #include "Event.h"
 
@@ -28,9 +27,21 @@ public:
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association,
 			int estimative);
+
+	//=========================DESTRUCTORS================================
+
+	//====================================================================
+
 	virtual ~Conference();
+
+	//=========================GET METHODS================================
+
+	//====================================================================
+
+	int getEstimative() const;
+
 private:
-	int trainers_estimative;
+	int estimative;
 };
 
-#endif /* SUPER_MEME_CONFERENCE_H_ */
+#endif /* CONFERENCE_H_ */
