@@ -6,7 +6,8 @@
 #include "Area.h"
 #include "SubArea.h"
 #include "Association.h"
-
+#include <sstream>
+#include <iostream>
 using namespace std;
 
 int Associate::id_provider = 0;
@@ -25,6 +26,86 @@ Associate::Associate(Association * asso, string name, string institution,
 	this->interestAreas = interests;
 	this->personalWallet = 500.0;  //DEFAULT FOR EVERY ASSOCIATE
 	this->divulgations = 0;
+}
+
+Associate::Associate(Association * association, string file_string) {
+
+	/*
+	 * ID/Name/Instituion/[Interest Areas]/Wallet/[Years Paid]/Divulgations
+	 *
+	 * */
+
+	this->association = association;
+
+	istringstream infoAssociate(file_string);
+
+	string name, institution, interest;
+	int id, years, divulgation;
+	float wallet;
+	char garbage;
+
+	infoAssociate >> id;
+
+	this->uniqueID = id;
+
+	infoAssociate >> garbage;
+
+	getline(infoAssociate, name, '/');
+
+	this->name = name;
+
+	getline(infoAssociate, institution, '/');
+
+	this->institution = institution;
+
+	infoAssociate >> garbage;
+
+
+	while (infoAssociate.peek() != ']') {
+
+
+		getline(infoAssociate, interest, '/');
+
+		for (size_t t = 0; t < this->association->getAreas().size(); t++) {
+
+			if (interest == this->association->getAreas().at(t)->getName())
+				this->interestAreas.push_back(
+						this->association->getAreas().at(t));
+
+		}
+
+	}
+
+
+	infoAssociate >> garbage;
+
+	infoAssociate >> garbage;
+
+	infoAssociate >> wallet;
+
+	this->personalWallet = wallet;
+
+	infoAssociate >> garbage;
+
+	infoAssociate >> garbage;
+
+
+	while (infoAssociate.peek() != ']') {
+		infoAssociate >> years;
+		this->paidYears.push_back(years);
+		infoAssociate >> garbage;
+
+	}
+
+
+	infoAssociate >> garbage;
+
+	infoAssociate >> divulgation;
+
+	this->divulgations = divulgation;
+
+	this->status = "contributor";
+
 }
 
 //Destructors
@@ -151,18 +232,24 @@ string Associate::showInfo() const{
 			"\t -Interest Areas: ";
 
 	for (size_t t = 0; t < this->interestAreas.size(); t++) {
-		info += this->interestAreas.at(t)->getName() + ", ";
-		if (t == this->interestAreas.size() - 1)
+
+		if (t == (this->interestAreas.size() - 1)){
 			info += this->interestAreas.at(t)->getName() + ";";
+			break;
+		}
+		info += this->interestAreas.at(t)->getName() + "/ ";
 
 	}
 
 	info += "\n\t -Paid Years: ";
 
 	for (size_t t = 0; t < this->paidYears.size(); t++) {
-		info += to_string(this->paidYears.at(t)) + ", ";
-		if (t == this->paidYears.size() - 1)
+
+		if (t == (this->paidYears.size() - 1)){
 			info += to_string(this->paidYears.at(t)) + ";";
+			break;
+		}
+		info += to_string(this->paidYears.at(t)) + ", ";
 	}
 
 	info += "\n";
