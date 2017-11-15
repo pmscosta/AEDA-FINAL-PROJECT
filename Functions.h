@@ -56,8 +56,7 @@ void alterarAssociado();
 
 void verInfoAssociado();
 
-//----------------------AREAS-------------------------//
+//----------------------EVENTS-------------------------//
 
-void verAreas();
 
 #endif /* SUPER_MEME_FUNCTIONS_H_ */
