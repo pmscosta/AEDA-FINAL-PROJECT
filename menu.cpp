@@ -22,10 +22,14 @@ void menu(){
 		cin >> opcao;
 		switch(opcao){
 			case 1:
-				lerficheiroAreas();
+				lerficheiro();
+				cout << endl << endl;
+				menu2();
 				break;
 			case 2:
 				criarficheiro();
+				cout << endl << endl;
+				menu2();
 				break;
 			case 3:
 				sair();
@@ -79,6 +83,7 @@ void menu2(){
 }
 
 void submenu1(){
+	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -98,18 +103,22 @@ void submenu1(){
 		switch(opcao){
 		case 1:
 			adicionarAssociado();
+			menu2();
 			break;
 		case 2:
 			removerAssociado();
+			menu2();
 			break;
 		case 3:
-			//Funcao alterar informacoes de um associado
+			alterarAssociado();
+			menu2();
 			break;
 		case 4:
-			//Funcao que mostra informacoes sobre um associado
+			verInfoAssociado();
+			menu2();
 			break;
 		case 5:
-			menu();
+			menu2();
 			break;
 		case 6:
 			sair();
@@ -121,6 +130,7 @@ void submenu1(){
 }
 
 void submenu2(){
+	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -151,7 +161,7 @@ void submenu2(){
 			//Funcao que mostra informacoes sobre um evento
 			break;
 		case 5:
-			menu();
+			menu2();
 			break;
 		case 6:
 			sair();
@@ -163,6 +173,7 @@ void submenu2(){
 }
 
 void submenu3(){
+	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -185,7 +196,7 @@ void submenu3(){
 			//Funcao que mostra os associados com cotas em atraso
 			break;
 		case 3:
-			menu();
+			menu2();
 			break;
 		case 4:
 			sair();
@@ -197,6 +208,7 @@ void submenu3(){
 }
 
 void submenu4(){
+	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
@@ -219,7 +231,7 @@ void submenu4(){
 			//Funcao que mostra os emails da rede
 			break;
 		case 3:
-			menu();
+			menu2();
 			break;
 		case 4:
 			sair();
