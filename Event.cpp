@@ -25,39 +25,6 @@ Event::Event(vector<Associate *> event_request,
 	this->event_request = event_request;
 	this->local = local;
 	this->theme = theme;
-
-	int counter = 0;
-
-	int total = event_organizers.size();
-
-	for (size_t t = 0; t < event_organizers.size(); t++) {
-
-		if (event_organizers.at(t)->getStatus() == "normal") //the associate hasn't paid his payments in the last 5 years
-
-			counter++;
-
-	}
-
-	float ratio = counter / (total * 1.0);
-
-	if (ratio >= 2.0 / 3) //if two thirds or more of the organizers havent got their payments up to date, the association will not give payment
-
-		throw NoSupportGiven(counter, total);
-
-	else if (ratio >= 1.0 / 3) //will be given a monetary support of 10% the total association fund
-
-		this->given_support = 0.10 * association->getFund();
-
-	else if (ratio < 1.0 / 3 && ratio > 0)  //15 percent
-
-		this->given_support = 0.15 * association->getFund();
-
-	else
-
-		//if everyone has his payments up to date,
-
-		this->given_support = 0.20 * association->getFund();
-
 }
 
 
@@ -142,7 +109,7 @@ Event::Event(Association * association, string file_string){
 	infoEvent >> garbage;		// '/'
 
 	infoEvent >> money;
-	this->given_support = money;
+	//this->given_support = money;
 
 	infoEvent >> garbage;		// '/'
 
@@ -207,9 +174,12 @@ string Event::getTheme() const {
 
 }
 
+/*
+
 long double Event::getSupport() const {
 
 	return this->given_support;
 
 }
+*/
 

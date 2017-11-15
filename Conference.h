@@ -40,8 +40,18 @@ public:
 
 	int getEstimative() const;
 
+	long double getSupport() const;
+
+
+	//=========================GENERAL METHODS================================
+
+	//========================================================================
+
+	std::string showInfo() const;
+
 private:
 	int estimative;
+	long double given_support; ///< The value of the monetary support given by the association
 };
 
 #endif /* CONFERENCE_H_ */

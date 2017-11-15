@@ -6,6 +6,7 @@
 #include "Associate.h"
 #include "Area.h"
 #include "SubArea.h"
+#include "Event.h"
 #include <algorithm>
 #include <sstream>
 
@@ -84,6 +85,7 @@ vector<Associate *> Association::getAssociates() const {
 
 void Association::addAssociate(Associate * newAsso) {
 	this->associates.push_back(newAsso);
+	sort(this->associates.begin(), this->associates.end());
 }
 
 void Association::removeAssociate(int uniqueID) {
@@ -201,5 +203,15 @@ string Association::showAreas() const {
 
 void Association::addEvent(Event * newEvent){
 	this->events.push_back(newEvent);
+}
+
+string Association::showEvents() const{
+	string info = "";
+
+	for (size_t t = 0; t < this->events.size(); t++){
+		info += this->events.at(t)->showInfo() + "\n";
+	}
+
+	return info;
 }
 
