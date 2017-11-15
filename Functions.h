@@ -5,8 +5,8 @@
  *      Author: nl
  */
 
-#ifndef SUPER_MEME_FUNCTIONS_H_
-#define SUPER_MEME_FUNCTIONS_H_
+#ifndef FUNCTIONS_H_
+#define FUNCTIONS_H_
 
 #include "Associate.h"
 #include "Area.h"
@@ -17,11 +17,16 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include <unistd.h> //for usleep(miliseconds) function
+
+void initialize();
 
 //-----------------------FILES--------------------------//
 
 void lerficheiroAreas();
+
+void lerficheiro();
 
 void criarficheiro();
 
