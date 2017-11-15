@@ -88,6 +88,8 @@ public:
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association);
 
+	Event(Association * association, std::string string_file);
+
 	//=========================DESTRUCTORS===============================
 	//====================================================================
 	virtual ~Event();
