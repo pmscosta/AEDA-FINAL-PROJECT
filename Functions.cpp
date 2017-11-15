@@ -12,7 +12,6 @@ using namespace std;
 Association * Associacao;
 
 void initialize(){
-	Associacao = new Association("ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
 	lerficheiroAssociacao();
 	lerficheiroAreas();
 	lerficheiroAssociados();
@@ -42,7 +41,7 @@ void lerficheiroAssociacao() {
 	string line;
 	file.open("association.txt");
 	while (getline(file, line)) {
-
+		Associacao = new Association(line);
 	}
 	file.close();
 }
@@ -225,18 +224,5 @@ void verInfoAssociado() {
 
 //-------------------------AREAS----------------------------
 
-void verAreas() {
 
-	vector<Area*> areas = Associacao->getAreas();
-
-	for (size_t t = 0; t < areas.size(); t++) {
-		cout << areas.at(t)->getName() << ":\n";
-		for (size_t k = 0; k < areas.at(t)->getSubAreas().size(); k++) {
-			cout << areas.at(t)->getSubAreas().at(k)->getName() << " - "
-					<< areas.at(t)->getSubAreas().at(k)->getInitials() << endl;
-		}
-		cout << endl;
-	}
-
-}
 

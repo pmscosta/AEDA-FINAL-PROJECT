@@ -21,29 +21,20 @@ private:
 
 public:
 	NotUpToDate(int triedYear, int uniqueID, int lastPaid) :
-
 			triedYear(triedYear), uniqueID(uniqueID), lastPaid(lastPaid) {
-
 	}
-
 	;
 
 	int getID() const {
-
 		return this->uniqueID;
-
 	}
 
 	int getYear() const {
-
 		return this->triedYear;
-
 	}
 
 	int getLast() const {
-
 		return this->lastPaid;
-
 	}
 };
 
@@ -53,17 +44,12 @@ private:
 
 public:
 	NotEnoughMoney(int uniqueID) :
-
 			uniqueID(uniqueID) {
-
 	}
-
 	;
 
 	int getID() const {
-
 		return this->uniqueID;
-
 	}
 
 };
@@ -238,6 +224,12 @@ public:
 	 */
 
 	bool shareNetwork();
+
+
+	/*
+	 * @brief Returns a string containing all the info of a Associate, in readable and user-friendly format
+	 */
+	std::string showInfo() const;
 
 private:
 	Association * association; ///< The connection between the associate and the association

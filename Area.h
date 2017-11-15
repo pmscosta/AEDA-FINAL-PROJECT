@@ -26,8 +26,15 @@ public:
 	 * @brief Returns the name of the Area
 	 *
 	 */
-	virtual std::string getName() const;
+	std::string getName() const;
+
+
 	std::vector<SubArea *> getSubAreas() const;
+
+
+	//General
+
+
 
 	//SubArea
 
@@ -37,6 +44,7 @@ public:
 	 * @param newSub - The SubArea that is supposed to add to the vector
 	 */
 	void addSubarea(SubArea * newSub);
+
 
 private:
 	std::string name; ///< The Area's name

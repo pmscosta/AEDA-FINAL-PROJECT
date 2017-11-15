@@ -6,9 +6,10 @@
 #ifndef SUBAREA_H_
 #define SUBAREA_H_
 
-#include "Area.h"
+#include <string>
 
-class SubArea: public Area {
+
+class SubArea{
 public:
 
 	//Constructors
