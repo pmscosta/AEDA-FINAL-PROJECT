@@ -4,6 +4,8 @@
  */
 #include "Association.h"
 #include "Associate.h"
+#include "Area.h"
+#include "SubArea.h"
 #include <algorithm>
 #include <sstream>
 
@@ -25,7 +27,12 @@ Association::Association(string file) {
 	float annualPay;
 	char garbage;
 
-	input >> name >> garbage >> annualPay >> Association::currentYear;
+	getline(input, name, '/');
+	input >> fund;
+	input >> garbage;
+	input >> annualPay;
+	input >> garbage;
+	input >> Association::currentYear;
 
 	this->name = name;
 	this->fund = fund;
@@ -138,31 +145,33 @@ string Association::updatePayment() {
 		} catch (const NotEnoughMoney & e) {
 
 			log += "Nao foi possivel efetuar o pagamento do  Associado "
-
-			+ getAssoById(e.getID())->getName() + " com o ID "
-
-			+ to_string(e.getID())
-
-			+ " pois nao tem dinheiro suficiente.\n";
+					+ getAssoById(e.getID())->getName() + " com o ID "
+					+ to_string(e.getID())
+					+ " pois nao tem dinheiro suficiente.\n";
 
 		} catch (const NotUpToDate & e) {
 
 			log += "Nao foi possivel efetuar o pagamento do Associado "
-
-			+ getAssoById(e.getID())->getName() + " com o ID "
-
-			+ to_string(e.getID())
-
-			+ " pois tentou efetuar o pagamento do ano "
-
-			+ to_string(e.getYear()) + " quando o ultimo pago foi "
-
-			+ to_string(e.getLast()) + ".\n";
+					+ getAssoById(e.getID())->getName() + " com o ID "
+					+ to_string(e.getID())
+					+ " pois tentou efetuar o pagamento do ano "
+					+ to_string(e.getYear()) + " quando o ultimo pago foi "
+					+ to_string(e.getLast()) + ".\n";
 
 		}
 
 	}
 
+}
+
+string Association::showAllAssociates() {
+	string allInfo = "";
+
+	for (size_t t = 0; t < this->associates.size(); t++) {
+		allInfo += this->associates.at(t)->showInfo();
+	}
+
+	return allInfo;
 }
 
 //Area Type Functions
@@ -174,3 +183,16 @@ vector<Area*> Association::getAreas() const {
 void Association::addArea(Area * newArea) {
 	this->areas.push_back(newArea);
 }
+
+string Association::showAreas() const {
+	string info = "";
+	for (size_t t = 0; t < this->areas.size(); t++){
+		info += to_string(t) + ": " + this->areas.at(t)->getName() + "\n";
+		for(size_t k = 0; k < this->areas.at(t)->getSubAreas().size(); k++){
+			info += "\t " + this->areas.at(t)->getSubAreas().at(k)->getName() + " " + this->areas.at(t)->getSubAreas().at(k)->getInitials() + "\n";
+		}
+	}
+
+	return info;
+}
+

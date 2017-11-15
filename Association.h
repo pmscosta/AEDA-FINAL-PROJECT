@@ -160,6 +160,13 @@ public:
 	 */
 	std::string updatePayment();
 
+	/**
+	 * @brief Returns a string containing all the information about every associate in a readable
+	 * and user-friendly way.
+	 *
+	 */
+	std::string showAllAssociates();
+
 	//============================Area Type Functions=========================================================
 	//========================================================================================================
 
@@ -174,6 +181,13 @@ public:
 	 * @param newArea - Area pointer of the new Area to be added
 	 */
 	void addArea(Area * newArea);
+
+
+	/**
+	 * @brief Returns a string containing info about all the areas
+	 *
+	 */
+	std::string showAreas() const;
 
 private:
 	std::string name; ///< The Association name

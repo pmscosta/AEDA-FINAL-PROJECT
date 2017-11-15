@@ -6,6 +6,7 @@
 #include "Area.h"
 #include "SubArea.h"
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 
@@ -25,7 +26,6 @@ Area::Area(string file_string) {
 	string areaName, subAreaName, subAreaInitials;
 	string garbage;
 	istringstream infoArea(file_string);
-
 	getline(infoArea, areaName, '/');
 	this->name = areaName;
 	while (!infoArea.eof()) {  //num xei shié eofê
@@ -50,3 +50,9 @@ string Area::getName() const {
 vector<SubArea *> Area::getSubAreas() const {
 	return this->subareas;
 }
+
+
+
+//General
+
+
