@@ -83,6 +83,8 @@ public:
 	 */
 	void setAnnualPay(float annualPay);
 
+	void setEvents(std::vector<Event *> all_events);
+
 	//=============================================Get Methods================================================
 	//========================================================================================================
 	/**
@@ -101,6 +103,8 @@ public:
 	float getAnnualPay() const;
 
 	static int getCurrentYear();
+
+	std::vector<Event *> getEvents() const;
 
 	/**
 	 * @brief Returns the vector containing pointers to all the associates

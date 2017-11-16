@@ -67,38 +67,104 @@ void lerficheiroEventos() {
 	file.close();
 }
 
-void guardarficheiroAreas() {
+void guardarficheiroAreas(Association * association) {
 	ofstream file("areas.txt");
 
-	//Guardar no ficheiro
-	//file << "";
+	//Imunologia e Infeção/Imunologia e Inflamação/IMI-IMU/Microbiologia e Infeção/IMI-MIC
+
+	vector <Area *> areas_vector = association->getAreas();
+	for(size_t i = 0; i < areas_vector.size(); i++){
+
+		file << areas_vector.at(i)->getName() << "/";
+
+		vector <SubArea *> subareas_vector = areas_vector.at(i)->getSubAreas();
+		for(size_t t; t < subareas_vector.size(); t++){
+
+			if(t == (subareas_vector.size() - 1))
+				file << subareas_vector.at(t)->getName() << "/" << subareas_vector.at(t)->getInitials() << endl;
+			else
+				file << subareas_vector.at(t)->getName() << "/" << subareas_vector.at(t)->getInitials() << "/";
+		}
+	}
 
 	file.close();
 }
 
-void guardarficheiroAssociacao() {
+void guardarficheiroAssociacao(Association * association) {
 	ofstream file("association.txt");
 
-	//Guardar no ficheiro
-	//file << "";
+
+	//Name/ 231.7/ 242.4/ 4
+
+	file << association->getName() << "/";
+	file << association->getFund() << "/";
+	file << association->getAnnualPay() << "/";
+	file << association->getCurrentYear();
 
 	file.close();
 }
 
-void guardarficheiroAssociados() {
+void guardarficheiroAssociados(Association * association) {
 	ofstream file("associates.txt");
 
-	//Guardar no ficheiro
-	//file << "";
+	//1/Pedro Costa/FEUP/[Neurociências, Envelhecimento e Doenças Degenerativas/Imunologia e Infeção/]/50.4/[40/2/70/]/4
+
+	vector <Associate *> associates_vector = association->getAssociates();
+	for(size_t i = 0; i < associates_vector.size(); i++){
+
+		file << associates_vector.at(i)->getUniqueID() << "/";
+		file << associates_vector.at(i)->getName() << "/";
+		file << associates_vector.at(i)->getInstitution() << "/[";
+
+		vector<Area *> areas_interest = associates_vector.at(i)->getInterestAreas();
+		for(size_t t = 0; t < areas_interest.size(); t++){
+
+			file << areas_interest.at(t)->getName() << "/";
+		}
+		file << "]" << "/" << associates_vector.at(i)->getPersonalWallet() << "/[";
+
+		vector<int> years_vector = associates_vector.at(i)->getPaidYears();
+		for(size_t t = 0; t < years_vector.size(); t++){
+
+			file << years_vector.at(t) << "/";
+		}
+
+		file << "]" << "/" << associates_vector.at(i)->getDivulgations() << endl;
+
+	}
 
 	file.close();
 }
 
-void guardarficheiroEventos() {
+void guardarficheiroEventos(Association * association) {
 	ofstream file("events.txt");
 
-	//Guardar no ficheiro
-	//file << "";
+	/*Summer School/15-02-1998/Vila Real/Pirocas Piroclásticas/[1/5/3/]/[7/15/]/5000/300
+	 Conference/15-02-2017/Porto/Conas Magnificas/[1/2/3/]/[4/5/]/1000/[Zé/FEUP/Carlos/FCUP/]*/
+
+	vector<Event *> event_vector = association->getEvents();
+	for(size_t i = 0; i < event_vector.size(); i++){
+
+		file << event_vector.at(i)->getDate() << "/";
+		file << event_vector.at(i)->getLocal() << "/";
+		file << event_vector.at(i)->getTheme() << "/[";
+
+		vector<Associate *> requesters_vector = event_vector.at(i)->getRequest();
+		for(size_t t = 0; t < requesters_vector.size(); t++){
+
+			file << requesters_vector.at(t)->getUniqueID() << "/";
+		}
+
+		file << "]/[";
+
+		vector<Associate *> organizers_vector = event_vector.at(i)->getOrganizers();
+		for(size_t t = 0; t < organizers_vector.size(); t++){
+
+			file << organizers_vector.at(t)->getUniqueID() << "/";
+		}
+
+		file << "]/" << event_vector.at(i)->getSupport() << "/";
+
 
 	file.close();
 }

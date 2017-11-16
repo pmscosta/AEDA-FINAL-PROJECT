@@ -126,6 +126,12 @@ public:
 	 */
 	float getPersonalWallet() const;
 
+	std::string getInstitution() const;
+
+	std::vector<Area *> getInterestAreas() const;
+
+	int getDivulgations() const;
+
 	//=============================================Set Methods================================================
 
 	//========================================================================================================
@@ -159,6 +165,12 @@ public:
 	 * @param money - the new amount of money (float)
 	 */
 	void setPersonallWallet(float money);
+
+	void setInstitution(std::string inst);
+
+	void setInterestAreas(std::vector<Area *> interest);
+
+	void setDivulgations(int divulgation);
 
 	//=============================================General Methods================================================
 
