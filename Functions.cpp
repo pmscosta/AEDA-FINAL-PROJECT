@@ -6,6 +6,18 @@
  */
 
 #include "Functions.h"
+#include "Associate.h"
+#include "Area.h"
+#include "Association.h"
+#include "SubArea.h"
+#include "Event.h"
+#include "SummerSchool.h"
+#include "Conference.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <unistd.h>
 #include <sstream>
 #include <list>
 #include <algorithm>
@@ -525,16 +537,104 @@ void removerAssociado() {
 }
 
 void alterarAssociado() {
-	string name;
+	string tempID;
+	int uniqueID;
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cout << "Introduza o nome do Associado: ";
-	getline(cin, name);
+	cout << "Introduza o Identificador Unico do Associado: ";
+	cin.clear();
+	cin.ignore(10000, '\n');
+	getline(cin, tempID);
 
-	//completar...
+	if (!is_number(tempID)) {
+		cout
+				<< "O valor introduzido nao e um inteiro.\nVoltando ao menu principal...\n\n";
+		return;
+	}
+
+	uniqueID = stoi(tempID);
+
+	Associate * alterar;
+	try {
+		alterar = Associacao->getAssoById(uniqueID);
+	} catch (const NoSuchID & e) {
+		cout << "\nNao existe nenhum associado com o ID: " << e.getID()
+				<< ".\nVoltando ao menu principal..." << endl << endl;
+		sleep(1);
+		return;
+	}
+
+	cout << "\n\n Qual o atributo pretende mudar: " << endl;
+
+	cout << "\t0: Areas de Interesse" << endl;
+	cout << "\t1: Instituicao" << endl;
+
+	cout << "Insira uma opcao: ";
+	string opcao;
+	getline(cin, opcao);
+
+	if (!is_number(opcao)) {
+		cout
+				<< "O valor introduzido nao e um inteiro.\nVoltando ao menu principal...\n\n";
+		return;
+	}
+
+	int escolha = stoi(opcao);
+
+	switch (escolha) {
+	case 0: {
+		cout
+				<< "Todas as areas de interesse do associado foram eliminadas. Escolha as novas areas de interesse.\n";
+		vector<Area *> areas = Associacao->getAreas();
+		for (size_t t = 0; t < areas.size(); t++) {
+			cout << t << ": " << areas.at(t)->getName() << endl;
+		}
+
+		string list;
+		getline(cin, list);
+
+		stringstream numbers(list);
+
+		vector<Area *> newInterest; //O VETOR QUE IRA CONTER AS AREAS DE INTERESSE DO ASSOCIADO
+
+		while (!numbers.eof()) {
+			size_t selected = 0;
+			if (!(numbers >> selected))
+				cout
+						<< "\nUm dos valores introduzidos nao foi um inteiro.\nVoltando ao menu principal...\n\n";
+			if (selected >= areas.size() || selected < 0) { //SE UM DOS INDICES ESCOLHIDOS NAO CORRESPONDE A NENHUM DOS APRESENTADOS
+				cout << "\nNao existe a opcao " << selected
+						<< ".\nVoltando ao menu principal..." << endl << endl;
+				sleep(1);
+				return;
+			}
+
+			newInterest.push_back(areas.at(selected));
+		}
+
+		alterar->setInterestAreas(newInterest);
+
+		cout << "Areas de Interesse alteradas com sucesso!\n";
+		return;
+		break;
+	}
+	case 1: {
+		cout << "Qual a nova area de interesse do associado? ";
+		string institution;
+		getline(cin, institution);
+		alterar->setInstitution(institution);
+		cout << "Instituicao alterada com sucesso!\n";
+		return;
+		break;
+
+	}
+	default:
+		cout << "Opcao Invalida" << endl;
+		return;
+	}
 
 }
 
