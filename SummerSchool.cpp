@@ -21,7 +21,7 @@ SummerSchool::SummerSchool() {
 
 SummerSchool::SummerSchool(vector<Associate *> event_request,
 		vector<Associate *> event_organizers, string date, string local,
-		string theme, Association * association, list<string> trainers) :
+		string theme, Association * association, list<Trainer *> trainers) :
 		Event(event_request, event_organizers, date, local, theme, association) {
 	this->trainers = trainers;
 
@@ -60,31 +60,69 @@ SummerSchool::SummerSchool(vector<Associate *> event_request,
 
 }
 
-
+SummerSchool::SummerSchool(std::vector<Associate *> event_request,
+		std::vector<Associate *> event_organizers, std::string date,
+		std::string local, std::string theme, Association * association,
+		std::list<Trainer *> trainers, long double given_support) :
+		Event(event_request, event_organizers, date, local, theme, association), given_support(
+				given_support), trainers(trainers){
+}
+;
 
 SummerSchool::~SummerSchool() {
 	// TODO Auto-generated destructor stub
 }
 
-
-
 //Get Methods
 
-long double SummerSchool::getSupport() const{
+long double SummerSchool::getSupport() const {
 	return this->given_support;
 }
 
-
-//General Methods
-string SummerSchool::showInfo() const{
-	string info = "";
-
-	info += "SummerSchool Event: \n";
-
-	//COMPLETAR COM O RESTO DA INFO
-
-	return info;
+string SummerSchool::getType() const {
+	return this->type;
 }
 
+list<Trainer *> SummerSchool::getTrainers() const {
+	return this->trainers;
+}
 
+int SummerSchool::getEstimative() const {
+	return 0;
+}
+
+//General Methods
+string SummerSchool::showInfo() const {
+	string info = "";
+
+	info += "SummerSchool Type Event: \n";
+	info += string(this->theme) + "\n";
+	info += "\t Local: " + string(this->local);
+	info += "\n\t Data: " + string(this->date);
+	info += "\n\t Criadores: ";
+
+	for (size_t t = 0; t < this->event_request.size(); t++)
+		info += this->event_request.at(t)->getName() + "("
+				+ to_string(this->event_request.at(t)->getUniqueID()) + ")"
+				+ " ";
+
+	info += "\n\t Organizadores: ";
+	for (size_t t = 0; t < this->event_organizers.size(); t++)
+		info += this->event_organizers.at(t)->getName() + "("
+				+ to_string(this->event_organizers.at(t)->getUniqueID()) + ")"
+				+ " ";
+
+	info += "\n\t Suporte dado: " + to_string(this->given_support) + "\n";
+
+	info += "\t Formadores: ";
+
+	for (auto it = trainers.begin(); it != trainers.end(); it++) {
+		info += (*it)->getName() + "/" + (*it)->getInstitution() + "  ";
+	}
+
+	info += "\n";
+
+	return info;
+
+}
 

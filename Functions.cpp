@@ -8,8 +8,21 @@
 #include "Functions.h"
 #include <sstream>
 #include <list>
+#include <algorithm>
 
 using namespace std;
+
+//=======================USEFUL FUNCTIONS================================
+//=======================================================================
+
+bool is_number(const std::string& s) {
+	std::string::const_iterator it = s.begin();
+	while (it != s.end() && std::isdigit(*it))
+		++it;
+	return !s.empty() && it == s.end();
+}
+
+//=======================================================================
 
 Association * Associacao;
 
@@ -75,9 +88,11 @@ void lerficheiroEventos() {
 
 		if (type_of_event == "SummerSchool") {
 
-			string type, date, local, theme, trainer;
+			string type, date, local, theme;
 
-			int requester, organizer, money;
+			int requester, organizer;
+
+			long double money;
 
 			char garbage;
 
@@ -92,8 +107,6 @@ void lerficheiroEventos() {
 			vector<Associate *> event_request;
 
 			vector<Associate *> event_organizers;
-
-			list<string> trainers;
 
 			while (infoEvent.peek() != ']') {
 
@@ -142,26 +155,30 @@ void lerficheiroEventos() {
 
 			infoEvent >> garbage;		// '['
 
-
+			list<Trainer *> trainers;
 
 			while (infoEvent.peek() != ']') {
 
 				getline(infoEvent, former_name, '/');
 				getline(infoEvent, former_inst, '/');
-				trainer = former_name + " " + former_inst;
-				trainers.push_back(trainer);
+				Trainer * newTrainer = new Trainer(former_name, former_inst);
+				trainers.push_back(newTrainer);
+
+				cout << "one time\n";
 			}
 
-
+			infoEvent >> garbage;
 
 			SummerSchool * newSummer = new SummerSchool(event_request,
-					event_organizers, date, local, theme, Associacao, trainers);
+					event_organizers, date, local, theme, Associacao, trainers,
+					money);
 			Associacao->addEvent(newSummer);
 
 		} else {
 
 			string date, local, theme;
-			int requester, organizer, money;
+			int requester, organizer;
+			long double money;
 			char garbage;
 
 			int predicted_participants;
@@ -227,7 +244,7 @@ void lerficheiroEventos() {
 
 			Conference * newConf = new Conference(event_request,
 					event_organizers, date, local, theme, Associacao,
-					predicted_participants);
+					predicted_participants, money);
 
 			Associacao->addEvent(newConf);
 
@@ -237,104 +254,169 @@ void lerficheiroEventos() {
 	file.close();
 }
 
-void guardarficheiroAreas(Association * association) {
+void guardarficheiroAreas() {
 	ofstream file("areas.txt");
 
 	//Imunologia e Infeção/Imunologia e Inflamação/IMI-IMU/Microbiologia e Infeção/IMI-MIC
 
-	vector <Area *> areas_vector = association->getAreas();
-	for(size_t i = 0; i < areas_vector.size(); i++){
+	vector<Area *> areas_vector = Associacao->getAreas();
+	for (size_t i = 0; i < areas_vector.size(); i++) {
 
 		file << areas_vector.at(i)->getName() << "/";
 
-		vector <SubArea *> subareas_vector = areas_vector.at(i)->getSubAreas();
-		for(size_t t; t < subareas_vector.size(); t++){
+		vector<SubArea *> subareas_vector = areas_vector.at(i)->getSubAreas();
+		for (size_t t = 0; t < subareas_vector.size(); t++) {
 
-			if(t == (subareas_vector.size() - 1))
-				file << subareas_vector.at(t)->getName() << "/" << subareas_vector.at(t)->getInitials() << endl;
-			else
-				file << subareas_vector.at(t)->getName() << "/" << subareas_vector.at(t)->getInitials() << "/";
+			if (t == (subareas_vector.size() - 1)) {
+				file << subareas_vector.at(t)->getName() << "/"
+						<< subareas_vector.at(t)->getInitials();
+
+				if (i != areas_vector.size() - 1)
+					file << endl;
+			} else
+				file << subareas_vector.at(t)->getName() << "/"
+						<< subareas_vector.at(t)->getInitials() << "/";
 		}
 	}
 
 	file.close();
 }
 
-void guardarficheiroAssociacao(Association * association) {
+void guardarficheiroAssociacao() {
 	ofstream file("association.txt");
-
 
 	//Name/ 231.7/ 242.4/ 4
 
-	file << association->getName() << "/";
-	file << association->getFund() << "/";
-	file << association->getAnnualPay() << "/";
-	file << association->getCurrentYear();
+	file << Associacao->getName() << "/";
+	file << Associacao->getFund() << "/";
+	file << Associacao->getAnnualPay() << "/";
+	file << Associacao->getCurrentYear();
 
 	file.close();
 }
 
-void guardarficheiroAssociados(Association * association) {
+void guardarficheiroAssociados() {
 	ofstream file("associates.txt");
 
 	//1/Pedro Costa/FEUP/[Neurociências, Envelhecimento e Doenças Degenerativas/Imunologia e Infeção/]/50.4/[40/2/70/]/4
 
-	vector <Associate *> associates_vector = association->getAssociates();
-	for(size_t i = 0; i < associates_vector.size(); i++){
+	vector<Associate *> associates_vector = Associacao->getAssociates();
+	for (size_t i = 0; i < associates_vector.size(); i++) {
 
 		file << associates_vector.at(i)->getUniqueID() << "/";
 		file << associates_vector.at(i)->getName() << "/";
 		file << associates_vector.at(i)->getInstitution() << "/[";
 
-		vector<Area *> areas_interest = associates_vector.at(i)->getInterestAreas();
-		for(size_t t = 0; t < areas_interest.size(); t++){
+		vector<Area *> areas_interest =
+				associates_vector.at(i)->getInterestAreas();
+		for (size_t t = 0; t < areas_interest.size(); t++) {
 
 			file << areas_interest.at(t)->getName() << "/";
 		}
-		file << "]" << "/" << associates_vector.at(i)->getPersonalWallet() << "/[";
+		file << "]" << "/" << associates_vector.at(i)->getPersonalWallet()
+				<< "/[";
 
 		vector<int> years_vector = associates_vector.at(i)->getPaidYears();
-		for(size_t t = 0; t < years_vector.size(); t++){
+		for (size_t t = 0; t < years_vector.size(); t++) {
 
 			file << years_vector.at(t) << "/";
 		}
 
-		file << "]" << "/" << associates_vector.at(i)->getDivulgations() << endl;
+		file << "]" << "/" << associates_vector.at(i)->getDivulgations();
+
+		if (i != associates_vector.size() - 1)
+			file << endl;
 
 	}
 
 	file.close();
 }
 
-void guardarficheiroEventos(Association * association) {
+void guardarficheiroEventos() {
 	ofstream file("events.txt");
 
-	/*Summer School/15-02-1998/Vila Real/Pirocas Piroclásticas/[1/5/3/]/[7/15/]/5000/300
-	 Conference/15-02-2017/Porto/Conas Magnificas/[1/2/3/]/[4/5/]/1000/[Zé/FEUP/Carlos/FCUP/]*/
+	/*SummerSchool/15-02-1998/Vila Real/Pirocas Piroclásticas/[1/5/3/]/[7/15/]/5000/[Zé/FEUP/Carlos/FCUP/]
+	 Conference/15-02-2017/Porto/Conas Magnificas/[1/2/3/]/[4/5/]/1000/300*/
 
-	vector<Event *> event_vector = association->getEvents();
-	for(size_t i = 0; i < event_vector.size(); i++){
+	vector<Event *> event_vector = Associacao->getEvents();
 
-		file << event_vector.at(i)->getDate() << "/";
-		file << event_vector.at(i)->getLocal() << "/";
-		file << event_vector.at(i)->getTheme() << "/[";
+	for (size_t i = 0; i < event_vector.size(); i++) {
 
-		vector<Associate *> requesters_vector = event_vector.at(i)->getRequest();
-		for(size_t t = 0; t < requesters_vector.size(); t++){
+		if (event_vector.at(i)->getType() == "SummerSchool") {
+			file << event_vector.at(i)->getType() << "/";
+			file << event_vector.at(i)->getDate() << "/";
+			file << event_vector.at(i)->getLocal() << "/";
+			file << event_vector.at(i)->getTheme() << "/[";
 
-			file << requesters_vector.at(t)->getUniqueID() << "/";
+			vector<Associate *> requesters_vector =
+					event_vector.at(i)->getRequest();
+
+			vector<int> used_ids;
+
+			for (size_t t = 0; t < requesters_vector.size(); t++) {
+
+				file << requesters_vector.at(t)->getUniqueID() << "/";
+				used_ids.push_back(requesters_vector.at(t)->getUniqueID());
+			}
+
+			file << "]/[";
+
+			vector<Associate *> organizers_vector =
+					event_vector.at(i)->getOrganizers();
+			for (size_t t = 0; t < organizers_vector.size(); t++) {
+				if (find(used_ids.begin(), used_ids.end(),
+						organizers_vector.at(t)->getUniqueID())
+						== used_ids.end())
+					file << organizers_vector.at(t)->getUniqueID() << "/";
+			}
+
+			file << "]/" << event_vector.at(i)->getSupport() << "/[";
+
+			list<Trainer *> trainers = event_vector.at(i)->getTrainers();
+
+			for (auto it = trainers.begin(); it != trainers.end(); it++) {
+				file << (*it)->getName() << "/" << (*it)->getInstitution()
+						<< "/";
+			}
+
+			file << "]";
+
+		} else {
+			file << event_vector.at(i)->getType() << "/";
+			file << event_vector.at(i)->getDate() << "/";
+			file << event_vector.at(i)->getLocal() << "/";
+			file << event_vector.at(i)->getTheme() << "/[";
+
+			vector<Associate *> requesters_vector =
+					event_vector.at(i)->getRequest();
+
+			vector<int> used_ids;
+
+			for (size_t t = 0; t < requesters_vector.size(); t++) {
+
+				file << requesters_vector.at(t)->getUniqueID() << "/";
+				used_ids.push_back(requesters_vector.at(t)->getUniqueID());
+			}
+
+			file << "]/[";
+
+			vector<Associate *> organizers_vector =
+					event_vector.at(i)->getOrganizers();
+			for (size_t t = 0; t < organizers_vector.size(); t++) {
+				if (find(used_ids.begin(), used_ids.end(),
+						organizers_vector.at(t)->getUniqueID())
+						== used_ids.end())
+					file << organizers_vector.at(t)->getUniqueID() << "/";
+			}
+
+			file << "]/" << event_vector.at(i)->getSupport() << "/";
+			file << event_vector.at(i)->getEstimative();
+
 		}
 
-		file << "]/[";
-
-		vector<Associate *> organizers_vector = event_vector.at(i)->getOrganizers();
-		for(size_t t = 0; t < organizers_vector.size(); t++){
-
-			file << organizers_vector.at(t)->getUniqueID() << "/";
-		}
-
-		file << "]/" << event_vector.at(i)->getSupport() << "/";
-
+		if (i != event_vector.size() - 1)
+			file << endl;
+	}
 
 	file.close();
 }
@@ -384,7 +466,9 @@ void adicionarAssociado() {
 
 	while (!numbers.eof()) {
 		size_t selected = 0;
-		numbers >> selected;
+		if (!(numbers >> selected))
+			cout
+					<< "\nUm dos valores introduzidos nao foi um inteiro.\nVoltando ao menu principal...\n\n";
 		if (selected >= areas.size() || selected < 0) { //SE UM DOS INDICES ESCOLHIDOS NAO CORRESPONDE A NENHUM DOS APRESENTADOS
 			cout << "\nNao existe a opcao " << selected
 					<< ".\nVoltando ao menu principal..." << endl << endl;
@@ -407,13 +491,24 @@ void adicionarAssociado() {
 
 void removerAssociado() {
 	int uniqueID;
+	string tempID;
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
 	cout << "Introduza o Identificador Unico do Associado a remover: ";
-	cin >> uniqueID;
+	cin.clear();
+	cin.ignore(10000, '\n');
+	getline(cin, tempID);
+
+	if (!is_number(tempID)) {
+		cout
+				<< "O valor introduzido nao e um inteiro.\nVoltando ao menu principal...\n\n";
+		return;
+	}
+
+	uniqueID = stoi(tempID);
 
 	try {
 		Associacao->removeAssociate(uniqueID);
@@ -544,21 +639,21 @@ void criarEvento() {
 
 	/*
 
-	Event * evento;
-	try {
-		evento = new Event(event_request, event_organizers, date, local, theme,
-				Associacao);
-	} catch (const NoSupportGiven & e) {
-		cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
-				<< " tem pagamentos em atraso. Impossivel criar evento!"
-				<< ".\nVoltando ao menu principal..." << endl << endl;
-		sleep(1);
-		return;
-	}
-	Associacao->addEvent(evento);
+	 Event * evento;
+	 try {
+	 evento = new Event(event_request, event_organizers, date, local, theme,
+	 Associacao);
+	 } catch (const NoSupportGiven & e) {
+	 cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
+	 << " tem pagamentos em atraso. Impossivel criar evento!"
+	 << ".\nVoltando ao menu principal..." << endl << endl;
+	 sleep(1);
+	 return;
+	 }
+	 Associacao->addEvent(evento);
 
 
-	*/
+	 */
 
 	cout << "Evento criado com sucesso!";
 	sleep(1);

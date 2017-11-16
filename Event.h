@@ -8,9 +8,11 @@
 #define EVENT_H_
 #include <vector>
 #include <string>
+#include <list>
 
 class Associate;
 class Association;
+class Trainer;
 
 //! The NoSupportGiven
 
@@ -84,11 +86,12 @@ public:
 	 * The given support by the association will be any value between 5-15% of the association main fund.
 	 *
 	 */
+
 	Event(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association);
 
-	Event(Association * association, std::string string_file);
+	//Event(Association * association, std::string string_file);
 
 	//=========================DESTRUCTORS===============================
 	//====================================================================
@@ -138,6 +141,13 @@ public:
 	 * given by the association to the e event
 	 */
 	virtual long double getSupport() const = 0;
+
+
+	virtual std::string getType() const = 0;
+
+	virtual std::list<Trainer *> getTrainers() const = 0;
+
+	virtual int getEstimative() const = 0;
 
 
 	virtual std::string showInfo() const = 0;

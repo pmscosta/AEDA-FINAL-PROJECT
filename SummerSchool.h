@@ -12,6 +12,18 @@
 
 class Associate;
 
+class Trainer{
+public:
+	Trainer(std::string name, std::string institution) : name(name), institution(institution){};
+	~Trainer();
+	std::string getName() const {return this->name;};
+	std::string getInstitution() const {return this->institution;};
+
+private:
+	std::string name;
+	std::string institution;
+};
+
 class SummerSchool: public Event {
 public:
 
@@ -28,7 +40,13 @@ public:
 	SummerSchool(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association,
-			std::list<std::string> trainers);
+			std::list<Trainer *> trainers);
+
+
+	SummerSchool(std::vector<Associate *> event_request,
+				std::vector<Associate *> event_organizers, std::string date,
+				std::string local, std::string theme, Association * association,
+				std::list<Trainer *> trainers, long double given_support);
 
 	//=========================DESTRUCTORS================================
 
@@ -44,6 +62,11 @@ public:
 
 	long double getSupport() const;
 
+	std::string getType() const;
+
+	std::list<Trainer *> getTrainers() const;
+
+	int getEstimative() const;
 
 
 	//=========================GENERAL METHODS============================
@@ -53,7 +76,8 @@ public:
 	std::string showInfo() const;
 
 private:
-	std::list<std::string> trainers;
+	std::string type = "SummerSchool";
+	std::list<Trainer *> trainers;
 	long double given_support; ///< The value of the monetary support given by the association
 };
 

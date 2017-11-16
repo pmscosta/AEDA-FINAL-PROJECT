@@ -26,6 +26,7 @@ Associate::Associate(Association * asso, string name, string institution,
 	this->interestAreas = interests;
 	this->personalWallet = 500.0;  //DEFAULT FOR EVERY ASSOCIATE
 	this->divulgations = 0;
+	this->paidYears.push_back(asso->getCurrentYear()); //THE ASSOCIATE DOES NOT NEED TO PAY THE FIRST YEAR, IT IS GIVEN
 }
 
 Associate::Associate(Association * association, string file_string) {
@@ -177,10 +178,6 @@ void Associate::setInstitution(string inst){
 	this->institution = inst;
 }
 
-void Associate::setInterestAreas(vector<Area *> interest){
-	this->interestAreas = interest;
-}
-
 void Associate::setDivulgations(int divulgation){
 	this->divulgations = divulgation;
 }
@@ -294,7 +291,8 @@ string Associate::showInfo() const{
 
 //Operators
 
-bool Associate::operator <(const Associate & lhs) const{
+bool Associate::operator< (const Associate & lhs) const{
+	cout << "called operator\n";
 	return this->uniqueID < lhs.uniqueID;
 }
 

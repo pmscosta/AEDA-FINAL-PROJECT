@@ -28,6 +28,12 @@ public:
 			std::string local, std::string theme, Association * association,
 			int estimative);
 
+
+	Conference(std::vector<Associate *> event_request,
+				std::vector<Associate *> event_organizers, std::string date,
+				std::string local, std::string theme, Association * association,
+				int estimative, long double money);
+
 	//=========================DESTRUCTORS================================
 
 	//====================================================================
@@ -40,7 +46,11 @@ public:
 
 	int getEstimative() const;
 
+	std::string getType() const;
+
 	long double getSupport() const;
+
+	std::list<Trainer *> getTrainers() const;
 
 
 	//=========================GENERAL METHODS================================
@@ -49,7 +59,10 @@ public:
 
 	std::string showInfo() const;
 
+
+
 private:
+	std::string type = "Conference";
 	int estimative;
 	long double given_support; ///< The value of the monetary support given by the association
 };
