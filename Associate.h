@@ -14,10 +14,7 @@ class SubArea;
 class Association;
 
 class NotUpToDate {
-private:
-	int uniqueID;
-	int triedYear;
-	int lastPaid;
+
 
 public:
 	NotUpToDate(int triedYear, int uniqueID, int lastPaid) :
@@ -36,6 +33,12 @@ public:
 	int getLast() const {
 		return this->lastPaid;
 	}
+
+
+private:
+	int uniqueID;
+	int triedYear;
+	int lastPaid;
 };
 
 class NotEnoughMoney {
@@ -168,8 +171,6 @@ public:
 
 	void setInstitution(std::string inst);
 
-	void setInterestAreas(std::vector<Area *> interest);
-
 	void setDivulgations(int divulgation);
 
 	//=============================================General Methods================================================
@@ -256,9 +257,12 @@ public:
 
 	/*
 	 * @brief Overloading  < operator
+	 * An associate is small than the other if his uniqueID is smaller.
 	 */
 
 	bool operator< (const Associate & lhs) const;
+
+
 
 private:
 	Association * association; ///< The connection between the associate and the association

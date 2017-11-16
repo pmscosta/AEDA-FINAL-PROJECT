@@ -9,8 +9,27 @@
 #include "Event.h"
 #include <algorithm>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
+
+
+//===========================================SORT FUNCTIONS==============================================
+
+//=======================================================================================================
+
+/*
+ * @brief Compares two associates, pointed by.
+ * Useful to call in the sort method, defined by the stl library.
+ * An associate is small than the other if his uniqueID is smaller.
+ *
+ *@param rhs - pointer to the right-hand side associate
+ *@param lhs - pointer to the left-hand side associate
+ */
+bool cmpAssociates(Associate * rhs, Associate * lhs) {
+	return rhs->getUniqueID() < lhs->getUniqueID();
+}
+;
 
 int Association::currentYear = 0;
 
@@ -94,7 +113,7 @@ vector<Event *> Association::getEvents() const{
 
 void Association::addAssociate(Associate * newAsso) {
 	this->associates.push_back(newAsso);
-	sort(this->associates.begin(), this->associates.end());
+	sort(this->associates.begin(), this->associates.end(), cmpAssociates);
 }
 
 void Association::removeAssociate(int uniqueID) {
