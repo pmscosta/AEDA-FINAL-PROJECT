@@ -40,11 +40,11 @@ void lerficheiroEventos();
 
 void guardarficheiros();
 
-void guardarficheiroAreas();
+void guardarficheiroAreas(Association * association);
 
-void guardarficheiroAssociacao();
+void guardarficheiroAssociacao(Association * association);
 
-void guardarficheiroAssociados();
+void guardarficheiroAssociados(Association * association);
 
 void guardarficheiroEventos();
 

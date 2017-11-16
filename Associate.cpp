@@ -142,6 +142,19 @@ float Associate::getPersonalWallet() const {
 	return this->personalWallet;
 }
 
+string Associate::getInstitution() const{
+	return this->institution;
+}
+
+vector<Area *> Associate::getInterestAreas() const{
+	return this->interestAreas;
+}
+
+int Associate::getDivulgations() const{
+	return this->divulgations;
+}
+
+
 //Set Methods
 
 void Associate::setInterestAreas(vector<Area *> interest) {
@@ -159,6 +172,19 @@ void Associate::setPaidYears(vector<int> paid) {
 void Associate::setPersonallWallet(float money) {
 	this->personalWallet = money;
 }
+
+void Associate::setInstitution(string inst){
+	this->institution = inst;
+}
+
+void Associate::setInterestAreas(vector<Area *> interest){
+	this->interestAreas = interest;
+}
+
+void Associate::setDivulgations(int divulgation){
+	this->divulgations = divulgation;
+}
+
 
 //General Methods
 

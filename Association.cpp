@@ -59,6 +59,10 @@ void Association::setAnnualPay(float annualPay) {
 	this->annualPay = annualPay;
 }
 
+void Association::setEvents(vector<Event *> all_events){
+	this->events = all_events;
+}
+
 //Get Methods
 
 string Association::getName() const {
@@ -80,6 +84,11 @@ int Association::getCurrentYear() {
 vector<Associate *> Association::getAssociates() const {
 	return associates;
 }
+
+vector<Event *> Association::getEvents() const{
+	return this->events;
+}
+
 
 //Associate Type Functions
 
