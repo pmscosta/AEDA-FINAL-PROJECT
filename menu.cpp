@@ -137,7 +137,7 @@ void submenu2() {
 	cout << " 1 - Criar Evento" << endl;
 	cout << " 2 - Remover Evento" << endl;
 	cout << " 3 - Alterar informacoes de um Evento" << endl;
-	cout << " 4 - Ver informacoes sobre um Evento" << endl;
+	cout << " 4 - Ver informacoes sobre os Eventos" << endl;
 	cout << " 5 - Anterior" << endl;
 	cout << " 6 - Sair" << endl;
 
@@ -285,7 +285,7 @@ void sair() {
 			guardarficheiroAreas();
 			guardarficheiroAssociados();
 			guardarficheiroEventos();
-			cout << "\nAlteracoes guardadas! \n";
+			cout << "\nAlteracoes guardadas! A sair... \n";
 			sleep(1);
 			break;
 		case 'S':
@@ -293,7 +293,7 @@ void sair() {
 			guardarficheiroAreas();
 			guardarficheiroAssociados();
 			guardarficheiroEventos();
-			cout << "\nAlteracoes guardadas! \n";
+			cout << "\nAlteracoes guardadas! A sair... \n";
 			sleep(1);
 			break;
 		case 'n':
