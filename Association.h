@@ -200,6 +200,8 @@ public:
 
 	std::string showEvents() const;
 
+	void removeEvent(std::string date);
+
 
 
 

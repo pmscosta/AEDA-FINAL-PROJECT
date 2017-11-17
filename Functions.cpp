@@ -176,7 +176,7 @@ void lerficheiroEventos() {
 				Trainer * newTrainer = new Trainer(former_name, former_inst);
 				trainers.push_back(newTrainer);
 
-				cout << "one time\n";
+				//cout << "one time\n";
 			}
 
 			infoEvent >> garbage;
@@ -462,7 +462,7 @@ void adicionarAssociado() {
 	getline(cin, instituicao);
 
 	//agora dar cout das areas da associacao numeradas...
-	cout << "\nIndique quais as areas de interesse do Associado: ";
+	cout << "\nIndique quais as areas de interesse do Associado: " << endl;
 
 	vector<Area *> areas = Associacao->getAreas();
 	for (size_t t = 0; t < areas.size(); t++) {
@@ -470,6 +470,7 @@ void adicionarAssociado() {
 	}
 
 	string list;
+	cout << "\nIntroduza as opcoes separadas por espacos: ";
 	getline(cin, list);
 
 	stringstream numbers(list);
@@ -480,10 +481,9 @@ void adicionarAssociado() {
 		size_t selected = 0;
 		if (!(numbers >> selected))
 			cout
-					<< "\nUm dos valores introduzidos nao foi um inteiro.\nVoltando ao menu principal...\n\n";
+					<< "\nUm dos valores introduzidos nao foi um inteiro.\n" << endl;
 		if (selected >= areas.size() || selected < 0) { //SE UM DOS INDICES ESCOLHIDOS NAO CORRESPONDE A NENHUM DOS APRESENTADOS
-			cout << "\nNao existe a opcao " << selected
-					<< ".\nVoltando ao menu principal..." << endl << endl;
+			cout << "\nNao existe a opcao " << selected << endl;
 			sleep(1);
 			return;
 		}
@@ -495,6 +495,7 @@ void adicionarAssociado() {
 			newInterest);
 
 	Associacao->addAssociate(newAsso);
+	Associacao->updateAllAssociates();
 
 	cout << "\nAssociado adicionado com sucesso!" << endl << endl;
 
@@ -516,7 +517,7 @@ void removerAssociado() {
 
 	if (!is_number(tempID)) {
 		cout
-				<< "O valor introduzido nao e um inteiro.\nVoltando ao menu principal...\n\n";
+				<< "O valor introduzido nao e um inteiro.\n" << endl;
 		return;
 	}
 
@@ -525,13 +526,12 @@ void removerAssociado() {
 	try {
 		Associacao->removeAssociate(uniqueID);
 	} catch (NoSuchID & e) {
-		cout << "\nNao existe nenhum associado com o ID: " << e.getID()
-				<< ".\nVoltando ao menu principal..." << endl << endl;
+		cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
 		sleep(1);
 		return;
 	}
 
-	cout << "\nAssociado removido com sucesso!" << endl << endl;
+	cout << "\nAssociado removido com sucesso!" << endl;
 
 	sleep(1);
 }
@@ -551,7 +551,7 @@ void alterarAssociado() {
 
 	if (!is_number(tempID)) {
 		cout
-				<< "O valor introduzido nao e um inteiro.\nVoltando ao menu principal...\n\n";
+				<< "O valor introduzido nao e um inteiro.\n" << endl;
 		return;
 	}
 
@@ -561,24 +561,23 @@ void alterarAssociado() {
 	try {
 		alterar = Associacao->getAssoById(uniqueID);
 	} catch (const NoSuchID & e) {
-		cout << "\nNao existe nenhum associado com o ID: " << e.getID()
-				<< ".\nVoltando ao menu principal..." << endl << endl;
+		cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
 		sleep(1);
 		return;
 	}
 
-	cout << "\n\n Qual o atributo pretende mudar: " << endl;
+	cout << "\nQual o atributo que pretende mudar: " << endl;
 
 	cout << "\t0: Areas de Interesse" << endl;
 	cout << "\t1: Instituicao" << endl;
 
-	cout << "Insira uma opcao: ";
+	cout << "\nInsira uma opcao: ";
 	string opcao;
 	getline(cin, opcao);
 
 	if (!is_number(opcao)) {
 		cout
-				<< "O valor introduzido nao e um inteiro.\nVoltando ao menu principal...\n\n";
+				<< "O valor introduzido nao e um inteiro.\n" << endl;
 		return;
 	}
 
@@ -587,13 +586,14 @@ void alterarAssociado() {
 	switch (escolha) {
 	case 0: {
 		cout
-				<< "Todas as areas de interesse do associado foram eliminadas. Escolha as novas areas de interesse.\n";
+				<< "\nTodas as areas de interesse do associado foram eliminadas. Escolha as novas areas de interesse.\n";
 		vector<Area *> areas = Associacao->getAreas();
 		for (size_t t = 0; t < areas.size(); t++) {
 			cout << t << ": " << areas.at(t)->getName() << endl;
 		}
 
 		string list;
+		cout << "\nIntroduza as opcoes separadas por espacos: ";
 		getline(cin, list);
 
 		stringstream numbers(list);
@@ -604,10 +604,9 @@ void alterarAssociado() {
 			size_t selected = 0;
 			if (!(numbers >> selected))
 				cout
-						<< "\nUm dos valores introduzidos nao foi um inteiro.\nVoltando ao menu principal...\n\n";
+						<< "\nUm dos valores introduzidos nao foi um inteiro.\n" << endl;
 			if (selected >= areas.size() || selected < 0) { //SE UM DOS INDICES ESCOLHIDOS NAO CORRESPONDE A NENHUM DOS APRESENTADOS
-				cout << "\nNao existe a opcao " << selected
-						<< ".\nVoltando ao menu principal..." << endl << endl;
+				cout << "\nNao existe a opcao " << selected << endl;
 				sleep(1);
 				return;
 			}
@@ -652,8 +651,7 @@ void verInfoAssociado() {
 	try {
 		associado = Associacao->getAssoById(uniqueID);
 	} catch (NoSuchID & e) {
-		cout << "\nNao existe nenhum associado com o ID: " << e.getID()
-				<< ".\nVoltando ao menu principal..." << endl << endl;
+		cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
 		sleep(1);
 		return;
 	}
@@ -678,18 +676,24 @@ void criarEvento() {
 	cin.clear();
 	cin.ignore(10000, '\n');
 
-	/*
-	 * AQUI TEM DE SE PERGUNTAR PRIMEIRO SE SE TRATA DE UM SUMMERSCHOOL OU CONFERENCE
-	 * E DEPOIS CHAMAR O CONSTRUCTOR RESPETIVO
-	 * A UNICA DIFERENCA SERA QUE O DE CONFERENTE TEM UM NUMERO ESPERADO DE PARTICIPANTES
-	 * E O SUMMERSCHOOL TEM UMA LISTA DE TRAINERS AKA FORMADORES
-	 * VER A IMPLEMENTACAO NAS RESPETIVAS CLASSES
-	 * A LISTA DOS FORMADORES AINDA TEMOS DE DISCUTIR MELHOR ISSO
-	 * FAZ SENTIDO OS FORMADORES NAO SEREM OBRIGATORIAMENTE ASSOCIADOS, ACHO EU
-	 *
-	 */
+	string type;
+	cout << "Indique o tipo de evento (Summer School ou Conference): ";
+	getline(cin, type);
 
-	cout << "Introduza o numero de Associados que querem criar um Evento: ";
+	bool typeevento; //true se for summer school e false se for conference
+	if(type == "Summer School" || type == "summer school")
+		typeevento = true;
+	else if(type == "Conference" || type == "conference")
+		typeevento = false;
+	else{
+		cout << "\nNao existe essa opcao\n";
+		return;
+	}
+
+
+
+
+	cout << "\nIntroduza o numero de Associados que querem criar o Evento: ";
 	cin >> numAsso;
 
 	for (int i = 0; i < numAsso; i++) {
@@ -730,32 +734,62 @@ void criarEvento() {
 	cin.ignore(10000, '\n');
 
 	string date, local, theme;
-	cout << "\nIntroduza a data do evento: ";
+	cout << "\nIntroduza a data do evento (dd-mm-aaaa): ";
 	getline(cin, date);
 	cout << "\nIntroduza o local do evento: ";
 	getline(cin, local);
 	cout << "\nIntroduza o tema do evento: ";
 	getline(cin, theme);
 
-	/*
 
-	 Event * evento;
-	 try {
-	 evento = new Event(event_request, event_organizers, date, local, theme,
-	 Associacao);
-	 } catch (const NoSupportGiven & e) {
-	 cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
-	 << " tem pagamentos em atraso. Impossivel criar evento!"
-	 << ".\nVoltando ao menu principal..." << endl << endl;
-	 sleep(1);
-	 return;
-	 }
-	 Associacao->addEvent(evento);
+	if(typeevento){
+		int numFormadores;
+		cout << "\nIntroduza o numero de formadores do evento: ";
+		cin >> numFormadores;
+		list<Trainer *> trainers;
+		cin.clear();
+		cin.ignore(10000, '\n');
+		for(int i = 0; i < numFormadores; i++){
+			string nome, instituicao;
+			cout << "\nIntroduza o nome do " << i + 1 << "º Formador: ";
+			getline(cin, nome);
+			cout << "Introduza o nome da sua intituicao: ";
+			getline(cin, instituicao);
+			Trainer * trainer = new Trainer(nome,instituicao);
+			trainers.push_back(trainer);
+		}
+		SummerSchool * escola;
+		try {
+			escola = new SummerSchool(event_request, event_organizers, date, local, theme,
+					Associacao, trainers);
+		} catch (const NoSupportGiven & e) {
+			cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
+					 << " tem pagamentos em atraso. Impossivel criar evento!\n\n";
+			sleep(1);
+			return;
+		}
+		Associacao->addEvent(escola);
+	}
 
+	else {
+		int numEsperado;
+		cout << "\nIntroduza um numero esperado de Participantes: ";
+		cin >> numEsperado;
+		Conference * conferencia;
+		try {
+			conferencia = new Conference(event_request, event_organizers, date, local, theme,
+					Associacao, numEsperado);
+		} catch (const NoSupportGiven & e) {
+			cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
+					 << " tem pagamentos em atraso. Impossivel criar evento!\n\n";
+			sleep(1);
+			return;
+		}
+		Associacao->addEvent(conferencia);
+		cout << endl;
+	}
 
-	 */
-
-	cout << "Evento criado com sucesso!";
+	cout << "Evento criado com sucesso!\n";
 	sleep(1);
 }
 
@@ -766,8 +800,21 @@ void removerEvento() {
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
 
-	//completar...
+	cin.clear();
+	cin.ignore(10000, '\n');
+	string data;
+	cout << "Introduza a data do evento a remover (dd-mm-aaaa): ";
+	getline(cin, data);
 
+	//decidi remover eventos através da data porque é muito pouco provável que existam dois eventos no primeiro dia
+	//mas se encontrarem outra maneira melhor, feel free to change...
+
+	//falta tratamento de excecoes
+
+	Associacao->removeEvent(data);
+
+	cout << "\nEvento removido com sucesso!\n";
+	sleep(1);
 }
 
 void alterarEvento() {
@@ -776,6 +823,12 @@ void alterarEvento() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+	string data;
+	cout << "Introduza a data do evento a alterar (dd-mm-aaaa): ";
+	getline(cin, data);
 
 	//completar...
 
@@ -789,7 +842,6 @@ void verInfoEvento() {
 	cout << endl << endl;
 
 	cout << Associacao->showEvents();
-
 }
 
 //-----------------------COTAS-------------------------//

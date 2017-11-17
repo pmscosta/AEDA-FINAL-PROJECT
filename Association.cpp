@@ -243,3 +243,10 @@ string Association::showEvents() const{
 	return info;
 }
 
+void Association::removeEvent(string date){
+	for (size_t t = 0; t < this->events.size(); t++){
+		if(events.at(t)->getDate() == date)
+			events.erase(events.begin() + t);
+	}
+}
+
