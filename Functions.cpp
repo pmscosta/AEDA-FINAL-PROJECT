@@ -302,6 +302,37 @@ void lerficheiroEventos() {
 	file.close();
 }
 
+void lerficheiroMails() {
+	ifstream file;
+	string line;
+	file.open("mails.txt");
+	vector<Mail *> all_mails;
+	while (getline(file, line)) {
+
+		stringstream infoMail(line);
+		string title, content;
+		int id;
+		char garbage;
+
+		infoMail >> id;
+		infoMail >> garbage;
+		getline(infoMail, title, '/');
+		getline(infoMail, content, '/');
+
+		vector<Associate *> all_associates = Associacao->getAssociates();
+		for(size_t i = 0; i < all_associates.size(); i++){
+			if(id == all_associates.at(i)->getUniqueID()){
+				Mail * newMail = new Mail(all_associates.at(i), title, content);
+				all_mails.push_back(newMail);
+				break;
+			}
+
+		}
+	}
+	Rede->setMails(all_mails);
+	file.close();
+}
+
 void guardarficheiroAreas() {
 	ofstream file("areas.txt");
 
@@ -469,6 +500,23 @@ void guardarficheiroEventos() {
 	file.close();
 }
 
+void guardarficheiroMails(){
+
+	ofstream file("mails.txt");
+
+	//ID/Mail_Title/Mail_Content
+
+	vector<Mail *> mails_vector = Rede->getMails();
+	for(size_t i = 0; i < mails_vector.size(); i++){
+
+		file << mails_vector.at(i)->getAuthor()->getUniqueID() << "/";
+		file << mails_vector.at(i)->getTitle() << "/";
+		file << mails_vector.at(i)->getBody() << endl;
+	}
+
+		file.close();
+}
+
 void limparficheiros() {
 	ofstream file;
 	file.open("areas.txt", ofstream::out | ofstream::trunc);
@@ -478,6 +526,8 @@ void limparficheiros() {
 	file.open("association.txt", ofstream::out | ofstream::trunc);
 	file.close();
 	file.open("events.txt", ofstream::out | ofstream::trunc);
+	file.close();
+	file.open("mails.txt", ofstream::out | ofstream::trunc);
 	file.close();
 }
 
