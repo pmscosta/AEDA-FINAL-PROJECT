@@ -56,12 +56,13 @@ public:
 
 };
 
-class AlreadyPaid {
+class AlreadyPaid{
 private:
 	int year;
 	int uniqueID;
 public:
-	AlreadyPaid(int year, int uniqueID);
+
+	AlreadyPaid(int year, int uniqueID) : uniqueID(uniqueID), year(year) {};
 
 	int getID() const {
 		return this->uniqueID;
