@@ -27,6 +27,8 @@ void lerficheiroAssociados();
 
 void lerficheiroEventos();
 
+void lerficheiroMails();
+
 void guardarficheiros();
 
 void guardarficheiroAreas();
@@ -36,6 +38,8 @@ void guardarficheiroAssociacao();
 void guardarficheiroAssociados();
 
 void guardarficheiroEventos();
+
+void guardarficheiroMails();
 
 void limparficheiros();
 
