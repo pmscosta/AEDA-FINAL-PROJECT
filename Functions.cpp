@@ -13,6 +13,8 @@
 #include "Event.h"
 #include "SummerSchool.h"
 #include "Conference.h"
+#include "Mail.h"
+#include "Network.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -37,6 +39,7 @@ bool is_number(const std::string& s) {
 //=======================================================================
 
 Association * Associacao;
+Network * Rede = new Network();
 
 void initialize() {
 	lerficheiroAssociacao();
@@ -66,9 +69,11 @@ void ano(){
 		switch (opcao) {
 		case 's':
 			Associacao->updateYear();
+			Associacao->updateAllAssociates();
 			break;
 		case 'S':
 			Associacao->updateYear();
+			Associacao->updateAllAssociates();
 			break;
 		case 'n':
 			break;
@@ -98,7 +103,7 @@ void lerficheiroAssociacao() {
 	string line;
 	file.open("association.txt");
 	while (getline(file, line)) {
-		Associacao = new Association(line);
+		Associacao = new Association(line, Rede);
 	}
 	file.close();
 }
@@ -111,6 +116,8 @@ void lerficheiroAssociados() {
 		Associate * newAsso = new Associate(Associacao, line);
 		Associacao->addAssociate(newAsso);
 	}
+
+	Associacao->updateAllAssociates();
 
 	file.close();
 }
@@ -532,8 +539,7 @@ void adicionarAssociado() {
 }
 
 void removerAssociado() {
-	int uniqueID;
-	string tempID;
+
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
@@ -541,6 +547,8 @@ void removerAssociado() {
 	cout << endl << endl;
 	cout << "Introduza o Identificador Unico do Associado a remover: ";
 	cin.clear();
+	int uniqueID;
+	string tempID;
 	cin.ignore(10000, '\n');
 	getline(cin, tempID);
 
@@ -1007,8 +1015,50 @@ void divulgarEmail() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
+	cout << "Introduza o Identificador Unico do Associado a enviar o Mail: ";
+		cin.clear();
+		int uniqueID;
+		string tempID;
+		cin.ignore(10000, '\n');
+		getline(cin, tempID);
 
-	//completar...
+		if (!is_number(tempID)) {
+			cout
+					<< "O valor introduzido nao e um inteiro.\n" << endl;
+			return;
+		}
+
+		uniqueID = stoi(tempID);
+		Associate * associate;
+
+	try{
+		associate = Associacao->getAssoById(uniqueID);
+	}catch (NoSuchID & e) {
+		cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
+		sleep(1);
+		return;
+	}
+
+	if (!associate->shareNetwork()){
+		cout <<"\nO associado nao tem permissoes para partilhar mensagens na rede.\nPague as cotas em atraso para resolver\n";
+		return;
+	}
+
+	string title, body;
+
+	cout << "Titulo: ";
+	getline(cin, title);
+	cout <<"\nMensagem: \n";
+	getline(cin, body);
+
+	Mail * newMail = new Mail(associate, title, body);
+
+	Rede->addMail(newMail);
+
+	cout << "Mail enviado com sucesso!\n";
+	sleep(1);
+	return;
+
 
 }
 

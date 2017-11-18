@@ -12,6 +12,7 @@
 class Associate;
 class Area;
 class Event;
+class Network;
 
 //Exception Classes
 
@@ -55,15 +56,26 @@ public:
 	 */
 	Association();
 
+
+	/**
+	 * @brief One Argument Constructor
+	 *
+	 * Initializes the Association only with it's name
+	 *
+	 * @param name - the name string
+	 */
+	Association(std::string name);
+
 	/*
 	 * @brief Association Constructor
 	 *
 	 * @param file - a string from a file containing all the info in the following order:
 	 *  Name/ Fund/ annualPay/ CurrentYear
+	 *  @param rede - a pointer to the association's network
 	 *
 	 *  It's vector will be later on initialized
 	 */
-	Association(std::string file);
+	Association(std::string file,Network * rede);
 
 	//=========================================Destructors====================================================
 	//========================================================================================================
@@ -97,7 +109,20 @@ public:
 	 */
 	void setAnnualPay(float annualPay);
 
+	/**
+	 * @briefs Sets/Changes the vector containing the pointers to the events
+	 *
+	 * @param all_events - the new vector of pointers
+	 */
 	void setEvents(std::vector<Event *> all_events);
+
+
+	/**
+	 * @briefs Sets/Changes the network of the association
+	 *
+	 * @param network - the new network
+	 */
+	void setNetWork(Network * network);
 
 	//=============================================Get Methods================================================
 	//========================================================================================================
@@ -124,6 +149,11 @@ public:
 	 * @brief Returns the vector containing pointers to all the associates
 	 */
 	std::vector<Associate *> getAssociates() const;
+
+	/**
+	 * @brief Returns the pointer to the association's network
+	 */
+	Network * getNetwork() const;
 
 	//===============================Associate Type Functions=================================================
 	//========================================================================================================
@@ -209,7 +239,7 @@ public:
 	std::string showAreas() const;
 
 	//============================Event Type Functions==================================================
-	//========================================================================================================
+	//==================================================================================================
 
 	void addEvent(Event * newEvent);
 
@@ -220,8 +250,6 @@ public:
 	Event * getEventByDate(std::string date);
 
 
-
-
 private:
 	std::string name; ///< The Association name
 	long double fund; ///< The Association initial fund to manage events,associates etc..
@@ -230,6 +258,7 @@ private:
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
 	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
 	static int currentYear; ///< The current year
+	Network * network; ///< A pointer to the association network
 
 };
 

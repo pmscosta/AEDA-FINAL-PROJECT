@@ -33,16 +33,15 @@ bool cmpAssociates(Associate * rhs, Associate * lhs) {
 
 int Association::currentYear = 0;
 
-Association::Association() {
-	this->annualPay = 250.0;
-	this->fund = 10000.0;
-}
+Association::Association() {}
 
-Association::Association(string file) {
+Association::Association(string name) : name(name){};
+
+Association::Association(string file,Network * rede) {
 
 	istringstream input(file);
 
-	std: string name;
+	string name;
 	long double fund;
 	float annualPay;
 	char garbage;
@@ -57,7 +56,7 @@ Association::Association(string file) {
 	this->name = name;
 	this->fund = fund;
 	this->annualPay = annualPay;
-
+	this->network = rede;
 }
 
 Association::~Association() {
