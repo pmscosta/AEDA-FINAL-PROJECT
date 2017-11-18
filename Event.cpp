@@ -35,6 +35,23 @@ Event::~Event() {
 
 }
 
+//Set Methods
+
+
+void Event::setDate(std::string date){
+	this->date = date;
+}
+
+void Event::setLocal(std::string local){
+	this->local = local;
+}
+
+void Event::setTheme(std::string theme){
+	this->theme = theme;
+}
+
+
+
 //Get Methods
 
 vector<Associate *> Event::getRequest() const {
