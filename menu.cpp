@@ -186,15 +186,16 @@ void submenu3() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cout << " 1 - Pagar cota anual" << endl;
-	cout << " 2 - Ver Associados com cotas em atraso" << endl;
-	cout << " 3 - Anterior" << endl;
-	cout << " 4 - Sair" << endl;
+	cout << " 1 - Pagar cota anual individualmente" << endl;
+	cout << " 2 - Pagar cotas automaticamente" << endl;
+	cout << " 3 - Ver Associados com cotas em atraso" << endl;
+	cout << " 4 - Anterior" << endl;
+	cout << " 5 - Sair" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 4) {
+	while (opcao < 1 || opcao > 5) {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
@@ -202,13 +203,17 @@ void submenu3() {
 			regressar();
 			break;
 		case 2:
-			verAssociadosCotas();
+			pagarTodasCotas();
 			regressar();
 			break;
 		case 3:
-			menu2();
+			verAssociadosCotas();
+			regressar();
 			break;
 		case 4:
+			menu2();
+			break;
+		case 5:
 			sair();
 			break;
 		default:
