@@ -191,7 +191,7 @@ string Association::updatePayment() {
 		}
 
 	}
-
+	return log;
 }
 
 string Association::showAllAssociates() {
@@ -244,9 +244,33 @@ string Association::showEvents() const{
 }
 
 void Association::removeEvent(string date){
+	int indice = -1;
 	for (size_t t = 0; t < this->events.size(); t++){
 		if(events.at(t)->getDate() == date)
-			events.erase(events.begin() + t);
+			indice = t;
 	}
+
+	if (indice != -1)
+		events.erase(events.begin() + indice);
+	else
+		throw NoSuchDate(date);
 }
+
+Event * Association::getEventByDate(string date){
+	int indice = -1;
+	for (size_t t = 0; t < this->events.size(); t++){
+		if(events.at(t)->getDate() == date)
+			indice = t;
+	}
+	Event * retorno = events.at(indice);
+	if (indice != -1){
+		Event * retorno = events.at(indice);
+		return retorno;
+	}
+	else
+		throw NoSuchDate(date);
+}
+
+
+
 

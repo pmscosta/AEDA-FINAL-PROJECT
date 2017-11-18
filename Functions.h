@@ -14,6 +14,8 @@ void initialize();
 
 void initialize2();
 
+void ano();
+
 
 //-----------------------FILES--------------------------//
 

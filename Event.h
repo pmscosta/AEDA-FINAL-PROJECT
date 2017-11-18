@@ -100,6 +100,14 @@ public:
 	//=========================SET METHODS===============================
 	//====================================================================
 
+
+	void setDate(std::string date);
+
+	void setLocal(std::string local);
+
+	void setTheme(std::string theme);
+
+
 	//=========================GET METHODS===============================
 	//====================================================================
 
@@ -149,8 +157,8 @@ public:
 
 	virtual int getEstimative() const = 0;
 
-
 	virtual std::string showInfo() const = 0;
+
 
 
 protected:

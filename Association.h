@@ -29,6 +29,20 @@ public:
 	;
 };
 
+class NoSuchDate{
+private:
+	std::string date;
+public:
+	NoSuchDate(std::string date) : date(date){
+
+	};
+	std::string getDate() const {
+		return this->date;
+	}
+};
+
+
+
 class Association {
 
 public:
@@ -144,6 +158,7 @@ public:
 	 */
 	Associate * getAssoById(int uniqueID);
 
+
 	//============================Association Type Functions==================================================
 	//========================================================================================================
 
@@ -201,6 +216,8 @@ public:
 	std::string showEvents() const;
 
 	void removeEvent(std::string date);
+
+	Event * getEventByDate(std::string date);
 
 
 
