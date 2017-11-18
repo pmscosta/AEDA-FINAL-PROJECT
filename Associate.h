@@ -34,7 +34,6 @@ public:
 		return this->lastPaid;
 	}
 
-
 private:
 	int uniqueID;
 	int triedYear;
@@ -55,6 +54,21 @@ public:
 		return this->uniqueID;
 	}
 
+};
+
+class AlreadyPaid {
+private:
+	int year;
+	int uniqueID;
+public:
+	AlreadyPaid(int year, int uniqueID);
+
+	int getID() const {
+		return this->uniqueID;
+	}
+	int getYear() const {
+		return this->year;
+	}
 };
 
 class Associate {
