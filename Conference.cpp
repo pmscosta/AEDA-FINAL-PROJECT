@@ -77,8 +77,6 @@ list<Trainer *> Conference::getTrainers() const {
 	return trainers;
 }
 
-
-
 //General Methods
 
 string Conference::showInfo() const {

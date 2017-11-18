@@ -91,7 +91,6 @@ int SummerSchool::getEstimative() const {
 	return 0;
 }
 
-
 //General Methods
 string SummerSchool::showInfo() const {
 	string info = "";

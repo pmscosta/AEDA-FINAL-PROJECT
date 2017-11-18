@@ -51,35 +51,6 @@ void initialize2() {
 	limparficheiros();
 }
 
-void ano(){
-	cout << endl << endl;
-	cout << "--------------------------------------------- " << endl;
-	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
-	cout << "--------------------------------------------- " << endl;
-	cout << endl << endl;
-
-	char opcao;
-	cout << "Ano atual: " << Associacao->getCurrentYear() << endl;
-	cout << "\nIncrementar um ano (S/N): ";
-	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
-		cin >> opcao;
-		switch (opcao) {
-		case 's':
-			Associacao->updateYear();
-			break;
-		case 'S':
-			Associacao->updateYear();
-			break;
-		case 'n':
-			break;
-		case 'N':
-			break;
-		default:
-			cout << "Opcao invalida. Introduza uma nova opcao: ";
-		}
-	}
-}
-
 //-----------------------FILES--------------------------//
 
 void lerficheiroAreas() {
@@ -720,6 +691,8 @@ void criarEvento() {
 	}
 
 
+
+
 	cout << "\nIntroduza o numero de Associados que querem criar o Evento: ";
 	cin >> numAsso;
 
@@ -730,7 +703,8 @@ void criarEvento() {
 		try {
 			associado = Associacao->getAssoById(uniqueID);
 		} catch (NoSuchID & e) {
-			cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
+			cout << "\nNao existe nenhum associado com o ID: " << e.getID()
+					<< ".\nVoltando ao menu principal..." << endl << endl;
 			sleep(1);
 			return;
 		}
@@ -748,7 +722,8 @@ void criarEvento() {
 		try {
 			associado = Associacao->getAssoById(uniqueID);
 		} catch (NoSuchID & e) {
-			cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
+			cout << "\nNao existe nenhum associado com o ID: " << e.getID()
+					<< ".\nVoltando ao menu principal..." << endl << endl;
 			sleep(1);
 			return;
 		}
@@ -831,13 +806,12 @@ void removerEvento() {
 	cout << "Introduza a data do evento a remover (dd-mm-aaaa): ";
 	getline(cin, data);
 
-	try {
-		Associacao->removeEvent(data);
-	} catch (const NoSuchDate & e) {
-		cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
-		sleep(1);
-		return;
-	}
+	//decidi remover eventos através da data porque é muito pouco provável que existam dois eventos no primeiro dia
+	//mas se encontrarem outra maneira melhor, feel free to change...
+
+	//falta tratamento de excecoes
+
+	Associacao->removeEvent(data);
 
 	cout << "\nEvento removido com sucesso!\n";
 	sleep(1);
@@ -856,112 +830,7 @@ void alterarEvento() {
 	cout << "Introduza a data do evento a alterar (dd-mm-aaaa): ";
 	getline(cin, data);
 
-	Event * alterar;
-	try {
-		alterar = Associacao->getEventByDate(data);
-	} catch (const NoSuchDate & e) {
-		cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
-		sleep(1);
-		return;
-	}
-
-	string type = alterar->getType();
-	bool typeevento; //true se for summer school e false se for conference
-	if(type == "SummerSchool")
-		typeevento = true;
-	else if(type == "Conference")
-		typeevento = false;
-
-	cout << "\nQual o atributo que pretende mudar: " << endl;
-
-	cout << "\t0: Data" << endl;
-	cout << "\t1: Local" << endl;
-	cout << "\t2: Tema" << endl;
-	if(typeevento)
-		cout << "\t3: Formadores" << endl;
-	else
-		cout << "\t3: Numero esperado de Participantes" << endl;
-
-	cout << "\nInsira uma opcao: ";
-	string opcao;
-	getline(cin, opcao);
-
-	if (!is_number(opcao)) {
-		cout
-				<< "O valor introduzido nao e um inteiro.\n" << endl;
-		return;
-	}
-
-	int escolha = stoi(opcao);
-
-	switch (escolha) {
-	case 0:
-	{
-		cout << "\nQual a nova data do evento? ";
-		string data;
-		getline(cin, data);
-		alterar->setDate(data);
-		cout << "\nData alterada com sucesso!\n";
-		break;
-	}
-	case 1:
-	{
-		cout << "\nQual o novo local do evento? ";
-		string local;
-		getline(cin, local);
-		alterar->setLocal(local);
-		cout << "\nLocal alterado com sucesso!\n";
-		break;
-	}
-	case 2:
-	{
-		cout << "\nQual o novo tema do evento? ";
-		string tema;
-		getline(cin, tema);
-		alterar->setTheme(tema);
-		cout << "\nTema alterado com sucesso!\n";
-		break;
-	}
-	case 3:
-	{
-		if(typeevento){
-			int numFormadores;
-			cout << "\nIntroduza o numero de novos formadores do evento: ";
-			cin >> numFormadores;
-			list<Trainer *> trainers;
-			cin.clear();
-			cin.ignore(10000, '\n');
-			for(int i = 0; i < numFormadores; i++){
-				string nome, instituicao;
-				cout << "\nIntroduza o nome do " << i + 1 << "º Formador: ";
-				getline(cin, nome);
-				cout << "Introduza o nome da sua intituicao: ";
-				getline(cin, instituicao);
-				Trainer * trainer = new Trainer(nome,instituicao);
-				trainers.push_back(trainer);
-			}
-			SummerSchool * novo = new SummerSchool(alterar->getRequest(),alterar->getOrganizers(),alterar->getDate(),alterar->getLocal(),alterar->getTheme(), Associacao, trainers);
-			Associacao->removeEvent(alterar->getDate());
-			Associacao->addEvent(novo);
-			cout << "\nFormadores alterados com sucesso!\n";
-			break;
-		}
-		else{
-			int numEsperado;
-			cout << "\nIntroduza o novo numero esperado de Participantes: ";
-			cin >> numEsperado;
-			Conference * novo = new Conference(alterar->getRequest(),alterar->getOrganizers(),alterar->getDate(),alterar->getLocal(),alterar->getTheme(), Associacao, numEsperado);
-			Associacao->removeEvent(alterar->getDate());
-			Associacao->addEvent(novo);
-			cout << "\nNumero esperado de Participantes alterado com sucesso!\n";
-			break;
-		}
-	}
-	default:
-		cout << "Opcao Invalida" << endl;
-		return;
-	}
-
+	//completar...
 
 }
 

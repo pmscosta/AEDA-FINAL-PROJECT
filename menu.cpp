@@ -48,9 +48,8 @@ void menu2(){
 	cout << " 2 - Gestao de Eventos" << endl;
 	cout << " 3 - Gestao de Cotas" << endl;
 	cout << " 4 - Gestao da Rede de Distribuicao" << endl;
-	cout << " 5 - Ver ano atual" << endl;
-	cout << " 6 - Anterior" << endl;
-	cout << " 7 - Sair" << endl;
+	cout << " 5 - Anterior" << endl;
+	cout << " 6 - Sair" << endl;
 
 	int opcao = 0;
 	cout << endl;
@@ -71,13 +70,9 @@ void menu2(){
 			submenu4();
 			break;
 		case 5:
-			ano();
-			regressar();
-			break;
-		case 6:
 			menu();
 			break;
-		case 7:
+		case 6:
 			sair();
 			break;
 		default:
