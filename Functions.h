@@ -66,6 +66,8 @@ void verInfoEvento();
 
 void pagarCotas();
 
+void pagarTodasCotas();
+
 void verAssociadosCotas();
 
 

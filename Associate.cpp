@@ -201,6 +201,9 @@ void Associate::payYear(int year) {
 
 	int lastYearPaid = this->paidYears.back();
 
+	if(lastYearPaid == Association::getCurrentYear())
+		return;
+
 	if (lastYearPaid < (Association::getCurrentYear() - 1)
 
 	&& year > (lastYearPaid + 1)) //if his payments are not up to date, he has to strictly pay the year after the last one paid

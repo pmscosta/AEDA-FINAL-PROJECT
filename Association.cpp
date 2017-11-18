@@ -163,7 +163,7 @@ void Association::addToFund(float income) {
 
 string Association::updatePayment() {
 
-	string log = 0;
+	string log = "";
 
 	for (size_t t = 0; t < this->associates.size(); t++) {
 
