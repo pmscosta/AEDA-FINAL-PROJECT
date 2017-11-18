@@ -61,9 +61,7 @@ Associate::Associate(Association * association, string file_string) {
 
 	infoAssociate >> garbage;
 
-
 	while (infoAssociate.peek() != ']') {
-
 
 		getline(infoAssociate, interest, '/');
 
@@ -77,7 +75,6 @@ Associate::Associate(Association * association, string file_string) {
 
 	}
 
-
 	infoAssociate >> garbage;
 
 	infoAssociate >> garbage;
@@ -90,14 +87,12 @@ Associate::Associate(Association * association, string file_string) {
 
 	infoAssociate >> garbage;
 
-
 	while (infoAssociate.peek() != ']') {
 		infoAssociate >> years;
 		this->paidYears.push_back(years);
 		infoAssociate >> garbage;
 
 	}
-
 
 	infoAssociate >> garbage;
 
@@ -143,18 +138,17 @@ float Associate::getPersonalWallet() const {
 	return this->personalWallet;
 }
 
-string Associate::getInstitution() const{
+string Associate::getInstitution() const {
 	return this->institution;
 }
 
-vector<Area *> Associate::getInterestAreas() const{
+vector<Area *> Associate::getInterestAreas() const {
 	return this->interestAreas;
 }
 
-int Associate::getDivulgations() const{
+int Associate::getDivulgations() const {
 	return this->divulgations;
 }
-
 
 //Set Methods
 
@@ -174,14 +168,13 @@ void Associate::setPersonallWallet(float money) {
 	this->personalWallet = money;
 }
 
-void Associate::setInstitution(string inst){
+void Associate::setInstitution(string inst) {
 	this->institution = inst;
 }
 
-void Associate::setDivulgations(int divulgation){
+void Associate::setDivulgations(int divulgation) {
 	this->divulgations = divulgation;
 }
-
 
 //General Methods
 
@@ -201,8 +194,8 @@ void Associate::payYear(int year) {
 
 	int lastYearPaid = this->paidYears.back();
 
-	if(lastYearPaid == Association::getCurrentYear())
-		return;
+	if (lastYearPaid == Association::getCurrentYear())
+		throw AlreadyPaid(year, this->uniqueID);
 
 	if (lastYearPaid < (Association::getCurrentYear() - 1)
 
@@ -252,21 +245,19 @@ bool Associate::shareNetwork() {
 
 }
 
-string Associate::showInfo() const{
+string Associate::showInfo() const {
 
 	string info = "";
 
-	info += "Associado nº " + to_string(this->uniqueID) + ":\n"
-			+ "\t -Nome: " + this->name + "\n" +
-			"\t -Instituicao: " + this->institution + "\n"
-			+ "\t -Status: " + this->status + "\n" +
-			"\t -Wallet: " + to_string(this->personalWallet) + "\n" +
-			"\t -Divulgations: " + to_string(this->divulgations) + "\n" +
-			"\t -Interest Areas: ";
+	info += "Associado nº " + to_string(this->uniqueID) + ":\n" + "\t -Nome: "
+			+ this->name + "\n" + "\t -Instituicao: " + this->institution + "\n"
+			+ "\t -Status: " + this->status + "\n" + "\t -Wallet: "
+			+ to_string(this->personalWallet) + "\n" + "\t -Divulgations: "
+			+ to_string(this->divulgations) + "\n" + "\t -Interest Areas: ";
 
 	for (size_t t = 0; t < this->interestAreas.size(); t++) {
 
-		if (t == (this->interestAreas.size() - 1)){
+		if (t == (this->interestAreas.size() - 1)) {
 			info += this->interestAreas.at(t)->getName();
 			break;
 		}
@@ -278,7 +269,7 @@ string Associate::showInfo() const{
 
 	for (size_t t = 0; t < this->paidYears.size(); t++) {
 
-		if (t == (this->paidYears.size() - 1)){
+		if (t == (this->paidYears.size() - 1)) {
 			info += to_string(this->paidYears.at(t));
 			break;
 		}
@@ -290,11 +281,9 @@ string Associate::showInfo() const{
 	return info;
 }
 
-
-
 //Operators
 
-bool Associate::operator< (const Associate & lhs) const{
+bool Associate::operator<(const Associate & lhs) const {
 	cout << "called operator\n";
 	return this->uniqueID < lhs.uniqueID;
 }
