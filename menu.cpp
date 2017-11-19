@@ -96,13 +96,14 @@ void submenu1() {
 	cout << " 2 - Remover Associado" << endl;
 	cout << " 3 - Alterar informacoes de um Associado" << endl;
 	cout << " 4 - Ver informacoes sobre um Associado" << endl;
-	cout << " 5 - Anterior" << endl;
-	cout << " 6 - Sair" << endl;
+	cout << " 5 - Organizar Associados" << endl;
+	cout << " 6 - Anterior" << endl;
+	cout << " 7 - Sair" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 6) {
+	while (opcao < 1 || opcao > 7) {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
@@ -122,9 +123,13 @@ void submenu1() {
 			regressar();
 			break;
 		case 5:
-			menu2();
+			organizarAssociados();
+			regressar();
 			break;
 		case 6:
+			menu2();
+			break;
+		case 7:
 			sair();
 			break;
 		default:
@@ -143,13 +148,14 @@ void submenu2() {
 	cout << " 2 - Remover Evento" << endl;
 	cout << " 3 - Alterar informacoes de um Evento" << endl;
 	cout << " 4 - Ver informacoes sobre os Eventos" << endl;
-	cout << " 5 - Anterior" << endl;
-	cout << " 6 - Sair" << endl;
+	cout << " 5 - Ordenar Eventos" << endl;
+	cout << " 6 - Anterior" << endl;
+	cout << " 7 - Sair" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 6) {
+	while (opcao < 1 || opcao > 7) {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
@@ -169,9 +175,13 @@ void submenu2() {
 			regressar();
 			break;
 		case 5:
-			menu2();
+			organizarEventos();
+			regressar();
 			break;
 		case 6:
+			menu2();
+			break;
+		case 7:
 			sair();
 			break;
 		default:
@@ -230,13 +240,14 @@ void submenu4() {
 	cout << endl << endl;
 	cout << " 1 - Divulgar Email para a Rede" << endl;
 	cout << " 2 - Ver Emails da Rede" << endl;
-	cout << " 3 - Anterior" << endl;
-	cout << " 4 - Sair" << endl;
+	cout << " 3 - Organizar Emails" << endl;
+	cout << " 4 - Anterior" << endl;
+	cout << " 5 - Sair" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 6) {
+	while (opcao < 1 || opcao > 5) {
 		cin >> opcao;
 		switch (opcao) {
 		case 1:
@@ -248,9 +259,13 @@ void submenu4() {
 			regressar();
 			break;
 		case 3:
-			menu2();
+			organizarMails();
+			regressar();
 			break;
 		case 4:
+			menu2();
+			break;
+		case 5:
 			sair();
 			break;
 		default:

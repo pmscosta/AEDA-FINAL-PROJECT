@@ -8,11 +8,30 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
 
 class Associate;
 class Area;
 class Event;
 class Network;
+
+
+//COMPARE METHODS PROTOTYPES
+
+bool cmpID(Associate * rhs, Associate * lhs);
+
+bool cmpMoney(Associate * rhs, Associate * lhs);
+
+template<class T>
+bool cmpName(T * rhs, T * lhs);
+
+bool cmpDate(Event * rhs, Event * lhs);
+
+bool cmpLocal(Event * rhs, Event * lhs);
+
+bool cmpTheme(Event * rhs, Event * lhs);
+
+
 
 //Exception Classes
 
@@ -189,6 +208,9 @@ public:
 	Associate * getAssoById(int uniqueID);
 
 
+	void sortAssociates(std::string type);
+
+
 	//============================Association Type Functions==================================================
 	//========================================================================================================
 
@@ -248,6 +270,8 @@ public:
 	void removeEvent(std::string date);
 
 	Event * getEventByDate(std::string date);
+
+	void sortEvents(std::string type);
 
 
 private:

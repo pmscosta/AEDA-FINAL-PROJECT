@@ -9,6 +9,7 @@
 #define NETWORK_H_
 
 #include <vector>
+#include <string>
 
 class Mail;
 
@@ -41,6 +42,8 @@ public:
 	//General
 
 	void addMail(Mail * newMail);
+
+	void sortMails(std::string type);
 
 private:
 	std::vector<Mail *> mails; ///< A vector of mails containing all the mails the network has in it

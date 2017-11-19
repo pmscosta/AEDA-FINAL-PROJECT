@@ -16,8 +16,8 @@ Mail::Mail() {
 
 }
 
-Mail::Mail(Associate * associate, string title, string body) :
-		author(associate), title(title), body(body) {
+Mail::Mail(Associate * associate, string title, string body, string date) :
+		author(associate), title(title), body(body), date(date) {
 	this->author->incDivulgations();
 
 }
@@ -42,6 +42,9 @@ void Mail::setTitle(string title) {
 	this->title = title;
 }
 
+void Mail::setDate(string date){
+	this->date = date;
+}
 //Get Methods
 
 Associate * Mail::getAuthor() const {
@@ -54,5 +57,9 @@ string Mail::getBody() const {
 
 string Mail::getTitle() const {
 	return this->title;
+}
+
+string Mail::getDate() const{
+	return this->date;
 }
 
