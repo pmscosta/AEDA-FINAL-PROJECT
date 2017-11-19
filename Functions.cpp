@@ -46,6 +46,7 @@ void initialize() {
 	lerficheiroAreas();
 	lerficheiroAssociados();
 	lerficheiroEventos();
+	lerficheiroMails();
 }
 
 void initialize2() {
@@ -313,21 +314,25 @@ void lerficheiroMails() {
 		string title, content;
 		int id;
 		char garbage;
+		string date;
 
 		infoMail >> id;
 		infoMail >> garbage;
 		getline(infoMail, title, '/');
 		getline(infoMail, content, '/');
-
+		getline(infoMail, date, '/');
+		cout << title << content << date << endl;
 		vector<Associate *> all_associates = Associacao->getAssociates();
-		for(size_t i = 0; i < all_associates.size(); i++){
-			if(id == all_associates.at(i)->getUniqueID()){
-				Mail * newMail = new Mail(all_associates.at(i), title, content);
+		for (size_t i = 0; i < all_associates.size(); i++) {
+			if (id == all_associates.at(i)->getUniqueID()) {
+				Mail * newMail = new Mail(all_associates.at(i), title, content,
+						date);
 				all_mails.push_back(newMail);
 				break;
 			}
 
 		}
+
 	}
 	Rede->setMails(all_mails);
 	file.close();
@@ -500,21 +505,25 @@ void guardarficheiroEventos() {
 	file.close();
 }
 
-void guardarficheiroMails(){
+void guardarficheiroMails() {
 
 	ofstream file("mails.txt");
 
 	//ID/Mail_Title/Mail_Content
 
 	vector<Mail *> mails_vector = Rede->getMails();
-	for(size_t i = 0; i < mails_vector.size(); i++){
+	for (size_t i = 0; i < mails_vector.size(); i++) {
 
 		file << mails_vector.at(i)->getAuthor()->getUniqueID() << "/";
 		file << mails_vector.at(i)->getTitle() << "/";
-		file << mails_vector.at(i)->getBody() << endl;
+		file << mails_vector.at(i)->getBody() << "/";
+		file << mails_vector.at(i)->getDate();
+
+		if (i != mails_vector.size() - 1)
+			file << endl;
 	}
 
-		file.close();
+	file.close();
 }
 
 void limparficheiros() {
@@ -722,14 +731,23 @@ void alterarAssociado() {
 }
 
 void verInfoAssociado() {
-	int uniqueID;
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
 	cout << "Introduza o Identificador Unico do Associado: ";
-	cin >> uniqueID;
+	int uniqueID;
+	string tempID;
+	cin.ignore(10000, '\n');
+	getline(cin, tempID);
+
+	if (!is_number(tempID)) {
+		cout << "O valor introduzido nao e um inteiro.\n" << endl;
+		return;
+	}
+
+	uniqueID = stoi(tempID);
 
 	Associate * associado;
 	try {
@@ -746,6 +764,36 @@ void verInfoAssociado() {
 	sleep(1);
 }
 
+void organizarAssociados() {
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	cout << "Qual o criterio para organizar associados: " << endl;
+	cout << "0 - Nome\n";
+	cout << "1 - ID\n";
+	cout << "2 - Dinheiro\n";
+
+	int opcao;
+	cin >> opcao;
+
+	string type;
+
+	if (opcao == 0)
+		type = "name";
+	else if (opcao == 1)
+		type = "id";
+	else
+		type = "money";
+
+	Associacao->sortAssociates(type);
+
+	cout << "Associados organizados com sucesso!\n";
+
+	sleep(1);
+
+}
 //-----------------------EVENTOS----------------------//
 
 void criarEvento() {
@@ -817,6 +865,15 @@ void criarEvento() {
 	string date, local, theme;
 	cout << "\nIntroduza a data do evento (dd-mm-aaaa): ";
 	getline(cin, date);
+	stringstream check_date(date);
+	int temp_day, temp_month, temp_year;
+	char garbage;
+	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+	if (check_date.fail()) {
+		cout
+				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+		return;
+	}
 	cout << "\nIntroduza o local do evento: ";
 	getline(cin, local);
 	cout << "\nIntroduza o tema do evento: ";
@@ -885,6 +942,15 @@ void removerEvento() {
 	string data;
 	cout << "Introduza a data do evento a remover (dd-mm-aaaa): ";
 	getline(cin, data);
+	stringstream check_date(data);
+	int temp_day, temp_month, temp_year;
+	char garbage;
+	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+	if (check_date.fail()) {
+		cout
+				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+		return;
+	}
 
 	try {
 		Associacao->removeEvent(data);
@@ -910,6 +976,15 @@ void alterarEvento() {
 	string data;
 	cout << "Introduza a data do evento a alterar (dd-mm-aaaa): ";
 	getline(cin, data);
+	stringstream check_date(data);
+	int temp_day, temp_month, temp_year;
+	char garbage;
+	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+	if (check_date.fail()) {
+		cout
+				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+		return;
+	}
 
 	Event * alterar;
 	try {
@@ -953,6 +1028,15 @@ void alterarEvento() {
 		cout << "\nQual a nova data do evento? ";
 		string data;
 		getline(cin, data);
+		stringstream check_date(data);
+		int temp_day, temp_month, temp_year;
+		char garbage;
+		check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+		if (check_date.fail()) {
+			cout
+					<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+			return;
+		}
 		alterar->setDate(data);
 		cout << "\nData alterada com sucesso!\n";
 		break;
@@ -1026,8 +1110,65 @@ void verInfoEvento() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
+	cin.clear();
+	cin.ignore(10000, '\n');
 
-	cout << Associacao->showEvents();
+	string data;
+	cout << "Introduza a data do evento a alterar (dd-mm-aaaa): ";
+	getline(cin, data);
+	stringstream check_date(data);
+	int temp_day, temp_month, temp_year;
+	char garbage;
+	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+	if (check_date.fail()) {
+		cout
+				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+		return;
+	}
+
+	Event * alterar;
+	try {
+		alterar = Associacao->getEventByDate(data);
+	} catch (const NoSuchDate & e) {
+		cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
+		sleep(1);
+		return;
+	}
+
+	alterar->showInfo();
+
+	cout << endl << endl;
+
+	sleep(1);
+}
+
+void organizarEventos() {
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	cout << "Qual o criterio para organizar os eventos: " << endl;
+	cout << "0 - Nome\n";
+	cout << "1 - Local\n";
+	cout << "2 - Tema\n";
+
+	int opcao;
+	cin >> opcao;
+
+	string type;
+
+	if (opcao == 0)
+		type = "name";
+	else if (opcao == 1)
+		type = "local";
+	else
+		type = "theme";
+
+	Associacao->sortEvents(type);
+
+	cout << "Eventos organizados com sucesso!\n";
+
 }
 
 //-----------------------COTAS-------------------------//
@@ -1065,23 +1206,25 @@ void pagarCotas() {
 	int year;
 	cin >> year;
 
-	try{
+	try {
 		associado->payYear(year);
-	}catch (const NotUpToDate & e){
+	} catch (const NotUpToDate & e) {
 
-		cout << "Nao foi possivel efetuar o pagamento referente ao ano " << e.getYear() << " dado que o ultimo pago por este associad e " << e.getLast() << ".";
+		cout << "Nao foi possivel efetuar o pagamento referente ao ano "
+				<< e.getYear() << " dado que o ultimo pago por este associad e "
+				<< e.getLast() << ".";
 		return;
-	}catch (const NotEnoughMoney & e){
-		cout << "Nao foi possivel efetuar o pagamento pois o associado nao possui dinheiro suficiente.\n";
+	} catch (const NotEnoughMoney & e) {
+		cout
+				<< "Nao foi possivel efetuar o pagamento pois o associado nao possui dinheiro suficiente.\n";
 		return;
 	}
-
 
 	cout << "\nPagamente efetuado com sucesso.\n";
 	return;
 }
 
-void pagarTodasCotas(){
+void pagarTodasCotas() {
 
 	string info = "";
 
@@ -1164,14 +1307,25 @@ void divulgarEmail() {
 		return;
 	}
 
-	string title, body;
+	string title, body, date;
 
 	cout << "Titulo: ";
 	getline(cin, title);
 	cout << "\nMensagem: \n";
 	getline(cin, body);
-
-	Mail * newMail = new Mail(associate, title, body);
+	cout << "\nData: ";
+	getline(cin, date);
+	cout << endl;
+	stringstream check_date(date);
+	int temp_day, temp_month, temp_year;
+	char garbage;
+	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+	if (check_date.fail()) {
+		cout
+				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+		return;
+	}
+	Mail * newMail = new Mail(associate, title, body, date);
 
 	Rede->addMail(newMail);
 
@@ -1231,7 +1385,33 @@ void verEmails() {
 			<< Rede->getMails().at(t)->getAuthor()->getName() << ": \n";
 	cout << "Titulo: " << Rede->getMails().at(t)->getTitle() << endl;
 	cout << "Mensagem: " << Rede->getMails().at(t)->getBody() << endl;
+	cout << "Data: " << Rede->getMails().at(t)->getDate() << endl;
 
 	return;
 
+}
+
+void organizarMails() {
+	cout << endl << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
+	cout << "--------------------------------------------- " << endl;
+	cout << endl << endl;
+	cout << "Qual o criterio para organizar os emails: " << endl;
+	cout << "0 - Titulo\n";
+	cout << "1 - Data\n";
+
+	int opcao;
+	cin >> opcao;
+
+	string type;
+
+	if (opcao == 0)
+		type = "title";
+	else if (opcao == 1)
+		type = "date";
+
+	Rede->sortMails(type);
+
+	cout << "Mails organizados com sucesso!\n";
 }

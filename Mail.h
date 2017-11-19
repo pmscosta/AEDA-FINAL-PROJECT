@@ -29,7 +29,7 @@ public:
 	 * @param title - string with the mail name
 	 * @param body - string with all the mail body text
 	 */
-	Mail(Associate * associate, std::string title, std::string body);
+	Mail(Associate * associate, std::string title, std::string body, std::string date);
 
 	//Destructor
 
@@ -55,6 +55,11 @@ public:
 	 */
 	std::string getBody() const;
 
+	/**
+	 * @brief Returns the mail date
+	 */
+	std::string getDate() const;
+
 	//Set Methods
 
 	/**
@@ -78,10 +83,18 @@ public:
 	 */
 	void setBody(std::string body);
 
+	/**
+	 * @brief Sets/Changes the date from a mail
+	 *
+	 * @param date - The date of the mail
+	 */
+	void setDate(std::string date);
+
 private:
-	Associate * author; ///< The mail author
-	std::string title; ///< The mail title
-	std::string body; ///< The mail body
+	Associate * author; ///< The mail's author
+	std::string title; ///< The mail's title
+	std::string body; ///< The mail's body
+	std::string date; ///< The mail's date
 };
 
 #endif /* MAIL_H_ */

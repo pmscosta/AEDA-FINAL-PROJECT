@@ -160,6 +160,8 @@ public:
 	virtual std::string showInfo() const = 0;
 
 
+	std::string getName() const {return "";};
+
 
 protected:
 	std::vector<Associate *> event_request; ///< The Associates that gave the initial request

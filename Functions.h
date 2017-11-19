@@ -54,6 +54,8 @@ void alterarAssociado();
 
 void verInfoAssociado();
 
+void organizarAssociados();
+
 
 //----------------------EVENTS-------------------------//
 
@@ -64,6 +66,8 @@ void removerEvento();
 void alterarEvento();
 
 void verInfoEvento();
+
+void organizarEventos();
 
 
 //-----------------------COTAS-------------------------//
@@ -80,6 +84,8 @@ void verAssociadosCotas();
 void divulgarEmail();
 
 void verEmails();
+
+void organizarMails();
 
 
 
