@@ -95,7 +95,7 @@ void submenu1() {
 	cout << " 1 - Adicionar Associado" << endl;
 	cout << " 2 - Remover Associado" << endl;
 	cout << " 3 - Alterar informacoes de um Associado" << endl;
-	cout << " 4 - Ver informacoes sobre um Associado" << endl;
+	cout << " 4 - Ver informacoes sobre os Associado" << endl;
 	cout << " 5 - Organizar Associados" << endl;
 	cout << " 6 - Anterior" << endl;
 	cout << " 7 - Sair" << endl;

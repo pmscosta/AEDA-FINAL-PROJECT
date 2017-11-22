@@ -321,7 +321,7 @@ void lerficheiroMails() {
 		getline(infoMail, title, '/');
 		getline(infoMail, content, '/');
 		getline(infoMail, date, '/');
-		cout << title << content << date << endl;
+
 		vector<Associate *> all_associates = Associacao->getAssociates();
 		for (size_t i = 0; i < all_associates.size(); i++) {
 			if (id == all_associates.at(i)->getUniqueID()) {
@@ -736,32 +736,132 @@ void verInfoAssociado() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cout << "Introduza o Identificador Unico do Associado: ";
-	int uniqueID;
-	string tempID;
-	cin.ignore(10000, '\n');
-	getline(cin, tempID);
+	cout << " Como deseja ver a informacao dos associados?" << endl;
+	cout << " 1 - Procurar por Identificador Unico" << endl;
+	cout << " 2 - Mostrar todos" << endl;
+	cout << " 3 - Listagem parcial em funcao do ID" << endl;
+	cout << " 4 - Listagem parcial em funcao do dinheiro disponivel" << endl;
 
-	if (!is_number(tempID)) {
-		cout << "O valor introduzido nao e um inteiro.\n" << endl;
-		return;
+	int opcao = 0;
+	cout << endl;
+	cout << "Introduza uma opcao: ";
+	while (opcao < 1 || opcao > 4) {
+		cin >> opcao;
+		switch (opcao) {
+		case 1:{
+			cout << "Introduza o Identificador Unico do Associado: ";
+			int uniqueID;
+			string tempID;
+			cin.ignore(10000, '\n');
+			getline(cin, tempID);
+
+			if (!is_number(tempID)) {
+				cout << "O valor introduzido nao e um inteiro.\n" << endl;
+				return;
+			}
+
+			uniqueID = stoi(tempID);
+
+			Associate * associado;
+			try {
+				associado = Associacao->getAssoById(uniqueID);
+			} catch (NoSuchID & e) {
+				cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
+				return;
+			}
+
+			string associadoinfo = associado->showInfo();
+			cout << endl << associadoinfo;
+
+			break;
+		}
+		case 2:{
+			cout << endl;
+			string output = Associacao->showAllAssociates();
+			cout << output;
+			break;
+		}
+		case 3:{
+			int maximo, minimo;
+			string ordem;
+			cout << endl;
+			cout << "Introduza os valores minimo e maximo de ID: " << endl;
+			cout << "Minimo: ";
+			cin >> minimo;
+			cout << "Maximo: ";
+			cin >> maximo;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "Ordem crescente ou decrescente? ";
+			getline(cin, ordem);
+
+			vector<Associate *> associados;
+			for(size_t i = 0; i < Associacao->getAssociates().size(); i++){
+				int id = Associacao->getAssociates().at(i)->getUniqueID();
+				if((id <= maximo) && (id >= minimo))
+					associados.push_back(Associacao->getAssociates().at(i));
+			}
+
+			if(ordem == "crescente"){
+				sort(associados.begin(), associados.end(), cmpID);
+			}
+			else if (ordem == "decrescente"){
+				sort(associados.begin(), associados.end(), cmpID);
+				reverse(associados.begin(), associados.end());
+			}
+			else{
+				cout << "Opcao inválida";
+				break;
+			}
+			for(size_t i = 0; i < associados.size(); i++){
+				cout << endl;
+				string retorno = associados.at(i)->showInfo();
+				cout << retorno;
+			}
+			break;
+		}
+		case 4:{
+			float maximo, minimo;
+			string ordem;
+			cout << endl;
+			cout << "Introduza os valores minimo e maximo do dinheiro disponivel: " << endl;
+			cout << "Minimo: ";
+			cin >> minimo;
+			cout << "Maximo: ";
+			cin >> maximo;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "Ordem crescente ou decrescente? ";
+			getline(cin, ordem);
+
+			vector<Associate *> associados;
+			for(size_t i = 0; i < Associacao->getAssociates().size(); i++){
+				float wallet = Associacao->getAssociates().at(i)->getPersonalWallet();
+				if((wallet <= maximo) && (wallet >= minimo))
+					associados.push_back(Associacao->getAssociates().at(i));
+			}
+
+			if(ordem == "crescente"){
+				sort(associados.begin(), associados.end(), cmpMoney);
+			}
+			else if (ordem == "decrescente"){
+				sort(associados.begin(), associados.end(), cmpMoney);
+				reverse(associados.begin(), associados.end());
+			}
+			else{
+				cout << "Opcao inválida";
+				break;
+			}
+			for(size_t i = 0; i < associados.size(); i++){
+				cout << endl;
+				cout << associados.at(i)->showInfo();
+			}
+			break;
+		}
+		default:
+			cout << "Opcao invalida. Introduza uma nova opcao: ";
+		}
 	}
-
-	uniqueID = stoi(tempID);
-
-	Associate * associado;
-	try {
-		associado = Associacao->getAssoById(uniqueID);
-	} catch (NoSuchID & e) {
-		cout << "\nNao existe nenhum associado com o ID: " << e.getID() << endl;
-		sleep(1);
-		return;
-	}
-
-	string associadoinfo = associado->showInfo();
-	cout << endl << associadoinfo;
-
-	sleep(1);
 }
 
 void organizarAssociados() {
@@ -794,6 +894,7 @@ void organizarAssociados() {
 	sleep(1);
 
 }
+
 //-----------------------EVENTOS----------------------//
 
 void criarEvento() {
@@ -863,7 +964,7 @@ void criarEvento() {
 	cin.ignore(10000, '\n');
 
 	string date, local, theme;
-	cout << "\nIntroduza a data do evento (dd-mm-aaaa): ";
+	cout << "\nIntroduza a data do evento (dd-mm-a): ";
 	getline(cin, date);
 	stringstream check_date(date);
 	int temp_day, temp_month, temp_year;
@@ -871,7 +972,7 @@ void criarEvento() {
 	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
 	if (check_date.fail()) {
 		cout
-				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+				<< "Nao introduziu a data no formato correto.\n";
 		return;
 	}
 	cout << "\nIntroduza o local do evento: ";
@@ -940,7 +1041,7 @@ void removerEvento() {
 	cin.clear();
 	cin.ignore(10000, '\n');
 	string data;
-	cout << "Introduza a data do evento a remover (dd-mm-aaaa): ";
+	cout << "Introduza a data do evento a remover (dd-mm-a): ";
 	getline(cin, data);
 	stringstream check_date(data);
 	int temp_day, temp_month, temp_year;
@@ -948,7 +1049,7 @@ void removerEvento() {
 	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
 	if (check_date.fail()) {
 		cout
-				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+				<< "Nao introduziu a data no formato correto.\n";
 		return;
 	}
 
@@ -974,7 +1075,7 @@ void alterarEvento() {
 	cin.ignore(10000, '\n');
 
 	string data;
-	cout << "Introduza a data do evento a alterar (dd-mm-aaaa): ";
+	cout << "Introduza a data do evento a alterar (dd-mm-a): ";
 	getline(cin, data);
 	stringstream check_date(data);
 	int temp_day, temp_month, temp_year;
@@ -1034,7 +1135,7 @@ void alterarEvento() {
 		check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
 		if (check_date.fail()) {
 			cout
-					<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+					<< "Nao introduziu a data no formato correto.\n";
 			return;
 		}
 		alterar->setDate(data);
@@ -1110,36 +1211,113 @@ void verInfoEvento() {
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
-	cin.clear();
-	cin.ignore(10000, '\n');
+	cout << " Como deseja ver a informacao dos eventos?" << endl;
+	cout << " 1 - Procurar pela Data" << endl;
+	cout << " 2 - Mostrar todos" << endl;
+	cout << " 3 - Listagem parcial em funcao da data" << endl;
+	cout << " 4 - Listagem parcial em funcao do tipo de evento" << endl;
 
-	string data;
-	cout << "Introduza a data do evento a alterar (dd-mm-aaaa): ";
-	getline(cin, data);
-	stringstream check_date(data);
-	int temp_day, temp_month, temp_year;
-	char garbage;
-	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
-	if (check_date.fail()) {
-		cout
-				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
-		return;
+	int opcao = 0;
+	cout << endl;
+	cout << "Introduza uma opcao: ";
+	while (opcao < 1 || opcao > 4) {
+		cin >> opcao;
+		switch (opcao) {
+		case 1:{
+			cin.clear();
+			cin.ignore(10000, '\n');
+
+			string data;
+			cout << "Introduza a data do evento (dd-mm-a): ";
+			getline(cin, data);
+			stringstream check_date(data);
+			int temp_day, temp_month, temp_year;
+			char garbage;
+			check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
+			if (check_date.fail()) {
+				cout
+						<< "Nao introduziu a data no formato correto.\n";
+				return;
+			}
+
+			Event * evento;
+			try {
+				evento = Associacao->getEventByDate(data);
+			} catch (const NoSuchDate & e) {
+				cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
+				sleep(1);
+				return;
+			}
+
+			cout << endl;
+			cout << evento->showInfo();
+
+			cout << endl << endl;
+			break;
+		}
+		case 2:{
+			for(size_t i = 0; i < Associacao->getEvents().size(); i++){
+				cout << endl;
+				cout << Associacao->getEvents().at(i)->showInfo();
+			}
+			break;
+		}
+		case 3:{
+			string inicial, final, ordem;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << endl;
+			cout << "Introduza a data inicial e data final: " << endl;
+			cout << "Inicial: ";
+			getline(cin,inicial);
+			cout << "Final: ";
+			getline(cin,final);
+			cout << "Ordem crescente ou decrescente? ";
+			getline(cin, ordem);
+			break;
+			vector<Event *> eventos;
+			for(size_t i = 0; i < Associacao->getEvents().size(); i++){
+				if((Associacao->getEvents().at(i)->getDate() >= inicial) && (Associacao->getEvents().at(i)->getDate() <= final))
+					eventos.push_back(Associacao->getEvents().at(i));
+			}
+			if(ordem == "crescente"){
+				sort(eventos.begin(), eventos.end(), cmpDate);
+			}
+			else if (ordem == "decrescente"){
+				sort(eventos.begin(), eventos.end(), cmpDate);
+				reverse(eventos.begin(), eventos.end());
+			}
+			else{
+				cout << "Opcao inválida";
+				break;
+			}
+			for(size_t i = 0; i < eventos.size(); i++){
+				cout << endl;
+				cout << eventos.at(i)->showInfo();
+			}
+			break;
+		}
+		case 4:{
+			vector<Event *> eventos;
+			string tipo;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "\nIntroduza o tipo de eventos (SummerSchool/Conference): ";
+			getline(cin,tipo);
+			for(size_t i = 0; i < Associacao->getEvents().size(); i++){
+				if(Associacao->getEvents().at(i)->getType() == tipo)
+					eventos.push_back(Associacao->getEvents().at(i));
+			}
+			for(size_t i = 0; i < eventos.size(); i++){
+				cout << endl;
+				cout << eventos.at(i)->showInfo();
+			}
+			break;
+		}
+		default:
+			cout << "Opcao invalida. Introduza uma nova opcao: ";
+		}
 	}
-
-	Event * alterar;
-	try {
-		alterar = Associacao->getEventByDate(data);
-	} catch (const NoSuchDate & e) {
-		cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
-		sleep(1);
-		return;
-	}
-
-	alterar->showInfo();
-
-	cout << endl << endl;
-
-	sleep(1);
 }
 
 void organizarEventos() {
