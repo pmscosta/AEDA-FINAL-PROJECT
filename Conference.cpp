@@ -38,6 +38,13 @@ Conference::Conference(vector<Associate *> event_request,
 		//if everyone has his payments up to date,
 		this->given_support = 0.20 * association->getFund();
 
+	//if an event is successfully created, each of its creators will receive a small income
+
+	for (size_t t = 0; t < event_request.size(); t++) {
+
+		event_request.at(t)->addToWallet(200);
+	}
+
 }
 
 Conference::Conference(std::vector<Associate *> event_request,
@@ -76,8 +83,6 @@ list<Trainer *> Conference::getTrainers() const {
 
 	return trainers;
 }
-
-
 
 //General Methods
 
