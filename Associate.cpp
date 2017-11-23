@@ -8,7 +8,10 @@
 #include "Association.h"
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 using namespace std;
+
+
 
 int Associate::id_provider = 0;
 
@@ -212,6 +215,8 @@ void Associate::payYear(int year) {
 
 		this->association->addToFund(this->association->getAnnualPay()); //Adds the payment to the fund
 
+		this->updateStatus();
+
 	}
 }
 
@@ -261,7 +266,7 @@ string Associate::showInfo() const {
 			info += this->interestAreas.at(t)->getName();
 			break;
 		}
-		info += this->interestAreas.at(t)->getName() + "/ ";
+		info += this->interestAreas.at(t)->getName() + ", ";
 
 	}
 

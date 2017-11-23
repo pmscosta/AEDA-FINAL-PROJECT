@@ -14,7 +14,16 @@ class Area {
 public:
 
 	//Constructors
+
+	/*
+	 * @brief Default Constructor
+	 */
 	Area();
+
+	/*
+	 * @brief File Constructor
+	 * Reads a line from a file and creates the area and its subareas based on that information
+	 */
 	Area(std::string file_string);
 
 	//Destructors
@@ -29,12 +38,11 @@ public:
 	std::string getName() const;
 
 
+	/*
+	 * @brief Returns the subareas of the Area
+	 */
+
 	std::vector<SubArea *> getSubAreas() const;
-
-
-	//General
-
-
 
 	//SubArea
 

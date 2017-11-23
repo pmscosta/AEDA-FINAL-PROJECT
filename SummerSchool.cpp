@@ -58,6 +58,16 @@ SummerSchool::SummerSchool(vector<Associate *> event_request,
 
 		this->given_support = 0.20 * association->getFund();
 
+
+
+	//if an event is successfully created, each of its creators will receive a small income
+
+
+	for(size_t t = 0; t < event_request.size(); t++){
+
+		event_request.at(t)->addToWallet(200);
+	}
+
 }
 
 SummerSchool::SummerSchool(std::vector<Associate *> event_request,
