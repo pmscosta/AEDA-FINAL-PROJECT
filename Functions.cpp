@@ -27,6 +27,9 @@
 
 using namespace std;
 
+//PROTOTYPE
+void lerficheiroAreas();
+
 //=======================USEFUL FUNCTIONS================================
 //=======================================================================
 
@@ -55,6 +58,7 @@ void initialize2() {
 	Associacao = new Association(
 			"ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA");
 	limparficheiros();
+	lerficheiroAreas();
 }
 
 void ano() {
@@ -517,8 +521,6 @@ void guardarficheiroMails() {
 
 void limparficheiros() {
 	ofstream file;
-	file.open("areas.txt", ofstream::out | ofstream::trunc);
-	file.close();
 	file.open("associates.txt", ofstream::out | ofstream::trunc);
 	file.close();
 	file.open("association.txt", ofstream::out | ofstream::trunc);
