@@ -83,7 +83,7 @@ public:
 			uniqueID(uniqueID) {
 	};
 
-	/*
+	/**
 	 * @brief Returns the id of the associate trying to pay the annual pay
 	 */
 	int getID() const {

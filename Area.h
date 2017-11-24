@@ -38,7 +38,7 @@ public:
 
 	//Destructors
 
-	/*
+	/**
 	 * @brief Default Destructor
 	 */
 	virtual ~Area();
