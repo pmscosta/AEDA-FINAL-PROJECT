@@ -13,8 +13,6 @@
 
 using namespace std;
 
-
-
 //===========================================SORT FUNCTIONS==============================================
 
 //=======================================================================================================
@@ -32,7 +30,6 @@ bool cmpID(Associate * rhs, Associate * lhs) {
 }
 ;
 
-
 bool cmpMoney(Associate * rhs, Associate * lhs) {
 	return rhs->getPersonalWallet() < lhs->getPersonalWallet();
 }
@@ -44,9 +41,6 @@ bool cmpName(T * rhs, T * lhs) {
 ;
 
 //=======================================================================================================
-
-
-
 
 //===========================================EVENT ONLY====================================================
 /* @brief Compares two (pointed by) events.
@@ -78,7 +72,6 @@ bool cmpDate(Event * rhs, Event * lhs) {
 
 }
 
-
 /* @brief Compares two (pointed by) events.
  * Useful to call in the sort method, defined by the stl library.
  * In this case, an event is smaller than the other if it's local is
@@ -104,12 +97,7 @@ bool cmpTheme(Event * rhs, Event * lhs) {
 	return rhs->getTheme() < lhs->getTheme();
 }
 
-
-
 //=======================================================================================================
-
-
-
 
 int Association::currentYear = 0;
 
@@ -270,6 +258,14 @@ string Association::updatePayment() {
 					+ to_string(e.getYear()) + " quando o ultimo pago foi "
 					+ to_string(e.getLast()) + ".\n";
 
+		} catch (const AlreadyPaid & e) {
+
+			log +=
+					"Nao foi possivel efetuar o pagamento do Associado "
+							+ getAssoById(e.getID())->getName() + " com o ID "
+							+ to_string(e.getID())
+							+ " pois tentou efetuar o pagamento de um ano ja pago previamente.\n";
+
 		}
 
 	}
@@ -286,11 +282,11 @@ string Association::showAllAssociates() {
 	return allInfo;
 }
 
-
-void Association::sortAssociates(string type){
+void Association::sortAssociates(string type) {
 
 	if (type == "name")
-		sort(this->associates.begin(), this->associates.end(), cmpName<Associate>);
+		sort(this->associates.begin(), this->associates.end(),
+				cmpName<Associate>);
 	else if (type == "id")
 		sort(this->associates.begin(), this->associates.end(), cmpID);
 	else if (type == "money")
@@ -366,11 +362,11 @@ Event * Association::getEventByDate(string date) {
 		throw NoSuchDate(date);
 }
 
-void Association::sortEvents(std::string type){
+void Association::sortEvents(std::string type) {
 
-	if(type == "local")
+	if (type == "local")
 		sort(this->events.begin(), this->events.end(), cmpLocal);
-	else if(type == "date")
+	else if (type == "date")
 		sort(this->events.begin(), this->events.end(), cmpDate);
 	else
 		sort(this->events.begin(), this->events.end(), cmpTheme);
