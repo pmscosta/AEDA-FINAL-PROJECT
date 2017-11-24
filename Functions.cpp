@@ -890,12 +890,13 @@ void organizarAssociados() {
 	cout << "2 - Dinheiro\n";
 
 	int opcao;
+	cout << "\nIntroduza uma opcao: ";
 	cin >> opcao;
 	cin.clear();
 	cin.ignore(1000, '\n');
 	if (cin.fail() || opcao > 2 || opcao < 0) {
 		cout
-				<< "O valor introduzido nao e valido.\n Voltando ao menu anterior...\n";
+				<< "\nO valor introduzido nao e valido.\n";
 		return;
 	}
 
@@ -910,7 +911,7 @@ void organizarAssociados() {
 
 	Associacao->sortAssociates(type);
 
-	cout << "Associados organizados com sucesso!\n";
+	cout << "\nAssociados organizados com sucesso!\n";
 
 	sleep(1);
 
@@ -1359,12 +1360,13 @@ void organizarEventos() {
 	cout << "2 - Tema\n";
 
 	int opcao;
+	cout << "\nIntroduza uma opcao: ";
 	cin >> opcao;
 	cin.clear();
 	cin.ignore(1000, '\n');
 	if (cin.fail() || opcao > 2 || opcao < 0) {
 		cout
-				<< "O valor introduzido nao e valido.\n Voltando ao menu anterior...\n";
+				<< "\nO valor introduzido nao e valido.\n";
 		return;
 	}
 	string type;
@@ -1378,7 +1380,7 @@ void organizarEventos() {
 
 	Associacao->sortEvents(type);
 
-	cout << "Eventos organizados com sucesso!\n";
+	cout << "\nEventos organizados com sucesso!\n";
 
 }
 
@@ -1421,13 +1423,13 @@ void pagarCotas() {
 		associado->payYear(year);
 	} catch (const NotUpToDate & e) {
 
-		cout << "Nao foi possivel efetuar o pagamento referente ao ano "
-				<< e.getYear() << " dado que o ultimo pago por este associad e "
+		cout << "\nNao foi possivel efetuar o pagamento referente ao ano "
+				<< e.getYear() << " dado que o ultimo pago por este associado e "
 				<< e.getLast() << ".";
 		return;
 	} catch (const NotEnoughMoney & e) {
 		cout
-				<< "Nao foi possivel efetuar o pagamento pois o associado nao possui dinheiro suficiente.\n";
+				<< "\nNao foi possivel efetuar o pagamento pois o associado nao possui dinheiro suficiente.\n";
 		return;
 	}
 
@@ -1460,7 +1462,7 @@ void verAssociadosCotas() {
 	Associacao->updateAllAssociates();
 
 	cout << "Ano Corrente: " << to_string(Associacao->getCurrentYear()) << endl;
-	cout << "Associados com as cotas em atraso: \n";
+	cout << "\nAssociados com as cotas em atraso: \n";
 
 	for (size_t t = 0; t < Associacao->getAssociates().size(); t++) {
 
@@ -1533,14 +1535,14 @@ void divulgarEmail() {
 	check_date >> temp_day >> garbage >> temp_month >> garbage >> temp_year;
 	if (check_date.fail()) {
 		cout
-				<< "Nao introduziu a data no formato correto.\n Voltando ao menu principal...";
+				<< "\nNao introduziu a data no formato correto.\n";
 		return;
 	}
 	Mail * newMail = new Mail(associate, title, body, date);
 
 	Rede->addMail(newMail);
 
-	cout << "Mail enviado com sucesso!\n";
+	cout << "\nMail enviado com sucesso!\n";
 	sleep(1);
 	return;
 
@@ -1581,18 +1583,18 @@ void verEmails() {
 		return;
 	}
 
-	cout << "Qual a mensagem que pretende ver:\n";
+	cout << "\nQual a mensagem que pretende ver:\n";
 
 	for (size_t t = 0; t < Rede->getMails().size(); t++) {
 		cout << "\t" << t << ": " << Rede->getMails().at(t)->getTitle() << endl;
 	}
 
-	cout << "Insira a sua opcao: ";
+	cout << "\nInsira a sua opcao: ";
 
 	size_t t = 0;
 	cin >> t;
 
-	cout << "Mensagem partilhada por "
+	cout << "\nMensagem partilhada por "
 			<< Rede->getMails().at(t)->getAuthor()->getName() << ": \n";
 	cout << "Titulo: " << Rede->getMails().at(t)->getTitle() << endl;
 	cout << "Mensagem: " << Rede->getMails().at(t)->getBody() << endl;
@@ -1613,7 +1615,13 @@ void organizarMails() {
 	cout << "1 - Data\n";
 
 	int opcao;
+	cout << "\nIntroduza uma opcao: ";
 	cin >> opcao;
+	if (cin.fail() || opcao > 1 || opcao < 0) {
+		cout
+				<< "\nO valor introduzido nao e valido.\n";
+		return;
+	}
 
 	string type;
 
@@ -1624,5 +1632,5 @@ void organizarMails() {
 
 	Rede->sortMails(type);
 
-	cout << "Mails organizados com sucesso!\n";
+	cout << "\nMails organizados com sucesso!\n";
 }
