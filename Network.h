@@ -13,14 +13,33 @@
 
 class Mail;
 
+//!  The Network Class
+/*!
+ * The Network is used by the associates to send and receive mails.
+ * Only associates which have paid all the annual pays in the last 5 years can send and receive mails.
+ * The associates which have not paid any of the last 5 annual pays can neither receive or send mails.
+ * The rest of the associates can only receive mails.
+ */
 class Network {
 public:
 
 	//Constructors
+	/**
+	 * @brief Default Network Constructor
+	 */
 	Network();
+
+	/**
+	 * @brief Full Network Constructor
+	 *
+	 * @param mails - A vector containing pointers to all the mails in the network
+	 */
 	Network(std::vector<Mail *> mails);
 
 	//Destructors
+	/**
+	 * @brief Default Network Destructor
+	 */
 	virtual ~Network();
 
 	//Set Methods
@@ -41,8 +60,18 @@ public:
 
 	//General
 
+	/**
+	 * @brief add a mail do the vector containing all the mails
+	 *
+	 * @param newMail - the new mail to be added
+	 */
 	void addMail(Mail * newMail);
 
+	/**
+	 * @brief Sorts the mails by their title and date
+	 *
+	 * @param type - receives a string with all the information of the mails
+	 */
 	void sortMails(std::string type);
 
 private:

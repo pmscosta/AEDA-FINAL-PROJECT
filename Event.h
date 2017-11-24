@@ -15,17 +15,11 @@ class Association;
 class Trainer;
 
 //! The NoSupportGiven
-
 /*!
-
  * NoSupportGiven is a class which instances are called when
-
  * the main Association decides to not support financially an event.
-
  * Its useful in throwing exceptions, outside of that it has no real use implementation.
-
  */
-
 class NoSupportGiven {
 
 private:
@@ -33,7 +27,7 @@ private:
 	int total; ///< The total number of associates involved in the event
 public:
 
-	/*
+	/**
 	 * @brief Default Construction
 	 */
 	NoSupportGiven(int late, int total) :
@@ -42,7 +36,7 @@ public:
 	}
 	;
 
-	/*
+	/**
 	 * @brief Returns the number of associates whose payments where not up to date.
 	 *
 	 */
@@ -50,7 +44,7 @@ public:
 	int getLate() const {
 		return this->late;
 	}
-	/*
+	/**
 	 * @brief Returns the total number of associates involved in the event
 	 *
 	 */
@@ -75,91 +69,116 @@ public:
 	//=========================CONSTRUCTORS===============================
 	//====================================================================
 
-	/*
+	/**
 	 * @brief Default Constructor
 	 *
 	 */
 	Event();
 
-	/*
+	/**
 	 * @brief Full Event Constructor
 	 * The given support by the association will be any value between 5-15% of the association main fund.
 	 *
+	 * @param event_request - The associates that requested the event (up to 3)
+	 * @param event_organizers - The associates that requested the event (up to 3) and the ones who will help organize
+	 * @param date - The date of the event
+	 * @param local - The local of the event
+	 * @param theme - The theme of the event
+	 * @param association - The Association that promotes the event
 	 */
-
 	Event(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
 			std::string local, std::string theme, Association * association);
 
-	//Event(Association * association, std::string string_file);
 
 	//=========================DESTRUCTORS===============================
 	//====================================================================
+	/**
+	 * @brief Default Event Destructor
+	 */
 	virtual ~Event();
 
 	//=========================SET METHODS===============================
 	//====================================================================
 
-
+	/**
+	 * @brief Sets/Changes the event's date
+	 *
+	 * @param date - The new event's date
+	 */
 	void setDate(std::string date);
 
+	/**
+	 * @brief Sets/Changes the event's local
+	 *
+	 * @param local - The new event's local
+	 */
 	void setLocal(std::string local);
 
+	/**
+	 * @brief Sets/Changes the event's theme
+	 *
+	 * @param theme - The new event's theme
+	 */
 	void setTheme(std::string theme);
 
 
 	//=========================GET METHODS===============================
 	//====================================================================
 
-	/*
-	 * Returns the associates that gave the initial request to the event
-	 *
+	/**
+	 * @brief Returns the associates that gave the initial request to the event
 	 */
-
 	std::vector<Associate *> getRequest() const;
 
-	/*
-	 * Returns all the associates that are involved in the event
-	 *
+	/**
+	 * @brief Returns all the associates that are involved in the event
 	 */
-
 	std::vector<Associate *> getOrganizers() const;
 
-	/*
-	 * Returns the Date of the event
-	 *
+	/**
+	 * @brief Returns the Date of the event
 	 */
 	std::string getDate() const;
 
-	/*
-	 * Returns the Local of the event
-	 *
+	/**
+	 * @brief Returns the Local of the event
 	 */
 	std::string getLocal() const;
 
-	/*
-	 * Returns the Theme of the event
-	 *
+	/**
+	 * @brief Returns the Theme of the event
 	 */
 	std::string getTheme() const;
 
-
-	/*
-	 * Returns the value of the monetary support
-	 * given by the association to the e event
+	/**
+	 * @brief Returns the value of the monetary support given by the association to the e event
 	 */
 	virtual long double getSupport() const = 0;
 
-
+	/**
+	 * @brief Returns the Type of the event
+	 */
 	virtual std::string getType() const = 0;
 
+	/**
+	 * @brief Returns the trainers that will attend the event
+	 */
 	virtual std::list<Trainer *> getTrainers() const = 0;
 
+	/**
+	 * @brief Returns the estimative of the people who will attend the event
+	 */
 	virtual int getEstimative() const = 0;
 
+	/**
+	 * @brief Returns all the information of the event
+	 */
 	virtual std::string showInfo() const = 0;
 
-
+	/**
+	 * @brief Returns the name of the event
+	 */
 	std::string getName() const {return "";};
 
 

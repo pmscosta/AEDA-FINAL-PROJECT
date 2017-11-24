@@ -18,51 +18,126 @@ class Network;
 
 //COMPARE METHODS PROTOTYPES
 
+/**
+ * @brief compares the ID of 2 different associates
+ *
+ * @param rhs - First associate
+ * @param lhs - Second associate
+ */
 bool cmpID(Associate * rhs, Associate * lhs);
 
+/**
+ * @brief compares the money of 2 different associates
+ *
+ * @param rhs - First associate
+ * @param lhs - Second associate
+ */
 bool cmpMoney(Associate * rhs, Associate * lhs);
 
+/**
+ * @brief compares the name of 2 different associates
+ *
+ * @param rhs - First associate
+ * @param lhs - Second associate
+ */
 template<class T>
 bool cmpName(T * rhs, T * lhs);
 
+/**
+ * @brief compares 2 dates
+ *
+ * @param rhs - First date
+ * @param lhs - Second date
+ */
 bool cmpDate(Event * rhs, Event * lhs);
 
+/**
+ * @brief compares 2 locals
+ *
+ * @param rhs - First local
+ * @param lhs - Second local
+ */
 bool cmpLocal(Event * rhs, Event * lhs);
 
+/**
+ * @brief compares 2 themes
+ *
+ * @param rhs - First theme
+ * @param lhs - Second theme
+ */
 bool cmpTheme(Event * rhs, Event * lhs);
 
 
 
 //Exception Classes
 
+//! The NoSuchID Class
+/*!
+ * NotUpToDate is a class which instances are called when an ID does not match any associate's ID
+ * Its useful in throwing exceptions, outside of that it has no real use.
+ */
 class NoSuchID {
 private:
-	int ID;
+	int ID; ///< The inexistent ID
+
 public:
+
+	/**
+	 * @brief Full NoSuchID Constructor
+	 *
+	 * @param id - The inexistent ID
+	 */
 	NoSuchID(int id) :
 			ID(id) {
 	}
 	;
+
+	/**
+	 * @brief Returns the inexistent id
+	 */
 	int getID() const {
 		return this->ID;
 	}
 	;
 };
 
+
+//! The NoSuchDate Class
+/*!
+ * NotUpToDate is a class which instances are called when a date does not exist
+ * Its useful in throwing exceptions, outside of that it has no real use.
+ */
 class NoSuchDate{
 private:
-	std::string date;
+	std::string date; ///< The inexistent date
+
 public:
+	/**
+	 * @brief Full NoSuchDate Constructor
+	 *
+	 * @param date - The inexistent date
+	 */
 	NoSuchDate(std::string date) : date(date){
 
 	};
+
+	/**
+	 * @brief Returns the inexistent date
+	 */
 	std::string getDate() const {
 		return this->date;
 	}
 };
 
 
-
+//!  The Association Class
+/*!
+ * An Association consists in a group of associates. It must have a name and a fund that is used to help promote
+ * event hosted by it's associates.
+ * An Association also has a group of Science Areas and each one of these has a Subarea.
+ * Each year, the associates must pay the Association's annual pay, which reverts to the fund.
+ * Finally, the Association has a Network used by it's associates, in which they can send and receive emails.
+ */
 class Association {
 
 public:
@@ -81,11 +156,11 @@ public:
 	 *
 	 * Initializes the Association only with it's name
 	 *
-	 * @param name - the name string
+	 * @param name - the name of the Association
 	 */
 	Association(std::string name);
 
-	/*
+	/**
 	 * @brief Association Constructor
 	 *
 	 * @param file - a string from a file containing all the info in the following order:
@@ -98,8 +173,9 @@ public:
 
 	//=========================================Destructors====================================================
 	//========================================================================================================
+
 	/**
-	 * @brief Default Destructor
+	 * @brief Default Association Destructor
 	 */
 	virtual ~Association();
 
@@ -109,29 +185,28 @@ public:
 	/**
 	 * @brief Sets/Changes the name of the association
 	 *
-	 *
-	 * @param name
+	 * @param name - The new Association's name
 	 */
 	void setName(std::string name);
 
 	/**
 	 * @brief Sets/Changes the mainFund of the association
 	 *
-	 * @param fund - double type parameter
+	 * @param fund - The new Association's fund
 	 */
 	void setFund(long double fund);
 
 	/**
 	 * @briefs Sets/Changes the annual pay for every associate
 	 *
-	 * @param annualPay - int value
+	 * @param annualPay - The new Association's annual pay
 	 */
 	void setAnnualPay(float annualPay);
 
 	/**
 	 * @briefs Sets/Changes the vector containing the pointers to the events
 	 *
-	 * @param all_events - the new vector of pointers
+	 * @param all_events - The new vector with all the Association's events
 	 */
 	void setEvents(std::vector<Event *> all_events);
 
@@ -139,7 +214,7 @@ public:
 	/**
 	 * @briefs Sets/Changes the network of the association
 	 *
-	 * @param network - the new network
+	 * @param network - The new Association's network
 	 */
 	void setNetWork(Network * network);
 
@@ -160,8 +235,14 @@ public:
 	 */
 	float getAnnualPay() const;
 
+	/**
+	 * @brief Returns the current year
+	 */
 	static int getCurrentYear();
 
+	/**
+	 * @brief Returns a vector containing pointers to all the events that the Association has
+	 */
 	std::vector<Event *> getEvents() const;
 
 	/**
@@ -198,7 +279,7 @@ public:
 	 */
 	void updateAllAssociates();
 
-	/*
+	/**
 	 * @brief Returns a pointer to an Associate with a certain ID
 	 *
 	 * Throws an exception, NoSuchID, if no Associate has that ID
@@ -208,6 +289,11 @@ public:
 	Associate * getAssoById(int uniqueID);
 
 
+	/**
+	 * @brief Sorts the associates by their name, id and wallet value
+	 *
+	 * @param type - receives a string with all the information of the associates
+	 */
 	void sortAssociates(std::string type);
 
 
@@ -263,14 +349,37 @@ public:
 	//============================Event Type Functions==================================================
 	//==================================================================================================
 
+	/**
+	 * @brief Adds a new event to the vector containing all the events
+	 *
+	 * @param newEvent - The event to be added
+	 */
 	void addEvent(Event * newEvent);
 
+	/**
+	 * @brief Returns all the events
+	 */
 	std::string showEvents() const;
 
+	/**
+	 * @brief Removes an event in the vector containing all the events
+	 *
+	 * @param date - The date of the event to be removed
+	 */
 	void removeEvent(std::string date);
 
+	/**
+	 * @brief return the event of a certain date
+	 *
+	 * @param date - The date of the event to be found
+	 */
 	Event * getEventByDate(std::string date);
 
+	/**
+	 * @brief sorts all the events by their local, date and theme
+	 *
+	 * @param type - receives a string with all the information of the events
+	 */
 	void sortEvents(std::string type);
 
 
