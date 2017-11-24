@@ -1070,7 +1070,7 @@ void criarEvento() {
 		cout << endl;
 	}
 
-	cout << "Evento criado com sucesso!\n";
+	cout << "\nEvento criado com sucesso!\n";
 	sleep(1);
 }
 

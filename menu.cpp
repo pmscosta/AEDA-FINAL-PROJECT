@@ -341,38 +341,28 @@ void regressar() {
 }
 
 void sair() {
-	char opcao;
+	string opcao;
 	cout << endl;
 	cout << "Deseja guardar as alteracoes feitas? (S/N): ";
-	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
-		if (cin >> opcao) {
-			switch (opcao) {
-			case 's':
-				guardarficheiroAssociacao();
-				guardarficheiroAreas();
-				guardarficheiroAssociados();
-				guardarficheiroEventos();
-				cout << "\nAlteracoes guardadas! A sair... \n";
-				sleep(1);
-				break;
-			case 'S':
-				guardarficheiroAssociacao();
-				guardarficheiroAreas();
-				guardarficheiroAssociados();
-				guardarficheiroEventos();
-				cout << "\nAlteracoes guardadas! A sair... \n";
-				sleep(1);
-				break;
-			case 'n':
-				break;
-			case 'N':
-				break;
-			default:
-				cout << "Opcao invalida. Introduza uma nova opcao: ";
-			}
-		} else {
-			cin.clear();
-			cin.ignore(10000, '\n');
+	cin.clear();
+	cin.ignore(10000, '\n');
+	while (opcao != "s" && opcao != "S" && opcao != "n" && opcao != "N") {
+		getline(cin,opcao);
+		if(opcao == "s" || opcao == "S"){
+			guardarficheiroAssociacao();
+			guardarficheiroAreas();
+			guardarficheiroAssociados();
+			guardarficheiroEventos();
+			cout << "\nAlteracoes guardadas! A sair... \n";
+			sleep(1);
+			break;
+		}
+		if(opcao == "n" || opcao == "N"){
+			cout << "\nA sair...\n";
+			sleep(1);
+			break;
+		}
+		else{
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
