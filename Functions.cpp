@@ -1432,6 +1432,10 @@ void pagarCotas() {
 				<< "\nNao foi possivel efetuar o pagamento pois o associado nao possui dinheiro suficiente.\n";
 		return;
 	}
+	catch (const AlreadyPaid & e){
+		cout << "\nO associado ja efetuou o pagamento do ano " << e.getYear() << ".\n";
+		return;
+	}
 
 	cout << "\nPagamente efetuado com sucesso.\n";
 	return;

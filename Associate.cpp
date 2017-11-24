@@ -11,8 +11,6 @@
 #include <iomanip>
 using namespace std;
 
-
-
 int Associate::id_provider = 0;
 
 //Constructors
@@ -197,8 +195,26 @@ void Associate::payYear(int year) {
 
 	int lastYearPaid = this->paidYears.back();
 
-	if (lastYearPaid == Association::getCurrentYear())
+	if (find(this->paidYears.begin(), this->paidYears.end(), year)
+			!= this->paidYears.end())
 		throw AlreadyPaid(year, this->uniqueID);
+
+	if (lastYearPaid == Association::getCurrentYear() && year > lastYearPaid //if he has paid everything so far, he can pay upfront if he wants
+	&& this->personalWallet >= this->association->getAnnualPay()) {
+
+		this->addPaidYear(year);
+
+		this->payFromWallet(this->association->getAnnualPay()); //Makes the payment from the associate wallet
+
+		this->association->addToFund(this->association->getAnnualPay()); //Adds the payment to the fund
+
+		this->updateStatus();
+
+		sort(this->paidYears.begin(), this->paidYears.end());
+
+		return;
+
+	}
 
 	if (lastYearPaid < (Association::getCurrentYear() - 1)
 
@@ -210,6 +226,8 @@ void Associate::payYear(int year) {
 		throw NotEnoughMoney(this->uniqueID);
 	else {
 		this->addPaidYear(year);
+
+		sort(this->paidYears.begin(), this->paidYears.end());
 
 		this->payFromWallet(this->association->getAnnualPay()); //Makes the payment from the associate wallet
 
