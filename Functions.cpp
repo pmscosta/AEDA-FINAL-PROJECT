@@ -214,8 +214,6 @@ void lerficheiroEventos() {
 				getline(infoEvent, former_inst, '/');
 				Trainer * newTrainer = new Trainer(former_name, former_inst);
 				trainers.push_back(newTrainer);
-
-				//cout << "one time\n";
 			}
 
 			infoEvent >> garbage;
@@ -343,8 +341,6 @@ void lerficheiroMails() {
 void guardarficheiroAreas() {
 	ofstream file("areas.txt");
 
-	//Imunologia e Infeção/Imunologia e Inflamação/IMI-IMU/Microbiologia e Infeção/IMI-MIC
-
 	vector<Area *> areas_vector = Associacao->getAreas();
 	for (size_t i = 0; i < areas_vector.size(); i++) {
 
@@ -371,8 +367,6 @@ void guardarficheiroAreas() {
 void guardarficheiroAssociacao() {
 	ofstream file("association.txt");
 
-	//Name/ 231.7/ 242.4/ 4
-
 	file << Associacao->getName() << "/";
 	file << Associacao->getFund() << "/";
 	file << Associacao->getAnnualPay() << "/";
@@ -383,8 +377,6 @@ void guardarficheiroAssociacao() {
 
 void guardarficheiroAssociados() {
 	ofstream file("associates.txt");
-
-	//1/Pedro Costa/FEUP/[Neurociências, Envelhecimento e Doenças Degenerativas/Imunologia e Infeção/]/50.4/[40/2/70/]/4
 
 	vector<Associate *> associates_vector = Associacao->getAssociates();
 	for (size_t i = 0; i < associates_vector.size(); i++) {
@@ -420,9 +412,6 @@ void guardarficheiroAssociados() {
 
 void guardarficheiroEventos() {
 	ofstream file("events.txt");
-
-	/*SummerSchool/15-02-1998/Vila Real/Pirocas Piroclásticas/[1/5/3/]/[7/15/]/5000/[Zé/FEUP/Carlos/FCUP/]
-	 Conference/15-02-2017/Porto/Conas Magnificas/[1/2/3/]/[4/5/]/1000/300*/
 
 	vector<Event *> event_vector = Associacao->getEvents();
 
@@ -510,8 +499,6 @@ void guardarficheiroEventos() {
 void guardarficheiroMails() {
 
 	ofstream file("mails.txt");
-
-	//ID/Mail_Title/Mail_Content
 
 	vector<Mail *> mails_vector = Rede->getMails();
 	for (size_t i = 0; i < mails_vector.size(); i++) {
@@ -740,14 +727,15 @@ void verInfoAssociado() {
 	cout << endl << endl;
 	cout << " Como deseja ver a informacao dos associados?" << endl;
 	cout << " 1 - Procurar por Identificador Unico" << endl;
-	cout << " 2 - Mostrar todos" << endl;
-	cout << " 3 - Listagem parcial em funcao do ID" << endl;
-	cout << " 4 - Listagem parcial em funcao do dinheiro disponivel" << endl;
+	cout << " 2 - Procurar por interesse numa área" << endl;
+	cout << " 3 - Mostrar todos" << endl;
+	cout << " 4 - Listagem parcial em funcao do ID" << endl;
+	cout << " 5 - Listagem parcial em funcao do dinheiro disponivel" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 4) {
+	while (opcao < 1 || opcao > 5) {
 		cin >> opcao;
 		switch (opcao) {
 		case 1: {
@@ -779,12 +767,40 @@ void verInfoAssociado() {
 			break;
 		}
 		case 2: {
+			cout << "\nIndique qual a area de interesse dos Associados a procurar: " << endl;
+
+			vector<Area *> areas = Associacao->getAreas();
+			for (size_t t = 0; t < areas.size(); t++) {
+				cout << t << ": " << areas.at(t)->getName() << endl;
+			}
+
+			int opcao;
+			cout << "\nIntroduza uma opcao: ";
+			cin >> opcao;
+			cin.clear();
+			if (cin.fail() || opcao > (areas.size()-1) || opcao < 0) {
+				cout
+						<< "\nO valor introduzido nao e valido.\n";
+				return;
+			}
+
+			for (size_t i = 0; i < Associacao->getAssociates().size(); i++) {
+				for(size_t t = 0; t < Associacao->getAssociates().at(i)->getInterestAreas().size(); t++){
+					if(Associacao->getAssociates().at(i)->getInterestAreas().at(t) == areas.at(opcao)){
+						cout << endl;
+						cout << Associacao->getAssociates().at(i)->showInfo();
+					}
+				}
+			}
+			break;
+		}
+		case 3: {
 			cout << endl;
 			string output = Associacao->showAllAssociates();
 			cout << output;
 			break;
 		}
-		case 3: {
+		case 4: {
 			int maximo, minimo;
 			string ordem;
 			cout << endl;
@@ -827,7 +843,7 @@ void verInfoAssociado() {
 			}
 			break;
 		}
-		case 4: {
+		case 5: {
 			float maximo, minimo;
 			string ordem;
 			cout << endl;

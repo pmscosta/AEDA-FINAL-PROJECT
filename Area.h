@@ -27,6 +27,10 @@ public:
 	Area(std::string file_string);
 
 	//Destructors
+
+	/*
+	 * @brief Default Destructor
+	 */
 	virtual ~Area();
 
 	//Get Methods
