@@ -10,21 +10,31 @@
 
 class SubArea;
 
+
+//!  The Area Class
+/*!
+ * An Association consists in a group of associates. Each associate has interest in a variety of areas.
+ * Each area has some subareas.
+ * An area is distinguished by its name
+ */
 class Area {
 public:
 
 	//Constructors
 
-	/*
+	/**
 	 * @brief Default Constructor
 	 */
 	Area();
 
-	/*
+	/**
 	 * @brief File Constructor
-	 * Reads a line from a file and creates the area and its subareas based on that information
+	 *
+	 * @param file_string - Reads a line from a file and creates the area and its subareas based on that information
 	 */
 	Area(std::string file_string);
+
+
 
 	//Destructors
 
@@ -33,16 +43,17 @@ public:
 	 */
 	virtual ~Area();
 
+
+
 	//Get Methods
 
 	/**
 	 * @brief Returns the name of the Area
-	 *
 	 */
 	std::string getName() const;
 
 
-	/*
+	/**
 	 * @brief Returns the subareas of the Area
 	 */
 
