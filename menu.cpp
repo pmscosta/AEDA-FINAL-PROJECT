@@ -14,13 +14,13 @@ void menu() {
 	cout << " 1 - Carregar ficheiros com informacoes guardadas" << endl;
 	cout << " 2 - Criar novos ficheiros" << endl;
 	cout << " 3 - Sair" << endl;
-
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 3) {
-		cin >> opcao;
-		switch(opcao){
+		if (cin >> opcao) {
+
+			switch (opcao) {
 			case 1:
 				initialize();
 				menu2();
@@ -34,11 +34,18 @@ void menu() {
 				break;
 			default:
 				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		}
+
+		else {
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
 }
 
-void menu2(){
+void menu2() {
 	cout << endl << endl;
 	cout << "--------------------------------------------- " << endl;
 	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
@@ -56,31 +63,37 @@ void menu2(){
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 6) {
-		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			submenu1();
-			break;
-		case 2:
-			submenu2();
-			break;
-		case 3:
-			submenu3();
-			break;
-		case 4:
-			submenu4();
-			break;
-		case 5:
-			ano();
-			regressar();
-			break;
-		case 6:
-			menu();
-			break;
-		case 7:
-			sair();
-			break;
-		default:
+		if (cin >> opcao) {
+
+			switch (opcao) {
+			case 1:
+				submenu1();
+				break;
+			case 2:
+				submenu2();
+				break;
+			case 3:
+				submenu3();
+				break;
+			case 4:
+				submenu4();
+				break;
+			case 5:
+				ano();
+				regressar();
+				break;
+			case 6:
+				menu();
+				break;
+			case 7:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
@@ -104,35 +117,41 @@ void submenu1() {
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 7) {
-		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			adicionarAssociado();
-			regressar();
-			break;
-		case 2:
-			removerAssociado();
-			regressar();
-			break;
-		case 3:
-			alterarAssociado();
-			regressar();
-			break;
-		case 4:
-			verInfoAssociado();
-			regressar();
-			break;
-		case 5:
-			organizarAssociados();
-			regressar();
-			break;
-		case 6:
-			menu2();
-			break;
-		case 7:
-			sair();
-			break;
-		default:
+		if (cin >> opcao) {
+
+			switch (opcao) {
+			case 1:
+				adicionarAssociado();
+				regressar();
+				break;
+			case 2:
+				removerAssociado();
+				regressar();
+				break;
+			case 3:
+				alterarAssociado();
+				regressar();
+				break;
+			case 4:
+				verInfoAssociado();
+				regressar();
+				break;
+			case 5:
+				organizarAssociados();
+				regressar();
+				break;
+			case 6:
+				menu2();
+				break;
+			case 7:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
@@ -156,35 +175,41 @@ void submenu2() {
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 7) {
-		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			criarEvento();
-			regressar();
-			break;
-		case 2:
-			removerEvento();
-			regressar();
-			break;
-		case 3:
-			alterarEvento();
-			regressar();
-			break;
-		case 4:
-			verInfoEvento();
-			regressar();
-			break;
-		case 5:
-			organizarEventos();
-			regressar();
-			break;
-		case 6:
-			menu2();
-			break;
-		case 7:
-			sair();
-			break;
-		default:
+		if (cin >> opcao) {
+
+			switch (opcao) {
+			case 1:
+				criarEvento();
+				regressar();
+				break;
+			case 2:
+				removerEvento();
+				regressar();
+				break;
+			case 3:
+				alterarEvento();
+				regressar();
+				break;
+			case 4:
+				verInfoEvento();
+				regressar();
+				break;
+			case 5:
+				organizarEventos();
+				regressar();
+				break;
+			case 6:
+				menu2();
+				break;
+			case 7:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
@@ -206,27 +231,33 @@ void submenu3() {
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 5) {
-		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			pagarCotas();
-			regressar();
-			break;
-		case 2:
-			pagarTodasCotas();
-			regressar();
-			break;
-		case 3:
-			verAssociadosCotas();
-			regressar();
-			break;
-		case 4:
-			menu2();
-			break;
-		case 5:
-			sair();
-			break;
-		default:
+		if (cin >> opcao) {
+
+			switch (opcao) {
+			case 1:
+				pagarCotas();
+				regressar();
+				break;
+			case 2:
+				pagarTodasCotas();
+				regressar();
+				break;
+			case 3:
+				verAssociadosCotas();
+				regressar();
+				break;
+			case 4:
+				menu2();
+				break;
+			case 5:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
@@ -248,34 +279,40 @@ void submenu4() {
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 5) {
-		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			divulgarEmail();
-			regressar();
-			break;
-		case 2:
-			verEmails();
-			regressar();
-			break;
-		case 3:
-			organizarMails();
-			regressar();
-			break;
-		case 4:
-			menu2();
-			break;
-		case 5:
-			sair();
-			break;
-		default:
+		if (cin >> opcao) {
+
+			switch (opcao) {
+			case 1:
+				divulgarEmail();
+				regressar();
+				break;
+			case 2:
+				verEmails();
+				regressar();
+				break;
+			case 3:
+				organizarMails();
+				regressar();
+				break;
+			case 4:
+				menu2();
+				break;
+			case 5:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
 
 }
 
-void regressar(){
+void regressar() {
 	cout << endl << endl;
 	cout << " 1 - Regressar ao Menu principal" << endl;
 	cout << " 2 - Sair" << endl;
@@ -284,15 +321,20 @@ void regressar(){
 	cout << endl;
 	cout << "Introduza uma opcao: ";
 	while (opcao < 1 || opcao > 2) {
-		cin >> opcao;
-		switch (opcao) {
-		case 1:
-			menu2();
-			break;
-		case 2:
-			sair();
-			break;
-		default:
+		if (cin >> opcao) {
+			switch (opcao) {
+			case 1:
+				menu2();
+				break;
+			case 2:
+				sair();
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
@@ -303,29 +345,34 @@ void sair() {
 	cout << endl;
 	cout << "Deseja guardar as alteracoes feitas? (S/N): ";
 	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
-		cin >> opcao;
-		switch (opcao) {
-		case 's':
-			guardarficheiroAssociacao();
-			guardarficheiroAreas();
-			guardarficheiroAssociados();
-			guardarficheiroEventos();
-			cout << "\nAlteracoes guardadas! A sair... \n";
-			sleep(1);
-			break;
-		case 'S':
-			guardarficheiroAssociacao();
-			guardarficheiroAreas();
-			guardarficheiroAssociados();
-			guardarficheiroEventos();
-			cout << "\nAlteracoes guardadas! A sair... \n";
-			sleep(1);
-			break;
-		case 'n':
-			break;
-		case 'N':
-			break;
-		default:
+		if (cin >> opcao) {
+			switch (opcao) {
+			case 's':
+				guardarficheiroAssociacao();
+				guardarficheiroAreas();
+				guardarficheiroAssociados();
+				guardarficheiroEventos();
+				cout << "\nAlteracoes guardadas! A sair... \n";
+				sleep(1);
+				break;
+			case 'S':
+				guardarficheiroAssociacao();
+				guardarficheiroAreas();
+				guardarficheiroAssociados();
+				guardarficheiroEventos();
+				cout << "\nAlteracoes guardadas! A sair... \n";
+				sleep(1);
+				break;
+			case 'n':
+				break;
+			case 'N':
+				break;
+			default:
+				cout << "Opcao invalida. Introduza uma nova opcao: ";
+			}
+		} else {
+			cin.clear();
+			cin.ignore(10000, '\n');
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
