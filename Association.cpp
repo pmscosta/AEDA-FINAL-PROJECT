@@ -6,6 +6,7 @@
 #include "Area.h"
 #include "SubArea.h"
 #include "Event.h"
+#include <math.h>
 #include <algorithm>
 #include <sstream>
 #include <iostream>
@@ -109,7 +110,7 @@ bool cmpPhase(Event * rhs, Event * lhs) {
 
 //=======================================================================================================
 
-int Association::currentYear = 0;
+float Association::currentYear = 0.0;
 
 Association::Association() {
 }
@@ -127,18 +128,24 @@ Association::Association(string file, Network * rede) {
 	long double fund;
 	float annualPay;
 	char garbage;
+	float year;
 
 	getline(input, name, '/');
 	input >> fund;
 	input >> garbage;
 	input >> annualPay;
 	input >> garbage;
-	input >> Association::currentYear;
+
+
+
+	input >> year;
+	Association::currentYear = year;
 
 	this->name = name;
 	this->fund = fund;
 	this->annualPay = annualPay;
 	this->network = rede;
+
 }
 
 Association::~Association() {
@@ -178,7 +185,11 @@ float Association::getAnnualPay() const {
 }
 
 int Association::getCurrentYear() {
-	return Association::currentYear;
+	return Association::currentYear / 1;
+}
+
+float Association::getCurrentSemester(){
+	return fmod(Association::currentYear, 1);
 }
 
 set<Associate *> Association::getAssociates() const {
@@ -193,6 +204,7 @@ HashTabInactiveAssociate Association::getInactiveAssociates() const {
 	return this->inactiveAssociates;
 
 }
+
 priority_queue<Event *> Association::getQueue1() const{
 	return this->queue1;
 }
@@ -204,6 +216,8 @@ priority_queue<Event *> Association::getQueue2() const{
 //Associate Type Functions
 
 void Association::addAssociate(Associate * newAsso) {
+
+	int currentYear = Association::currentYear / 1;
 
 	if ((currentYear - newAsso->getPaidYears().back()) >= 5)
 		inactiveAssociates.insert(newAsso);
@@ -237,10 +251,11 @@ void Association::removeAssociate(int uniqueID) {
 }
 
 void Association::updateAllAssociates() {
+	for(Associate * elem : this->associates_set)
+		elem->updateStatus();
 
-	for (auto it = this->associates_set.begin();
-			it != this->associates_set.end(); it++)
-		(*it)->updateStatus();
+	for(Associate * elem : this->inactiveAssociates)
+		elem->updateStatus();
 }
 
 Associate * Association::getAssoById(int uniqueID) {
@@ -270,8 +285,8 @@ Associate * Association::getAssoById(int uniqueID) {
 
 //Association Type Functions
 
-void Association::updateYear() {
-	Association::currentYear++;
+void Association::updateSemester() {
+	Association::currentYear += 0.5;
 }
 
 void Association::addToFund(float income) {
@@ -280,13 +295,15 @@ void Association::addToFund(float income) {
 
 string Association::updatePayment() {
 
+	int yearToBePaid = Association::currentYear / 1;
+
 	string log = "";
 
 	for (auto it = this->associates_set.begin();
 			it != this->associates_set.end(); it++) {
 
 		try {
-			(*it)->payYear(Association::currentYear);
+			(*it)->payYear(yearToBePaid);
 			log += "Pagamento do Associado " + (*it)->getName() + " com o ID "
 					+ to_string((*it)->getUniqueID())
 					+ " efetuado com sucesso!\n";
@@ -321,7 +338,7 @@ string Association::updatePayment() {
 	for (Associate * elem : this->inactiveAssociates) {
 
 		try {
-			elem->payYear(Association::currentYear);
+			elem->payYear(yearToBePaid);
 			log += "Pagamento do Associado " + elem->getName() + " com o ID "
 					+ to_string(elem->getUniqueID())
 					+ " efetuado com sucesso!\n";

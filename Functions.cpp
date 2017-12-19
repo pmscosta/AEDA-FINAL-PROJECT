@@ -69,18 +69,23 @@ void ano() {
 	cout << endl << endl;
 
 	char opcao;
-	cout << "Ano atual: " << Associacao->getCurrentYear() << endl;
-	cout << "\nIncrementar um ano (S/N): ";
+	cout << "Ano atual: " << Associacao->getCurrentYear()
+			<< "\t Semestre Atual: " << fixed << setprecision(1) << Associacao->getCurrentSemester()
+			<< endl;
+	cout << "\nIncrementar um semestre? (S/N): ";
 	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
 		cin >> opcao;
 		switch (opcao) {
 		case 's':
-			Associacao->updateYear();
-			Associacao->updateAllAssociates();
+			Associacao->updateSemester();
+
+			if (Associacao->getCurrentSemester() == 0)
+				Associacao->updateAllAssociates();
 			break;
 		case 'S':
-			Associacao->updateYear();
-			Associacao->updateAllAssociates();
+			Associacao->updateSemester();
+			if (Associacao->getCurrentSemester() == 0)
+				Associacao->updateAllAssociates();
 			break;
 		case 'n':
 			break;
@@ -127,6 +132,7 @@ void lerficheiroAssociados() {
 	Associacao->updateAllAssociates();
 
 	file.close();
+
 }
 
 void lerficheiroEventos() {
@@ -168,15 +174,24 @@ void lerficheiroEventos() {
 
 				infoEvent >> requester;
 
-				set<Associate *> associates_set = Associacao->getAssociates();
-				for (auto it = associates_set.begin();
-						it != associates_set.end(); it++) {
+				for (Associate * elem : Associacao->getAssociates()) {
 
-					if (requester == (*it)->getUniqueID()) {
-						event_request.push_back((*it));
-						event_organizers.push_back((*it));
+					if (requester == elem->getUniqueID()) {
+						event_request.push_back(elem);
+						event_organizers.push_back(elem);
 					}
+
 				}
+
+				for (Associate * elem : Associacao->getInactiveAssociates()) {
+
+					if (requester == elem->getUniqueID()) {
+						event_request.push_back(elem);
+						event_organizers.push_back(elem);
+					}
+
+				}
+
 				infoEvent >> garbage;
 			}
 
@@ -188,13 +203,21 @@ void lerficheiroEventos() {
 
 				infoEvent >> organizer;
 
-				set<Associate *> associates_set = Associacao->getAssociates();
-				for (auto it = associates_set.begin();
-						it != associates_set.end(); it++) {
+				for (Associate * elem : Associacao->getAssociates()) {
 
-					if (organizer == (*it)->getUniqueID()) {
-						event_organizers.push_back((*it));
+					if (organizer == elem->getUniqueID()) {
+						event_organizers.push_back(elem);
+
 					}
+
+				}
+
+				for (Associate * elem : Associacao->getInactiveAssociates()) {
+
+					if (organizer == elem->getUniqueID()) {
+						event_organizers.push_back(elem);
+					}
+
 				}
 				infoEvent >> garbage;
 			}
@@ -221,8 +244,8 @@ void lerficheiroEventos() {
 			infoEvent >> garbage;
 
 			SummerSchool * newSummer = new SummerSchool(event_request,
-					event_organizers, date, local, theme, phase, Associacao, trainers,
-					money);
+					event_organizers, date, local, theme, phase, Associacao,
+					trainers, money);
 			Associacao->addEvent(newSummer);
 
 		} else {
@@ -251,14 +274,22 @@ void lerficheiroEventos() {
 
 				infoEvent >> requester;
 
-				set<Associate *> associates_set = Associacao->getAssociates();
-				for (auto it = associates_set.begin();
-						it != associates_set.end(); it++) {
+				for (Associate * elem : Associacao->getAssociates()) {
 
-					if (requester == (*it)->getUniqueID()) {
-						event_request.push_back((*it));
-						event_organizers.push_back((*it));
+					if (requester == elem->getUniqueID()) {
+						event_request.push_back(elem);
+						event_organizers.push_back(elem);
 					}
+
+				}
+
+				for (Associate * elem : Associacao->getInactiveAssociates()) {
+
+					if (requester == elem->getUniqueID()) {
+						event_request.push_back(elem);
+						event_organizers.push_back(elem);
+					}
+
 				}
 				infoEvent >> garbage;
 			}
@@ -317,15 +348,22 @@ void lerficheiroMails() {
 		getline(infoMail, content, '/');
 		getline(infoMail, date, '/');
 
-		set<Associate *> associates_set = Associacao->getAssociates();
-		for (auto it = associates_set.begin(); it != associates_set.end();
-				it++) {
-			if (id == (*it)->getUniqueID()) {
-				Mail * newMail = new Mail((*it), title, content, date);
+		for (Associate * elem : Associacao->getAssociates()) {
+
+			if (id == elem->getUniqueID()) {
+				Mail * newMail = new Mail(elem, title, content, date);
 				all_mails.push_back(newMail);
 				break;
 			}
+		}
 
+		for (Associate * elem : Associacao->getInactiveAssociates()) {
+
+			if (id == elem->getUniqueID()) {
+				Mail * newMail = new Mail(elem, title, content, date);
+				all_mails.push_back(newMail);
+				break;
+			}
 		}
 
 	}
@@ -373,34 +411,44 @@ void guardarficheiroAssociacao() {
 void guardarficheiroAssociados() {
 	ofstream file("associates.txt");
 
-	set<Associate *> associates_set = Associacao->getAssociates();
+	vector<Associate *> associates_vector;
 
-	for (auto it = associates_set.begin(); it != associates_set.end(); it++) {
+	for (Associate * elem : Associacao->getAssociates()) {
+		associates_vector.push_back(elem);
+	}
 
-		file << (*it)->getUniqueID() << "/";
-		file << (*it)->getName() << "/";
-		file << (*it)->getInstitution() << "/[";
+	for (Associate * elem : Associacao->getInactiveAssociates()) {
+		associates_vector.push_back(elem);
+	}
+	//in order to keep them organized by ID in the txt file
+	sort(associates_vector.begin(), associates_vector.end(), cmpID);
 
-		vector<Area *> areas_interest = (*it)->getInterestAreas();
+	for (size_t i = 0; i < associates_vector.size(); i++) {
+		file << associates_vector.at(i)->getUniqueID() << "/";
+		file << associates_vector.at(i)->getName() << "/";
+		file << associates_vector.at(i)->getInstitution() << "/[";
+
+		vector<Area *> areas_interest =
+				associates_vector.at(i)->getInterestAreas();
 		for (size_t t = 0; t < areas_interest.size(); t++) {
 
 			file << areas_interest.at(t)->getName() << "/";
 		}
-		file << "]" << "/" << (*it)->getPersonalWallet() << "/[";
+		file << "]" << "/" << associates_vector.at(i)->getPersonalWallet()
+				<< "/[";
 
-		vector<int> years_vector = (*it)->getPaidYears();
+		vector<int> years_vector = associates_vector.at(i)->getPaidYears();
 		for (size_t t = 0; t < years_vector.size(); t++) {
 
 			file << years_vector.at(t) << "/";
 		}
 
-		file << "]" << "/" << (*it)->getDivulgations();
+		file << "]" << "/" << associates_vector.at(i)->getDivulgations();
 
-		if (it != --associates_set.end())
+		if (i != associates_vector.size() - 1)
 			file << endl;
 
 	}
-
 	file.close();
 }
 
@@ -769,7 +817,7 @@ void verInfoAssociado() {
 				cout << t << ": " << areas.at(t)->getName() << endl;
 			}
 
-			int opcao;
+			unsigned int opcao;
 			cout << "\nIntroduza uma opcao: ";
 			cin >> opcao;
 			cin.clear();
@@ -979,14 +1027,13 @@ void criarEvento() {
 	int phase;
 	cout << "Indique a fase do evento (1 ou 2): ";
 	cin >> phase;
-	if(phase < 1 || phase > 2){
+	if (phase < 1 || phase > 2) {
 		cout << "\nNao existe essa opcao\n";
 		return;
 	}
 
 	cin.clear();
 	cin.ignore(10000, '\n');
-
 
 	string type;
 	cout << "\nIndique o tipo de evento (Summer School ou Conference): ";
@@ -1004,11 +1051,11 @@ void criarEvento() {
 
 	cout << "\nIntroduza o numero de Associados que querem criar o Evento: ";
 	cin >> numAsso;
-	if(numAsso < 3){
-		cout << "O numero de Associados que querem criar o evento deve ser superior a 3.";
+	if (numAsso < 3) {
+		cout
+				<< "O numero de Associados que querem criar o evento deve ser superior a 3.";
 		return;
 	}
-
 
 	for (int i = 0; i < numAsso; i++) {
 		cout << "Introduza o Identificador Unico do " << i + 1
@@ -1090,10 +1137,9 @@ void criarEvento() {
 			return;
 		}
 
-		if(phase == 1){
+		if (phase == 1) {
 			Associacao->getQueue1().push(escola);
-		}
-		else{
+		} else {
 			Associacao->getQueue2().push(escola);
 		}
 		cout << endl;
@@ -1270,8 +1316,8 @@ void alterarEvento() {
 			}
 			SummerSchool * novo = new SummerSchool(alterar->getRequest(),
 					alterar->getOrganizers(), alterar->getDate(),
-					alterar->getLocal(), alterar->getTheme(), alterar->getPhase(), Associacao,
-					trainers);
+					alterar->getLocal(), alterar->getTheme(),
+					alterar->getPhase(), Associacao, trainers);
 			Associacao->removeEvent(alterar->getDate());
 			Associacao->addEvent(novo);
 			cout << "\nFormadores alterados com sucesso!\n";
@@ -1282,8 +1328,8 @@ void alterarEvento() {
 			cin >> numEsperado;
 			Conference * novo = new Conference(alterar->getRequest(),
 					alterar->getOrganizers(), alterar->getDate(),
-					alterar->getLocal(), alterar->getTheme(), alterar->getPhase(), Associacao,
-					numEsperado);
+					alterar->getLocal(), alterar->getTheme(),
+					alterar->getPhase(), Associacao, numEsperado);
 			Associacao->removeEvent(alterar->getDate());
 			Associacao->addEvent(novo);
 			cout
@@ -1357,7 +1403,7 @@ void verInfoEvento() {
 				int phase;
 				cout << "Introduza a fase dos eventos (1 ou 2): ";
 				cin >> phase;
-				if(phase < 1 || phase > 2){
+				if (phase < 1 || phase > 2) {
 					cout << "Nao introduziu uma fase possivel.\n";
 					return;
 				}
@@ -1369,8 +1415,7 @@ void verInfoEvento() {
 				}
 				if (eventos.empty()) {
 					cout << "Nenhum evento cumpre os requisitos pedidos.\n";
-				}
-				else {
+				} else {
 					for (size_t i = 0; i < eventos.size(); i++) {
 						cout << endl;
 						cout << eventos.at(i)->showInfo();
@@ -1600,7 +1645,7 @@ void pagarTodasCotas() {
 	if (info.empty())
 		cout << "Todos os pagamentos efetuados com sucesso.\n";
 	else
-		cout << endl <<  info;
+		cout << endl << info;
 
 	return;
 

@@ -248,27 +248,28 @@ void Associate::updateStatus() {
 
 	string statustemp = this->status;
 
-	if (lastYearPaid >= Association::getCurrentYear() - 1) //if the last year he paid is the current last year or if he paid ahead
+	int currentYear = Association::getCurrentYear();
+
+	if (lastYearPaid >= currentYear - 1) //if the last year he paid is the current last year or if he paid ahead
 		this->status = "contributor";
-	else if (lastYearPaid > (Association::getCurrentYear() - 5))
+	else if (lastYearPaid > (currentYear - 5))
 		this->status = "subscriber";
 	else
 		this->status = "normal";
 
-	if(statustemp == "normal"){
-			if((this->status == "subscriber") || (this->status == "contributor")){
-				Associate * temp = this;
-				this->association->removeAssociate(this->uniqueID);
-				this->association->addAssociate(temp);
-			}
-		}
-		else if((statustemp == "subscriber") || (statustemp == "contributor")){
-			if(this->status == "normal"){
-				Associate * temp = this;
-				this->association->removeAssociate(this->uniqueID);
-				this->association->addAssociate(temp);
-			}
-		}
+//	if (statustemp == "normal") {
+//		if ((this->status == "subscriber") || (this->status == "contributor")) {
+//			Associate * temp = this;
+//			this->association->removeAssociate(this->uniqueID);
+//			this->association->addAssociate(this);
+//		}
+//	} else if ((statustemp == "subscriber") || (statustemp == "contributor")) {
+//		if (this->status == "normal") {
+//			Associate * temp = this;
+//			this->association->removeAssociate(this->uniqueID);
+//			this->association->addAssociate(this);
+//		}
+//	}
 
 }
 
