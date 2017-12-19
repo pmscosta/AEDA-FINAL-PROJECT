@@ -9,12 +9,27 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <set>
+#include <unordered_set>
+#include "Associate.h"
 
 class Associate;
 class Area;
 class Event;
 class Network;
 
+struct inactiveAssociateHash {
+	int operator()(Associate * a1) const {
+		return a1->getUniqueID();
+	}
+
+	bool operator()(Associate * a1, Associate * a2) const {
+		return a1->getUniqueID() == a2->getUniqueID();
+	}
+};
+
+typedef std::unordered_set<Associate*, inactiveAssociateHash,
+		inactiveAssociateHash> HashTabInactiveAssociate;
 
 //COMPARE METHODS PROTOTYPES
 
@@ -67,8 +82,6 @@ bool cmpLocal(Event * rhs, Event * lhs);
  */
 bool cmpTheme(Event * rhs, Event * lhs);
 
-
-
 //Exception Classes
 
 //! The NoSuchID Class
@@ -101,13 +114,12 @@ public:
 	;
 };
 
-
 //! The NoSuchDate Class
 /*!
  * NotUpToDate is a class which instances are called when a date does not exist
  * Its useful in throwing exceptions, outside of that it has no real use.
  */
-class NoSuchDate{
+class NoSuchDate {
 private:
 	std::string date; ///< The inexistent date
 
@@ -117,9 +129,11 @@ public:
 	 *
 	 * @param date - The inexistent date
 	 */
-	NoSuchDate(std::string date) : date(date){
+	NoSuchDate(std::string date) :
+			date(date) {
 
-	};
+	}
+	;
 
 	/**
 	 * @brief Returns the inexistent date
@@ -128,7 +142,6 @@ public:
 		return this->date;
 	}
 };
-
 
 //!  The Association Class
 /*!
@@ -150,7 +163,6 @@ public:
 	 */
 	Association();
 
-
 	/**
 	 * @brief One Argument Constructor
 	 *
@@ -169,7 +181,7 @@ public:
 	 *
 	 *  It's vector will be later on initialized
 	 */
-	Association(std::string file,Network * rede);
+	Association(std::string file, Network * rede);
 
 	//=========================================Destructors====================================================
 	//========================================================================================================
@@ -210,7 +222,6 @@ public:
 	 */
 	void setEvents(std::vector<Event *> all_events);
 
-
 	/**
 	 * @briefs Sets/Changes the network of the association
 	 *
@@ -246,9 +257,14 @@ public:
 	std::vector<Event *> getEvents() const;
 
 	/**
-	 * @brief Returns the vector containing pointers to all the associates
+	 * @brief Returns the set containing pointers to all the associates
 	 */
-	std::vector<Associate *> getAssociates() const;
+	std::set<Associate *> getAssociates() const;
+
+	/**
+	 * @brief Returns the hashtable containing points to all the associates who haven't paid in 5 years
+	 */
+	HashTabInactiveAssociate getInactiveAssociates() const;
 
 	/**
 	 * @brief Returns the pointer to the association's network
@@ -288,14 +304,12 @@ public:
 	 */
 	Associate * getAssoById(int uniqueID);
 
-
 	/**
 	 * @brief Sorts the associates by their name, id and wallet value
 	 *
 	 * @param type - receives a string with all the information of the associates
 	 */
-	void sortAssociates(std::string type);
-
+	std::vector<Associate * > sortAssociates(std::string type);
 
 	//============================Association Type Functions==================================================
 	//========================================================================================================
@@ -339,7 +353,6 @@ public:
 	 */
 	void addArea(Area * newArea);
 
-
 	/**
 	 * @brief Returns a string containing info about all the areas
 	 *
@@ -382,15 +395,15 @@ public:
 	 */
 	void sortEvents(std::string type);
 
-
 private:
 	std::string name; ///< The Association name
 	long double fund; ///< The Association initial fund to manage events,associates etc..
 	float annualPay; ///< The annual pay given by each and every associate
-	std::vector<Associate *> associates; ///< Vector of pointers to all the Associates from the Association
+	std::set<Associate *> associates_set;
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
 	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
 	static int currentYear; ///< The current year
+	HashTabInactiveAssociate inactiveAssociates; ///< Hash Table with the Associates who haven't payed for more than 5 years
 	Network * network; ///< A pointer to the association network
 
 };

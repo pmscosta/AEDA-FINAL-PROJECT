@@ -151,6 +151,14 @@ public:
 	 */
 	Associate();
 
+	/**
+	 * @brief Temporary constructor to look in unordered_set
+	 *
+	 *
+	 *
+	 */
+	Associate(int uniqueID);
+
 
 	/**
 	 * @brief Full Associate Constructor

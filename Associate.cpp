@@ -18,6 +18,11 @@ Associate::Associate() :
 		uniqueID(++id_provider) {
 }
 
+
+Associate::Associate(int uniqueID){
+	this->uniqueID = uniqueID;
+}
+
 Associate::Associate(Association * asso, string name, string institution,
 		vector<Area *> interests) :
 		uniqueID(++id_provider) {
@@ -307,7 +312,29 @@ string Associate::showInfo() const {
 //Operators
 
 bool Associate::operator<(const Associate & lhs) const {
-	cout << "called operator\n";
-	return this->uniqueID < lhs.uniqueID;
+	//return this->uniqueID < lhs.uniqueID;
+
+	if (this->status == lhs.status)
+		return this->name < lhs.name;
+
+	int this_number;
+	int lhs_number;
+
+	if (this->status == "contributor")
+		this_number = 0;
+	else if (this->status == "subscriber")
+		this_number = 1;
+	else
+		this_number = 2;
+
+	if (lhs.status == "contributor")
+		lhs_number = 0;
+	else if (lhs.status == "subscriber")
+		lhs_number = 1;
+	else
+		lhs_number = 2;
+
+	return this_number < lhs_number;
+
 }
 

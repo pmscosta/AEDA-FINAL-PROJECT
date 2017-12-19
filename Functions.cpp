@@ -167,15 +167,13 @@ void lerficheiroEventos() {
 
 				infoEvent >> requester;
 
-				for (size_t t = 0; t < Associacao->getAssociates().size();
-						t++) {
+				set<Associate *> associates_set = Associacao->getAssociates();
+				for (auto it = associates_set.begin();
+						it != associates_set.end(); it++) {
 
-					if (requester
-							== Associacao->getAssociates().at(t)->getUniqueID()) {
-						event_request.push_back(
-								Associacao->getAssociates().at(t));
-						event_organizers.push_back(
-								Associacao->getAssociates().at(t));
+					if (requester == (*it)->getUniqueID()) {
+						event_request.push_back((*it));
+						event_organizers.push_back((*it));
 					}
 				}
 				infoEvent >> garbage;
@@ -189,13 +187,12 @@ void lerficheiroEventos() {
 
 				infoEvent >> organizer;
 
-				for (size_t t = 0; t < Associacao->getAssociates().size();
-						t++) {
+				set<Associate *> associates_set = Associacao->getAssociates();
+				for (auto it = associates_set.begin();
+						it != associates_set.end(); it++) {
 
-					if (organizer
-							== Associacao->getAssociates().at(t)->getUniqueID()) {
-						event_organizers.push_back(
-								Associacao->getAssociates().at(t));
+					if (organizer == (*it)->getUniqueID()) {
+						event_organizers.push_back((*it));
 					}
 				}
 				infoEvent >> garbage;
@@ -252,15 +249,13 @@ void lerficheiroEventos() {
 
 				infoEvent >> requester;
 
-				for (size_t t = 0; t < Associacao->getAssociates().size();
-						t++) {
+				set<Associate *> associates_set = Associacao->getAssociates();
+				for (auto it = associates_set.begin();
+						it != associates_set.end(); it++) {
 
-					if (requester
-							== Associacao->getAssociates().at(t)->getUniqueID()) {
-						event_request.push_back(
-								Associacao->getAssociates().at(t));
-						event_organizers.push_back(
-								Associacao->getAssociates().at(t));
+					if (requester == (*it)->getUniqueID()) {
+						event_request.push_back((*it));
+						event_organizers.push_back((*it));
 					}
 				}
 				infoEvent >> garbage;
@@ -274,13 +269,12 @@ void lerficheiroEventos() {
 
 				infoEvent >> organizer;
 
-				for (size_t t = 0; t < Associacao->getAssociates().size();
-						t++) {
+				set<Associate *> associates_set = Associacao->getAssociates();
+				for (auto it = associates_set.begin();
+						it != associates_set.end(); it++) {
 
-					if (organizer
-							== Associacao->getAssociates().at(t)->getUniqueID()) {
-						event_organizers.push_back(
-								Associacao->getAssociates().at(t));
+					if (organizer == (*it)->getUniqueID()) {
+						event_organizers.push_back((*it));
 					}
 				}
 				infoEvent >> garbage;
@@ -326,11 +320,11 @@ void lerficheiroMails() {
 		getline(infoMail, content, '/');
 		getline(infoMail, date, '/');
 
-		vector<Associate *> all_associates = Associacao->getAssociates();
-		for (size_t i = 0; i < all_associates.size(); i++) {
-			if (id == all_associates.at(i)->getUniqueID()) {
-				Mail * newMail = new Mail(all_associates.at(i), title, content,
-						date);
+		set<Associate *> associates_set = Associacao->getAssociates();
+		for (auto it = associates_set.begin(); it != associates_set.end();
+				it++) {
+			if (id == (*it)->getUniqueID()) {
+				Mail * newMail = new Mail((*it), title, content, date);
 				all_mails.push_back(newMail);
 				break;
 			}
@@ -382,31 +376,30 @@ void guardarficheiroAssociacao() {
 void guardarficheiroAssociados() {
 	ofstream file("associates.txt");
 
-	vector<Associate *> associates_vector = Associacao->getAssociates();
-	for (size_t i = 0; i < associates_vector.size(); i++) {
+	set<Associate *> associates_set = Associacao->getAssociates();
 
-		file << associates_vector.at(i)->getUniqueID() << "/";
-		file << associates_vector.at(i)->getName() << "/";
-		file << associates_vector.at(i)->getInstitution() << "/[";
+	for (auto it = associates_set.begin(); it != associates_set.end(); it++) {
 
-		vector<Area *> areas_interest =
-				associates_vector.at(i)->getInterestAreas();
+		file << (*it)->getUniqueID() << "/";
+		file << (*it)->getName() << "/";
+		file << (*it)->getInstitution() << "/[";
+
+		vector<Area *> areas_interest = (*it)->getInterestAreas();
 		for (size_t t = 0; t < areas_interest.size(); t++) {
 
 			file << areas_interest.at(t)->getName() << "/";
 		}
-		file << "]" << "/" << associates_vector.at(i)->getPersonalWallet()
-				<< "/[";
+		file << "]" << "/" << (*it)->getPersonalWallet() << "/[";
 
-		vector<int> years_vector = associates_vector.at(i)->getPaidYears();
+		vector<int> years_vector = (*it)->getPaidYears();
 		for (size_t t = 0; t < years_vector.size(); t++) {
 
 			file << years_vector.at(t) << "/";
 		}
 
-		file << "]" << "/" << associates_vector.at(i)->getDivulgations();
+		file << "]" << "/" << (*it)->getDivulgations();
 
-		if (i != associates_vector.size() - 1)
+		if (it != --associates_set.end())
 			file << endl;
 
 	}
@@ -787,18 +780,18 @@ void verInfoAssociado() {
 				return;
 			}
 
-			for (size_t i = 0; i < Associacao->getAssociates().size(); i++) {
-				for (size_t t = 0;
-						t
-								< Associacao->getAssociates().at(i)->getInterestAreas().size();
-						t++) {
-					if (Associacao->getAssociates().at(i)->getInterestAreas().at(
-							t) == areas.at(opcao)) {
+			for (auto it = Associacao->getAssociates().begin();
+					it != Associacao->getAssociates().end(); it++) {
+
+				for (size_t t = 0; t < (*it)->getInterestAreas().size(); t++) {
+					if ((*it)->getInterestAreas().at(t) == areas.at(opcao)) {
 						cout << endl;
-						cout << Associacao->getAssociates().at(i)->showInfo();
+						cout << (*it)->showInfo();
 					}
 				}
+
 			}
+
 			break;
 		}
 		case 3: {
@@ -814,18 +807,49 @@ void verInfoAssociado() {
 			cout << "Introduza os valores minimo e maximo de ID: " << endl;
 			cout << "Minimo: ";
 			cin >> minimo;
+			cin.clear();
+			cin.ignore(10000, '\n');
+
 			cout << "Maximo: ";
 			cin >> maximo;
 			cin.clear();
 			cin.ignore(10000, '\n');
+			if (minimo > maximo) {
+				cout << "O minimo e superior ao maximo" << endl;
+				return;
+			}
 			cout << "Ordem crescente ou decrescente? ";
 			getline(cin, ordem);
 
 			vector<Associate *> associados;
-			for (size_t i = 0; i < Associacao->getAssociates().size(); i++) {
-				int id = Associacao->getAssociates().at(i)->getUniqueID();
+
+			for (auto it = Associacao->getAssociates().begin();
+					it != Associacao->getAssociates().end(); it++) {
+				int id = (*it)->getUniqueID();
 				if ((id <= maximo) && (id >= minimo))
-					associados.push_back(Associacao->getAssociates().at(i));
+					associados.push_back((*it));
+
+			}
+
+//			for (auto it = Associacao->getInactiveAssociates().begin();
+//					it != Associacao->getInactiveAssociates().end(); it++) {
+//
+//				int id = (*it)->getUniqueID();
+//
+//				cout << "veio aqui " << to_string(id) << endl;
+//
+//				if ((id <= maximo) && (id >= minimo))
+//					associados.push_back((*it));
+//
+//			}
+
+			for (Associate * elem : Associacao->getInactiveAssociates()) {
+
+				int id = elem->getUniqueID();
+
+				if ((id <= maximo) && (id >= minimo))
+					associados.push_back(elem);
+
 			}
 
 			if (ordem == "crescente" || ordem == "Crescente") {
@@ -867,11 +891,13 @@ void verInfoAssociado() {
 			getline(cin, ordem);
 
 			vector<Associate *> associados;
-			for (size_t i = 0; i < Associacao->getAssociates().size(); i++) {
-				float wallet =
-						Associacao->getAssociates().at(i)->getPersonalWallet();
+
+			for (auto it = Associacao->getAssociates().begin();
+					it != Associacao->getAssociates().end(); it++) {
+				float wallet = (*it)->getPersonalWallet();
 				if ((wallet <= maximo) && (wallet >= minimo))
-					associados.push_back(Associacao->getAssociates().at(i));
+					associados.push_back((*it));
+
 			}
 
 			if (ordem == "crescente") {
@@ -1536,17 +1562,15 @@ void verAssociadosCotas() {
 	cout << "Ano Corrente: " << to_string(Associacao->getCurrentYear()) << endl;
 	cout << "\nAssociados com as cotas em atraso: \n";
 
-	for (size_t t = 0; t < Associacao->getAssociates().size(); t++) {
+	for (auto it = Associacao->getAssociates().begin();
+			it != Associacao->getAssociates().end(); it++) {
 
-		if (Associacao->getAssociates().at(t)->getStatus() != "contributor") {
+		if ((*it)->getStatus() != "contributor") {
 
-			cout << "\t -" << Associacao->getAssociates().at(t)->getName()
-					<< ", ID = "
-					<< Associacao->getAssociates().at(t)->getUniqueID()
-					<< ", ultimo ano pago: "
-					<< to_string(
-							Associacao->getAssociates().at(t)->getPaidYears().back())
-					<< endl;
+			cout << "\t -" << (*it)->getName() << ", ID = "
+					<< (*it)->getUniqueID() << ", ultimo ano pago: "
+					<< to_string((*it)->getPaidYears().back()) << endl;
+
 		}
 
 	}
