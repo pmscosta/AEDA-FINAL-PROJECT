@@ -261,6 +261,12 @@ public:
 	 */
 	static int getCurrentYear();
 
+
+	/*
+	 * @brief Returns the current semester
+	 */
+	static float getCurrentSemester();
+
 	/**
 	 * @brief Returns a vector containing pointers to all the events that the Association has
 	 */
@@ -334,7 +340,7 @@ public:
 	/**
 	 * @brief Updates the current year
 	 */
-	void updateYear();
+	void updateSemester();
 
 	/**
 	 * @brief Makes the annual payment of every associate automatically
@@ -424,7 +430,7 @@ private:
 	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
 	std::priority_queue<Event *> queue1; ///< Priority queue of pointers to all the events done by the Associates in phase 1
 	std::priority_queue<Event *> queue2; ///< Priority queue of pointers to all the events done by the Associates in phase 2
-	static int currentYear; ///< The current year
+	static float currentYear; ///< The current year. the integer part represents the year, the decimal part the semester. 0-> 1º semester, 0.5->2º semester
 	HashTabInactiveAssociate inactiveAssociates; ///< Hash Table with the Associates who haven't payed for more than 5 years
 	Network * network; ///< A pointer to the association network
 
