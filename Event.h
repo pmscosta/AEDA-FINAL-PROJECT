@@ -14,13 +14,13 @@ class Associate;
 class Association;
 class Trainer;
 
-//! The NoSupportGiven
+//! The InvalidRequest
 /*!
- * NoSupportGiven is a class which instances are called when
+ * InvalidRequest is a class which instances are called when
  * the main Association decides to not support financially an event.
  * Its useful in throwing exceptions, outside of that it has no real use implementation.
  */
-class NoSupportGiven {
+class InvalidRequest {
 
 private:
 	int late; ///< The number of associates whose payments where not up to date, thus creating the decision to not give support
@@ -30,7 +30,7 @@ public:
 	/**
 	 * @brief Default Construction
 	 */
-	NoSupportGiven(int late, int total) :
+	InvalidRequest(int late, int total) :
 
 			late(late), total(total) {
 	}
@@ -88,7 +88,7 @@ public:
 	 */
 	Event(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
-			std::string local, std::string theme, Association * association);
+			std::string local, std::string theme, int phase, Association * association);
 
 
 	//=========================DESTRUCTORS===============================
@@ -122,6 +122,13 @@ public:
 	 */
 	void setTheme(std::string theme);
 
+	/**
+	 * @brief Sets/Changes the event's phase
+	 *
+	 * @param theme - The new event's phase
+	 */
+	void setPhase(int phase);
+
 
 	//=========================GET METHODS===============================
 	//====================================================================
@@ -150,6 +157,11 @@ public:
 	 * @brief Returns the Theme of the event
 	 */
 	std::string getTheme() const;
+
+	/**
+	 * @brief Returns the Phase of the event
+	 */
+	int getPhase() const;
 
 	/**
 	 * @brief Returns the value of the monetary support given by the association to the e event
@@ -181,6 +193,14 @@ public:
 	 */
 	std::string getName() const {return "";};
 
+	/**
+	 * @brief operator for both priority queues
+	 *
+	 * @param ev1 - Event to be compared
+	 *
+	 */
+	bool operator < (Event* ev1) const;
+
 
 protected:
 	std::vector<Associate *> event_request; ///< The Associates that gave the initial request
@@ -188,6 +208,7 @@ protected:
 	std::string date; ///< The event's date
 	std::string local; ///< The event's local
 	std::string theme; ///< The event's theme
+	int phase; ///< The event's phase
 	Association * association; ///< The connection to the Association
 
 };

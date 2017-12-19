@@ -31,12 +31,13 @@ public:
 	 * @param date - The date of the conference
 	 * @param local - The local of the conference
 	 * @param theme - The theme of the conference
+	 * @param phase - The phase of the conference
 	 * @param association - The Association that promotes the conference
 	 * @param estimative - The number of people estimated to go to the conference
 	 */
 	Conference(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
-			std::string local, std::string theme, Association * association,
+			std::string local, std::string theme, int phase, Association * association,
 			int estimative);
 
 
@@ -48,13 +49,14 @@ public:
 	 * @param date - The date of the conference
 	 * @param local - The local of the conference
 	 * @param theme - The theme of the conference
+	 * @param phase - The phase of the conference
 	 * @param association - The Association that promotes the conference
 	 * @param estimative - The number of people estimated to go to the conference
 	 * @param money - The amount the Association gives to promote de event
 	 */
 	Conference(std::vector<Associate *> event_request,
 				std::vector<Associate *> event_organizers, std::string date,
-				std::string local, std::string theme, Association * association,
+				std::string local, std::string theme, int phase, Association * association,
 				int estimative, long double money);
 
 	//=========================DESTRUCTORS================================

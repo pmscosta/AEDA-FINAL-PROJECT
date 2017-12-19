@@ -12,7 +12,7 @@
 
 using namespace std;
 
-//Constructos
+//Constructors
 
 SummerSchool::SummerSchool() {
 	// TODO Auto-generated constructor stub
@@ -21,8 +21,8 @@ SummerSchool::SummerSchool() {
 
 SummerSchool::SummerSchool(vector<Associate *> event_request,
 		vector<Associate *> event_organizers, string date, string local,
-		string theme, Association * association, list<Trainer *> trainers) :
-		Event(event_request, event_organizers, date, local, theme, association) {
+		string theme, int phase, Association * association, list<Trainer *> trainers) :
+		Event(event_request, event_organizers, date, local, theme, phase, association) {
 	this->trainers = trainers;
 
 	/*In the SummerSchool Event, the given support will also take in consideration
@@ -42,7 +42,7 @@ SummerSchool::SummerSchool(vector<Associate *> event_request,
 
 	if (ratio >= 2.0 / 3) //if two thirds or more of the organizers havent got their payments up to date, the association will not give payment
 
-		throw NoSupportGiven(counter, total);
+		throw InvalidRequest(counter, total);
 
 	else if (ratio >= 1.0 / 3) //will be given a monetary support of 10% the total association fund
 
@@ -72,9 +72,9 @@ SummerSchool::SummerSchool(vector<Associate *> event_request,
 
 SummerSchool::SummerSchool(std::vector<Associate *> event_request,
 		std::vector<Associate *> event_organizers, std::string date,
-		std::string local, std::string theme, Association * association,
+		std::string local, std::string theme, int phase, Association * association,
 		std::list<Trainer *> trainers, long double given_support) :
-		Event(event_request, event_organizers, date, local, theme, association), given_support(
+		Event(event_request, event_organizers, date, local, theme, phase, association), given_support(
 				given_support), trainers(trainers){
 }
 ;
@@ -110,6 +110,7 @@ string SummerSchool::showInfo() const {
 	info += string(this->theme) + "\n";
 	info += "\t Local: " + string(this->local);
 	info += "\n\t Data: " + string(this->date);
+	info += "\n\t Fase: " + to_string(this->phase);
 	info += "\n\t Criadores: ";
 
 	for (size_t t = 0; t < this->event_request.size(); t++)

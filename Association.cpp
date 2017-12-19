@@ -96,6 +96,17 @@ bool cmpTheme(Event * rhs, Event * lhs) {
 	return rhs->getTheme() < lhs->getTheme();
 }
 
+/* @brief Compares two (pointed by) events.
+ * Useful to call in the sort method, defined by the stl library.
+ * In this case, an event is smaller than the other if it's phase is smaller than the other.
+ *
+ *@param rhs - pointer to the right-hand side Event
+ *@param lhs - pointer to the left-hand side Event
+ */
+bool cmpPhase(Event * rhs, Event * lhs) {
+	return rhs->getPhase() < lhs->getPhase();
+}
+
 //=======================================================================================================
 
 int Association::currentYear = 0;
@@ -180,6 +191,14 @@ vector<Event *> Association::getEvents() const {
 
 HashTabInactiveAssociate Association::getInactiveAssociates() const {
 	return this->inactiveAssociates;
+
+}
+priority_queue<Event *> Association::getQueue1() const{
+	return this->queue1;
+}
+
+priority_queue<Event *> Association::getQueue2() const{
+	return this->queue2;
 }
 
 //Associate Type Functions
@@ -445,6 +464,9 @@ void Association::sortEvents(std::string type) {
 		sort(this->events.begin(), this->events.end(), cmpLocal);
 	else if (type == "date")
 		sort(this->events.begin(), this->events.end(), cmpDate);
-	else
+	else if (type == "theme")
 		sort(this->events.begin(), this->events.end(), cmpTheme);
+	else
+		sort(this->events.begin(), this->events.end(), cmpPhase);
 }
+

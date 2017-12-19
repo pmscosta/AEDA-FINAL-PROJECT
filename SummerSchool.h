@@ -74,12 +74,13 @@ public:
 	 * @param date - The date of the summerschool
 	 * @param local - The local of the summerschool
 	 * @param theme - The theme of the summerschool
+	 * @param phase - The phase of the summerschool
 	 * @param association - The Association that promotes the summerschool
 	 * @param trainers - A list of all the trainers that will lecture during the summerschool
 	 */
 	SummerSchool(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
-			std::string local, std::string theme, Association * association,
+			std::string local, std::string theme, int phase, Association * association,
 			std::list<Trainer *> trainers);
 
 
@@ -91,13 +92,14 @@ public:
 	 * @param date - The date of the summerschool
 	 * @param local - The local of the summerschool
 	 * @param theme - The theme of the summerschool
+	 * @param phase - The phase of the summerschool
 	 * @param association - The Association that promotes the summerschool
 	 * @param trainers - A list of all the trainers that will lecture during the summerschool
 	 * @param give_support - The amount the Association gives to promote de event
 	 */
 	SummerSchool(std::vector<Associate *> event_request,
 				std::vector<Associate *> event_organizers, std::string date,
-				std::string local, std::string theme, Association * association,
+				std::string local, std::string theme, int phase, Association * association,
 				std::list<Trainer *> trainers, long double given_support);
 
 	//=========================DESTRUCTORS================================

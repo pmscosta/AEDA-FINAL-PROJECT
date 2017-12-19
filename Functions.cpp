@@ -130,20 +130,19 @@ void lerficheiroAssociados() {
 }
 
 void lerficheiroEventos() {
+
 	ifstream file;
 	string line;
 	file.open("events.txt");
 	while (getline(file, line)) {
 
 		stringstream infoEvent(line);
-
 		string type_of_event;
-
 		getline(infoEvent, type_of_event, '/');
 
 		if (type_of_event == "SummerSchool") {
-
 			string type, date, local, theme;
+			int phase;
 
 			int requester, organizer;
 
@@ -157,7 +156,9 @@ void lerficheiroEventos() {
 			getline(infoEvent, local, '/');
 			getline(infoEvent, theme, '/');
 
-			infoEvent >> garbage;
+			infoEvent >> phase;
+			infoEvent >> garbage;		// '/'
+			infoEvent >> garbage;		// '['
 
 			vector<Associate *> event_request;
 
@@ -220,7 +221,7 @@ void lerficheiroEventos() {
 			infoEvent >> garbage;
 
 			SummerSchool * newSummer = new SummerSchool(event_request,
-					event_organizers, date, local, theme, Associacao, trainers,
+					event_organizers, date, local, theme, phase, Associacao, trainers,
 					money);
 			Associacao->addEvent(newSummer);
 
@@ -229,21 +230,22 @@ void lerficheiroEventos() {
 			string date, local, theme;
 			int requester, organizer;
 			long double money;
+			int phase;
 			char garbage;
 
 			int predicted_participants;
 
 			getline(infoEvent, date, '/');
-
 			getline(infoEvent, local, '/');
-
 			getline(infoEvent, theme, '/');
+
+			infoEvent >> phase;
+			infoEvent >> garbage;		// '/'
+			infoEvent >> garbage;		// '['
 
 			vector<Associate *> event_request;
 
 			vector<Associate *> event_organizers;
-
-			infoEvent >> garbage;
 
 			while (infoEvent.peek() != ']') {
 
@@ -260,7 +262,6 @@ void lerficheiroEventos() {
 				}
 				infoEvent >> garbage;
 			}
-
 			infoEvent >> garbage;		// ']'
 			infoEvent >> garbage;		// '/'
 			infoEvent >> garbage;		// '['
@@ -279,7 +280,6 @@ void lerficheiroEventos() {
 				}
 				infoEvent >> garbage;
 			}
-
 			infoEvent >> garbage;		// ']'
 			infoEvent >> garbage;		// '/'
 
@@ -288,13 +288,10 @@ void lerficheiroEventos() {
 			infoEvent >> garbage;		// '/'
 
 			infoEvent >> predicted_participants;
-
 			Conference * newConf = new Conference(event_request,
-					event_organizers, date, local, theme, Associacao,
+					event_organizers, date, local, theme, phase, Associacao,
 					predicted_participants, money);
-
 			Associacao->addEvent(newConf);
-
 		}
 
 	}
@@ -418,7 +415,8 @@ void guardarficheiroEventos() {
 			file << event_vector.at(i)->getType() << "/";
 			file << event_vector.at(i)->getDate() << "/";
 			file << event_vector.at(i)->getLocal() << "/";
-			file << event_vector.at(i)->getTheme() << "/[";
+			file << event_vector.at(i)->getTheme() << "/";
+			file << event_vector.at(i)->getPhase() << "/[";
 
 			vector<Associate *> requesters_vector =
 					event_vector.at(i)->getRequest();
@@ -432,7 +430,6 @@ void guardarficheiroEventos() {
 			}
 
 			file << "]/[";
-
 			vector<Associate *> organizers_vector =
 					event_vector.at(i)->getOrganizers();
 			for (size_t t = 0; t < organizers_vector.size(); t++) {
@@ -457,7 +454,8 @@ void guardarficheiroEventos() {
 			file << event_vector.at(i)->getType() << "/";
 			file << event_vector.at(i)->getDate() << "/";
 			file << event_vector.at(i)->getLocal() << "/";
-			file << event_vector.at(i)->getTheme() << "/[";
+			file << event_vector.at(i)->getTheme() << "/";
+			file << event_vector.at(i)->getPhase() << "/[";
 
 			vector<Associate *> requesters_vector =
 					event_vector.at(i)->getRequest();
@@ -978,8 +976,20 @@ void criarEvento() {
 	cin.clear();
 	cin.ignore(10000, '\n');
 
+	int phase;
+	cout << "Indique a fase do evento (1 ou 2): ";
+	cin >> phase;
+	if(phase < 1 || phase > 2){
+		cout << "\nNao existe essa opcao\n";
+		return;
+	}
+
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+
 	string type;
-	cout << "Indique o tipo de evento (Summer School ou Conference): ";
+	cout << "\nIndique o tipo de evento (Summer School ou Conference): ";
 	getline(cin, type);
 
 	bool typeevento; //true se for summer school e false se for conference
@@ -994,6 +1004,11 @@ void criarEvento() {
 
 	cout << "\nIntroduza o numero de Associados que querem criar o Evento: ";
 	cin >> numAsso;
+	if(numAsso < 3){
+		cout << "O numero de Associados que querem criar o evento deve ser superior a 3.";
+		return;
+	}
+
 
 	for (int i = 0; i < numAsso; i++) {
 		cout << "Introduza o Identificador Unico do " << i + 1
@@ -1067,14 +1082,21 @@ void criarEvento() {
 		SummerSchool * escola;
 		try {
 			escola = new SummerSchool(event_request, event_organizers, date,
-					local, theme, Associacao, trainers);
-		} catch (const NoSupportGiven & e) {
+					local, theme, phase, Associacao, trainers);
+		} catch (const InvalidRequest & e) {
 			cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
 					<< " tem pagamentos em atraso. Impossivel criar evento!\n\n";
 			sleep(1);
 			return;
 		}
-		Associacao->addEvent(escola);
+
+		if(phase == 1){
+			Associacao->getQueue1().push(escola);
+		}
+		else{
+			Associacao->getQueue2().push(escola);
+		}
+		cout << endl;
 	}
 
 	else {
@@ -1084,14 +1106,19 @@ void criarEvento() {
 		Conference * conferencia;
 		try {
 			conferencia = new Conference(event_request, event_organizers, date,
-					local, theme, Associacao, numEsperado);
-		} catch (const NoSupportGiven & e) {
+					local, theme, phase, Associacao, numEsperado);
+		} catch (const InvalidRequest & e) {
 			cout << "\nEm " << e.getTotal() << " associados, " << e.getLate()
 					<< " tem pagamentos em atraso. Impossivel criar evento!\n\n";
 			sleep(1);
 			return;
 		}
-		Associacao->addEvent(conferencia);
+
+		if (phase == 1) {
+			Associacao->getQueue1().push(conferencia);
+		} else {
+			Associacao->getQueue2().push(conferencia);
+		}
 		cout << endl;
 	}
 
@@ -1243,7 +1270,7 @@ void alterarEvento() {
 			}
 			SummerSchool * novo = new SummerSchool(alterar->getRequest(),
 					alterar->getOrganizers(), alterar->getDate(),
-					alterar->getLocal(), alterar->getTheme(), Associacao,
+					alterar->getLocal(), alterar->getTheme(), alterar->getPhase(), Associacao,
 					trainers);
 			Associacao->removeEvent(alterar->getDate());
 			Associacao->addEvent(novo);
@@ -1255,7 +1282,7 @@ void alterarEvento() {
 			cin >> numEsperado;
 			Conference * novo = new Conference(alterar->getRequest(),
 					alterar->getOrganizers(), alterar->getDate(),
-					alterar->getLocal(), alterar->getTheme(), Associacao,
+					alterar->getLocal(), alterar->getTheme(), alterar->getPhase(), Associacao,
 					numEsperado);
 			Associacao->removeEvent(alterar->getDate());
 			Associacao->addEvent(novo);
@@ -1279,14 +1306,15 @@ void verInfoEvento() {
 	cout << endl << endl;
 	cout << " Como deseja ver a informacao dos eventos?" << endl;
 	cout << " 1 - Procurar pela Data" << endl;
-	cout << " 2 - Mostrar todos" << endl;
-	cout << " 3 - Listagem parcial em funcao da data" << endl;
-	cout << " 4 - Listagem parcial em funcao do tipo de evento" << endl;
+	cout << " 2 - Procurar pela Fase" << endl;
+	cout << " 3 - Mostrar todos" << endl;
+	cout << " 4 - Listagem parcial em funcao da data" << endl;
+	cout << " 5 - Listagem parcial em funcao do tipo de evento" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 4) {
+	while (opcao < 1 || opcao > 5) {
 		if (cin >> opcao) {
 			switch (opcao) {
 			case 1: {
@@ -1323,13 +1351,41 @@ void verInfoEvento() {
 				break;
 			}
 			case 2: {
+				cin.clear();
+				cin.ignore(10000, '\n');
+
+				int phase;
+				cout << "Introduza a fase dos eventos (1 ou 2): ";
+				cin >> phase;
+				if(phase < 1 || phase > 2){
+					cout << "Nao introduziu uma fase possivel.\n";
+					return;
+				}
+
+				vector<Event *> eventos;
+				for (size_t i = 0; i < Associacao->getEvents().size(); i++) {
+					if (Associacao->getEvents().at(i)->getPhase() == phase)
+						eventos.push_back(Associacao->getEvents().at(i));
+				}
+				if (eventos.empty()) {
+					cout << "Nenhum evento cumpre os requisitos pedidos.\n";
+				}
+				else {
+					for (size_t i = 0; i < eventos.size(); i++) {
+						cout << endl;
+						cout << eventos.at(i)->showInfo();
+					}
+				}
+				break;
+			}
+			case 3: {
 				for (size_t i = 0; i < Associacao->getEvents().size(); i++) {
 					cout << endl;
 					cout << Associacao->getEvents().at(i)->showInfo();
 				}
 				break;
 			}
-			case 3: {
+			case 4: {
 				string inicial, final, ordem;
 				cin.clear();
 				cin.ignore(10000, '\n');
@@ -1404,7 +1460,7 @@ void verInfoEvento() {
 
 				break;
 			}
-			case 4: {
+			case 5: {
 				vector<Event *> eventos;
 				string tipo;
 				cin.clear();
@@ -1446,9 +1502,10 @@ void organizarEventos() {
 	cout << "--------------------------------------------- " << endl;
 	cout << endl << endl;
 	cout << "Qual o criterio para organizar os eventos: " << endl;
-	cout << "0 - Nome\n";
-	cout << "1 - Local\n";
-	cout << "2 - Tema\n";
+	cout << "0 - Local\n";
+	cout << "1 - Tema\n";
+	cout << "2 - Data\n";
+	cout << "3 - Fase\n";
 
 	int opcao;
 	cout << "\nIntroduza uma opcao: ";
@@ -1462,13 +1519,13 @@ void organizarEventos() {
 	string type;
 
 	if (opcao == 0)
-		type = "name";
-	else if (opcao == 1)
 		type = "local";
-	else if (opcao == 2)
+	else if (opcao == 1)
 		type = "theme";
-	else if (opcao == 3)
+	else if (opcao == 2)
 		type = "date";
+	else
+		type = "phase";
 
 	Associacao->sortEvents(type);
 

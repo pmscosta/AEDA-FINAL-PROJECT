@@ -12,6 +12,7 @@
 #include <set>
 #include <unordered_set>
 #include "Associate.h"
+#include <queue>
 
 class Associate;
 class Area;
@@ -81,6 +82,15 @@ bool cmpLocal(Event * rhs, Event * lhs);
  * @param lhs - Second theme
  */
 bool cmpTheme(Event * rhs, Event * lhs);
+
+/**
+ * @brief compares 2 phases
+ *
+ * @param rhs - First theme
+ * @param lhs - Second theme
+ */
+bool cmpPhase(Event * rhs, Event * lhs);
+
 
 //Exception Classes
 
@@ -347,6 +357,16 @@ public:
 	std::vector<Area *> getAreas() const;
 
 	/**
+	 * @brief Returns the priority queue containing pointers to all the proposed Events to phase 1
+	 */
+	std::priority_queue<Event *> getQueue1() const;
+
+	/**
+	 * @brief Returns the priority queue containing pointers to all the proposed Events to phase 2
+	 */
+	std::priority_queue<Event *> getQueue2() const;
+
+	/**
 	 * @brief Adds a new Area to the association
 	 *
 	 * @param newArea - Area pointer of the new Area to be added
@@ -391,7 +411,7 @@ public:
 	/**
 	 * @brief sorts all the events by their local, date and theme
 	 *
-	 * @param type - receives a string with all the information of the events
+	 * @param type - String with all the information of the events
 	 */
 	void sortEvents(std::string type);
 
@@ -402,6 +422,8 @@ private:
 	std::set<Associate *> associates_set;
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
 	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
+	std::priority_queue<Event *> queue1; ///< Priority queue of pointers to all the events done by the Associates in phase 1
+	std::priority_queue<Event *> queue2; ///< Priority queue of pointers to all the events done by the Associates in phase 2
 	static int currentYear; ///< The current year
 	HashTabInactiveAssociate inactiveAssociates; ///< Hash Table with the Associates who haven't payed for more than 5 years
 	Network * network; ///< A pointer to the association network
