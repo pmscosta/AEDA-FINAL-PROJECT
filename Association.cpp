@@ -3,7 +3,6 @@
  *
  */
 #include "Association.h"
-#include "Associate.h"
 #include "Area.h"
 #include "SubArea.h"
 #include "Event.h"
@@ -171,54 +170,82 @@ int Association::getCurrentYear() {
 	return Association::currentYear;
 }
 
-vector<Associate *> Association::getAssociates() const {
-	return associates;
+set<Associate *> Association::getAssociates() const {
+	return this->associates_set;
 }
 
 vector<Event *> Association::getEvents() const {
 	return this->events;
 }
 
+HashTabInactiveAssociate Association::getInactiveAssociates() const {
+	return this->inactiveAssociates;
+}
+
 //Associate Type Functions
 
 void Association::addAssociate(Associate * newAsso) {
-	this->associates.push_back(newAsso);
-	sort(this->associates.begin(), this->associates.end(), cmpID);
+
+	if ((currentYear - newAsso->getPaidYears().back()) >= 5)
+		inactiveAssociates.insert(newAsso);
+	else
+		this->associates_set.insert(newAsso);
 }
 
 void Association::removeAssociate(int uniqueID) {
 
-	//invoking a lambda function
-	auto it = find_if(this->associates.begin(), this->associates.end(),
-			[uniqueID](Associate * obj)
-			{	return obj->getUniqueID() == uniqueID;});
+	auto it_set =
+			find_if(this->associates_set.begin(), this->associates_set.end(),
+					[uniqueID](Associate * obj) {return obj->getUniqueID() == uniqueID;});
 
-	if (it != this->associates.end())
-		this->associates.erase(it);
-	else
-		throw NoSuchID(uniqueID);
+	if (it_set != this->associates_set.end()) {
+
+		this->associates_set.erase(it_set);
+
+	} else {
+
+		Associate * temp = new Associate(uniqueID);
+		auto it_un = this->inactiveAssociates.find(temp);
+
+		if (it_un != this->inactiveAssociates.end()) {
+			this->inactiveAssociates.erase(it_un);
+			delete (temp);
+		} else
+			throw NoSuchID(uniqueID);
+
+	}
 
 }
 
 void Association::updateAllAssociates() {
-	for (size_t t = 0; t < this->associates.size(); t++) {
 
-		this->associates.at(t)->updateStatus();
-
-	}
+	for (auto it = this->associates_set.begin();
+			it != this->associates_set.end(); it++)
+		(*it)->updateStatus();
 }
 
 Associate * Association::getAssoById(int uniqueID) {
 
-	//invoking a lambda function
-	auto it = find_if(this->associates.begin(), this->associates.end(),
-			[uniqueID](Associate * obj)
-			{	return obj->getUniqueID() == uniqueID;});
+	auto it_set =
+			find_if(this->associates_set.begin(), this->associates_set.end(),
+					[uniqueID](Associate * obj) {return obj->getUniqueID() == uniqueID;});
 
-	if (it != this->associates.end())
-		return (*it);
-	else
-		throw NoSuchID(uniqueID);
+	if (it_set != this->associates_set.end()) {
+
+		return (*it_set);
+
+	} else {
+
+		Associate * temp = new Associate(uniqueID);
+		auto it_un = this->inactiveAssociates.find(temp);
+
+		if (it_un != this->inactiveAssociates.end()) {
+			delete (temp);
+			return (*it_un);
+		} else
+			throw NoSuchID(uniqueID);
+
+	}
 
 }
 
@@ -236,12 +263,11 @@ string Association::updatePayment() {
 
 	string log = "";
 
-	for (size_t t = 0; t < this->associates.size(); t++) {
+	for (auto it = this->associates_set.begin();
+			it != this->associates_set.end(); it++) {
 
 		try {
-
-			this->associates.at(t)->payYear(Association::currentYear);
-
+			(*it)->payYear(Association::currentYear);
 		} catch (const NotEnoughMoney & e) {
 
 			log += "Nao foi possivel efetuar o pagamento do  Associado "
@@ -275,22 +301,35 @@ string Association::updatePayment() {
 string Association::showAllAssociates() {
 	string allInfo = "";
 
-	for (size_t t = 0; t < this->associates.size(); t++) {
-		allInfo += this->associates.at(t)->showInfo();
+	allInfo += "Contributors and Subscribers:\n";
+	for (auto it = this->associates_set.begin();
+			it != this->associates_set.end(); it++) {
+		allInfo += (*it)->showInfo();
+	}
+
+	allInfo += "\n Others:\n";
+
+	for (auto it = this->inactiveAssociates.begin();
+			it != this->inactiveAssociates.end(); it++) {
+		allInfo += (*it)->showInfo();
 	}
 
 	return allInfo;
 }
 
-void Association::sortAssociates(string type) {
+vector<Associate *> Association::sortAssociates(string type) {
+
+	vector<Associate*> toReturn(this->associates_set.begin(),
+			this->associates_set.end());
 
 	if (type == "name")
-		sort(this->associates.begin(), this->associates.end(),
-				cmpName<Associate>);
+		sort(toReturn.begin(), toReturn.end(), cmpName<Associate>);
 	else if (type == "id")
-		sort(this->associates.begin(), this->associates.end(), cmpID);
+		sort(toReturn.begin(), toReturn.end(), cmpID);
 	else if (type == "money")
-		sort(this->associates.begin(), this->associates.end(), cmpMoney);
+		sort(toReturn.begin(), toReturn.end(), cmpMoney);
+
+	return toReturn;
 }
 
 //Area Type Functions
