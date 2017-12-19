@@ -1543,7 +1543,7 @@ void pagarTodasCotas() {
 	if (info.empty())
 		cout << "Todos os pagamentos efetuados com sucesso.\n";
 	else
-		cout << info;
+		cout << endl <<  info;
 
 	return;
 
