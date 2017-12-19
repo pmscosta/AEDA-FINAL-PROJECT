@@ -831,17 +831,14 @@ void verInfoAssociado() {
 
 			}
 
-//			for (auto it = Associacao->getInactiveAssociates().begin();
-//					it != Associacao->getInactiveAssociates().end(); it++) {
-//
-//				int id = (*it)->getUniqueID();
-//
-//				cout << "veio aqui " << to_string(id) << endl;
-//
-//				if ((id <= maximo) && (id >= minimo))
-//					associados.push_back((*it));
-//
-//			}
+			for (Associate * elem : Associacao->getAssociates()) {
+
+				int id = elem->getUniqueID();
+
+				if ((id <= maximo) && (id >= minimo))
+					associados.push_back(elem);
+
+			}
 
 			for (Associate * elem : Associacao->getInactiveAssociates()) {
 
