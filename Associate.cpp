@@ -18,8 +18,7 @@ Associate::Associate() :
 		uniqueID(++id_provider) {
 }
 
-
-Associate::Associate(int uniqueID){
+Associate::Associate(int uniqueID) {
 	this->uniqueID = uniqueID;
 }
 
@@ -247,12 +246,30 @@ void Associate::updateStatus() {
 
 	int lastYearPaid = this->paidYears.back();
 
+	string statustemp = this->status;
+
 	if (lastYearPaid >= Association::getCurrentYear() - 1) //if the last year he paid is the current last year or if he paid ahead
 		this->status = "contributor";
 	else if (lastYearPaid > (Association::getCurrentYear() - 5))
 		this->status = "subscriber";
 	else
 		this->status = "normal";
+
+	if(statustemp == "normal"){
+			if((this->status == "subscriber") || (this->status == "contributor")){
+				Associate * temp = this;
+				this->association->removeAssociate(this->uniqueID);
+				this->association->addAssociate(temp);
+			}
+		}
+		else if((statustemp == "subscriber") || (statustemp == "contributor")){
+			if(this->status == "normal"){
+				Associate * temp = this;
+				this->association->removeAssociate(this->uniqueID);
+				this->association->addAssociate(temp);
+			}
+		}
+
 }
 
 void Associate::incDivulgations() {
