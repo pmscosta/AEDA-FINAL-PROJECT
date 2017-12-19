@@ -268,6 +268,44 @@ string Association::updatePayment() {
 
 		try {
 			(*it)->payYear(Association::currentYear);
+			log += "Pagamento do Associado " + (*it)->getName() + " com o ID "
+					+ to_string((*it)->getUniqueID())
+					+ " efetuado com sucesso!\n";
+		} catch (const NotEnoughMoney & e) {
+
+			log += "Nao foi possivel efetuar o pagamento do  Associado "
+					+ getAssoById(e.getID())->getName() + " com o ID "
+					+ to_string(e.getID())
+					+ " pois nao tem dinheiro suficiente.\n";
+
+		} catch (const NotUpToDate & e) {
+
+			log += "Nao foi possivel efetuar o pagamento do Associado "
+					+ getAssoById(e.getID())->getName() + " com o ID "
+					+ to_string(e.getID())
+					+ " pois tentou efetuar o pagamento do ano "
+					+ to_string(e.getYear()) + " quando o ultimo pago foi "
+					+ to_string(e.getLast()) + ".\n";
+
+		} catch (const AlreadyPaid & e) {
+
+			log +=
+					"Nao foi possivel efetuar o pagamento do Associado "
+							+ getAssoById(e.getID())->getName() + " com o ID "
+							+ to_string(e.getID())
+							+ " pois tentou efetuar o pagamento de um ano ja pago previamente.\n";
+
+		}
+
+	}
+
+	for (Associate * elem : this->inactiveAssociates) {
+
+		try {
+			elem->payYear(Association::currentYear);
+			log += "Pagamento do Associado " + elem->getName() + " com o ID "
+					+ to_string(elem->getUniqueID())
+					+ " efetuado com sucesso!\n";
 		} catch (const NotEnoughMoney & e) {
 
 			log += "Nao foi possivel efetuar o pagamento do  Associado "

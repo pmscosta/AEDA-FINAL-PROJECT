@@ -823,14 +823,6 @@ void verInfoAssociado() {
 
 			vector<Associate *> associados;
 
-			for (auto it = Associacao->getAssociates().begin();
-					it != Associacao->getAssociates().end(); it++) {
-				int id = (*it)->getUniqueID();
-				if ((id <= maximo) && (id >= minimo))
-					associados.push_back((*it));
-
-			}
-
 			for (Associate * elem : Associacao->getAssociates()) {
 
 				int id = elem->getUniqueID();
@@ -889,11 +881,21 @@ void verInfoAssociado() {
 
 			vector<Associate *> associados;
 
-			for (auto it = Associacao->getAssociates().begin();
-					it != Associacao->getAssociates().end(); it++) {
-				float wallet = (*it)->getPersonalWallet();
+			for (Associate * elem : Associacao->getAssociates()) {
+
+				float wallet = elem->getPersonalWallet();
+
 				if ((wallet <= maximo) && (wallet >= minimo))
-					associados.push_back((*it));
+					associados.push_back(elem);
+
+			}
+
+			for (Associate * elem : Associacao->getInactiveAssociates()) {
+
+				float wallet = elem->getPersonalWallet();
+
+				if ((wallet <= maximo) && (wallet >= minimo))
+					associados.push_back(elem);
 
 			}
 
