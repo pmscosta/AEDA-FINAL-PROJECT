@@ -373,6 +373,13 @@ public:
 	std::priority_queue<Event *> getQueue2() const;
 
 	/**
+	 * @brief Pushes an Event to the right queue according with the phase
+	 *
+	 * @param evento - The Event to be pushed
+	 */
+	void pushToQueue(Event * evento);
+
+	/**
 	 * @brief Adds a new Area to the association
 	 *
 	 * @param newArea - Area pointer of the new Area to be added
@@ -396,6 +403,12 @@ public:
 	void addEvent(Event * newEvent);
 
 	/**
+	 * @brief Checks if the events that were proposed are accepted or not by the Association
+	 *
+	 */
+	void acceptEvents();
+
+	/**
 	 * @brief Returns all the events
 	 */
 	std::string showEvents() const;
@@ -404,8 +417,9 @@ public:
 	 * @brief Removes an event in the vector containing all the events
 	 *
 	 * @param date - The date of the event to be removed
+	 * @param phase - The phase of the event to be removed
 	 */
-	void removeEvent(std::string date);
+	void removeEvent(std::string date, int phase);
 
 	/**
 	 * @brief return the event of a certain date
@@ -413,6 +427,14 @@ public:
 	 * @param date - The date of the event to be found
 	 */
 	Event * getEventByDate(std::string date);
+
+	/**
+	 * @brief return the event of a certain date and phase
+	 *
+	 * @param date - The date of the event to be found
+	 * @param phase - The phase of the event to be found
+	 */
+	Event * getEventByDatePhase(std::string date, int phase);
 
 	/**
 	 * @brief sorts all the events by their local, date and theme

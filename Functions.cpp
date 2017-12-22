@@ -71,18 +71,20 @@ void ano() {
 	char opcao;
 	cout << "Ano atual: " << Associacao->getCurrentYear()
 			<< "\t Semestre Atual: " << fixed << setprecision(1) << Associacao->getCurrentSemester()
-			<< endl;
+			<< "\nFundo Atual: " << Associacao->getFund() << endl;
 	cout << "\nIncrementar um semestre? (S/N): ";
 	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
 		cin >> opcao;
 		switch (opcao) {
 		case 's':
+			Associacao->acceptEvents();
 			Associacao->updateSemester();
 
 			if (Associacao->getCurrentSemester() == 0)
 				Associacao->updateAllAssociates();
 			break;
 		case 'S':
+			Associacao->acceptEvents();
 			Associacao->updateSemester();
 			if (Associacao->getCurrentSemester() == 0)
 				Associacao->updateAllAssociates();
@@ -1052,8 +1054,7 @@ void criarEvento() {
 	cout << "\nIntroduza o numero de Associados que querem criar o Evento: ";
 	cin >> numAsso;
 	if (numAsso < 3) {
-		cout
-				<< "O numero de Associados que querem criar o evento deve ser superior a 3.";
+		cout << "O numero de Associados que querem criar o evento deve ser superior a 3.";
 		return;
 	}
 
@@ -1137,11 +1138,7 @@ void criarEvento() {
 			return;
 		}
 
-		if (phase == 1) {
-			Associacao->getQueue1().push(escola);
-		} else {
-			Associacao->getQueue2().push(escola);
-		}
+		Associacao->pushToQueue(escola);
 		cout << endl;
 	}
 
@@ -1160,15 +1157,11 @@ void criarEvento() {
 			return;
 		}
 
-		if (phase == 1) {
-			Associacao->getQueue1().push(conferencia);
-		} else {
-			Associacao->getQueue2().push(conferencia);
-		}
+		Associacao->pushToQueue(conferencia);
 		cout << endl;
 	}
 
-	cout << "\nEvento criado com sucesso!\n";
+	cout << "\nPedido de Evento criado com sucesso!\n";
 	sleep(1);
 }
 
@@ -1181,6 +1174,16 @@ void removerEvento() {
 
 	cin.clear();
 	cin.ignore(10000, '\n');
+	int fase;
+	cout << "Introduza a fase do evento a remover (1 ou 2): ";
+	cin >> fase;
+	if ((fase < 1) || (fase > 2)) {
+		cout << "Nao introduziu uma fase válida.\n";
+		return;
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
+
 	string data;
 	cout << "Introduza a data do evento a remover (dd-mm-a): ";
 	getline(cin, data);
@@ -1194,7 +1197,7 @@ void removerEvento() {
 	}
 
 	try {
-		Associacao->removeEvent(data);
+		Associacao->removeEvent(data, fase);
 	} catch (const NoSuchDate & e) {
 		cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
 		sleep(1);
@@ -1214,6 +1217,16 @@ void alterarEvento() {
 	cin.clear();
 	cin.ignore(10000, '\n');
 
+	int fase;
+	cout << "Introduza a fase do evento a remover (1 ou 2): ";
+	cin >> fase;
+	if ((fase < 1) || (fase > 2)) {
+		cout << "Nao introduziu uma fase válida.\n";
+		return;
+	}
+	cin.clear();
+	cin.ignore(10000, '\n');
+
 	string data;
 	cout << "Introduza a data do evento a alterar (dd-mm-a): ";
 	getline(cin, data);
@@ -1229,7 +1242,7 @@ void alterarEvento() {
 
 	Event * alterar;
 	try {
-		alterar = Associacao->getEventByDate(data);
+		alterar = Associacao->getEventByDatePhase(data, fase);
 	} catch (const NoSuchDate & e) {
 		cout << "\nNao existe nenhum evento com a data " << e.getDate() << endl;
 		sleep(1);
@@ -1318,7 +1331,7 @@ void alterarEvento() {
 					alterar->getOrganizers(), alterar->getDate(),
 					alterar->getLocal(), alterar->getTheme(),
 					alterar->getPhase(), Associacao, trainers);
-			Associacao->removeEvent(alterar->getDate());
+			Associacao->removeEvent(alterar->getDate(), alterar->getPhase());
 			Associacao->addEvent(novo);
 			cout << "\nFormadores alterados com sucesso!\n";
 			break;
@@ -1330,7 +1343,7 @@ void alterarEvento() {
 					alterar->getOrganizers(), alterar->getDate(),
 					alterar->getLocal(), alterar->getTheme(),
 					alterar->getPhase(), Associacao, numEsperado);
-			Associacao->removeEvent(alterar->getDate());
+			Associacao->removeEvent(alterar->getDate(), alterar->getPhase());
 			Associacao->addEvent(novo);
 			cout
 					<< "\nNumero esperado de Participantes alterado com sucesso!\n";
