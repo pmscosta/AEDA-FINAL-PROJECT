@@ -1,10 +1,3 @@
-/*
- * Conference.cpp
- *
- *  Created on: Nov 14, 2017
- *      Author: jubas
- */
-
 #include "Conference.h"
 #include "Association.h"
 #include "Associate.h"
@@ -17,33 +10,34 @@ Conference::Conference() {
 Conference::Conference(vector<Associate *> event_request,
 		vector<Associate *> event_organizers, string date, string local,
 		string theme, int phase, Association * association, int estimative) :
-		Event(event_request, event_organizers, date, local, theme, phase, association) {
+		Event(event_request, event_organizers, date, local, theme, phase,
+				association) {
 	this->estimative = estimative;
 	//The given support, in the conference type event, will not take in consideration more people than the organizers
 	int counter = 0;
 	int total = event_organizers.size();
 	for (size_t t = 0; t < event_organizers.size(); t++) {
-		if (event_organizers.at(t)->getStatus() == "normal") //the associate hasn't paid his payments in the last 5 years
+		if ((event_organizers.at(t)->getStatus() == "normal")
+				|| (event_organizers.at(t)->getStatus() == "subscriber"))
 			counter++;
 	}
 
+	int total_support = 0;
 	float ratio = counter / (total * 1.0);
 	if (ratio >= 2.0 / 3) //if two thirds or more of the organizers havent got their payments up to date, the association will not give payment
 		throw InvalidRequest(counter, total);
 	else if (ratio >= 1.0 / 3) //will be given a monetary support of 10% the total association fund
-		this->given_support = 0.10 * association->getFund();
+		this->given_support = 1000 + event_request.size() * 200;
 	else if (ratio < 1.0 / 3 && ratio > 0)  //15 percent
-		this->given_support = 0.15 * association->getFund();
+		this->given_support = 2000 + event_request.size() * 200;
 	else
 		//if everyone has his payments up to date,
-		this->given_support = 0.20 * association->getFund();
+		this->given_support = 3500 + event_request.size() * 200;
 
 	//if an event is successfully created, each of its creators will receive a small income
 
-	for (size_t t = 0; t < event_request.size(); t++) {
-
-		event_request.at(t)->addToWallet(200);
-	}
+	if (this->association->getFund() < total_support)
+		throw InvalidRequest(counter, total);
 
 }
 
