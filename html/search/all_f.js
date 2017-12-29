@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['theme',['theme',['../classEvent.html#aa9cc4378d5cecaadc8e6de92b313e6f8',1,'Event']]],
-  ['title',['title',['../classMail.html#a2f54f71a529dec6345d84ae60562b207',1,'Mail']]],
-  ['total',['total',['../classNoSupportGiven.html#ab70919acf20a32d05a2b6b4d8753dcb5',1,'NoSupportGiven']]],
-  ['trainer',['Trainer',['../classTrainer.html',1,'Trainer'],['../classTrainer.html#ae033382eaedd47966c8667439376369a',1,'Trainer::Trainer()']]],
-  ['trainers',['trainers',['../classSummerSchool.html#a3208a977c13ce8d7415b179a040efae3',1,'SummerSchool']]],
-  ['triedyear',['triedYear',['../classNotUpToDate.html#a5e44159542e23d8ad12aba8768bd3350',1,'NotUpToDate']]],
-  ['type',['type',['../classConference.html#af456d5097dc28808360f0d0fba2160c6',1,'Conference::type()'],['../classSummerSchool.html#a4bce94c462b492844cacce921427d212',1,'SummerSchool::type()']]]
+  ['rede',['Rede',['../Functions_8cpp.html#a4b3c121b06e5f95bcf915cd09812b1b2',1,'Functions.cpp']]],
+  ['regressar',['regressar',['../menu_8cpp.html#a598ae7dd4fcee49bf42c6ad53ebe8a50',1,'regressar():&#160;menu.cpp'],['../menu_8h.html#a598ae7dd4fcee49bf42c6ad53ebe8a50',1,'regressar():&#160;menu.cpp']]],
+  ['removeassociate',['removeAssociate',['../classAssociation.html#ab0f1b461051c5a7844e6ce490b7caea1',1,'Association']]],
+  ['removeevent',['removeEvent',['../classAssociation.html#a672445f247a9bab36b87e770f4b0f512',1,'Association']]],
+  ['removerassociado',['removerAssociado',['../Functions_8cpp.html#aaba149a36548e3c78e5e71487a7bcc59',1,'removerAssociado():&#160;Functions.cpp'],['../Functions_8h.html#aaba149a36548e3c78e5e71487a7bcc59',1,'removerAssociado():&#160;Functions.cpp']]],
+  ['removerevento',['removerEvento',['../Functions_8cpp.html#a4e110450c59f583dc9543d3aec64df44',1,'removerEvento():&#160;Functions.cpp'],['../Functions_8h.html#a4e110450c59f583dc9543d3aec64df44',1,'removerEvento():&#160;Functions.cpp']]]
 ];

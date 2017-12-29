@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['subarea',['SubArea',['../classSubArea.html',1,'']]],
-  ['summerschool',['SummerSchool',['../classSummerSchool.html',1,'']]]
+  ['network',['Network',['../classNetwork.html',1,'']]],
+  ['nosuchdate',['NoSuchDate',['../classNoSuchDate.html',1,'']]],
+  ['nosuchid',['NoSuchID',['../classNoSuchID.html',1,'']]],
+  ['notenoughmoney',['NotEnoughMoney',['../classNotEnoughMoney.html',1,'']]],
+  ['notuptodate',['NotUpToDate',['../classNotUpToDate.html',1,'']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['acceptevents',['acceptEvents',['../classAssociation.html#a944406d8918729d1b9f0c7b5e34997d2',1,'Association']]],
   ['accessnetwork',['accessNetwork',['../classAssociate.html#a147bd9c2b6148974d8c36f7a8f5b632a',1,'Associate']]],
   ['addarea',['addArea',['../classAssociation.html#a33ebf26ce910d02ce8a702e4ff86551b',1,'Association']]],
   ['addassociate',['addAssociate',['../classAssociation.html#ac77af0215fb992c31d4a048a00f642b9',1,'Association']]],
@@ -15,6 +16,6 @@ var searchData=
   ['alterarevento',['alterarEvento',['../Functions_8cpp.html#a011558fc14db65ae6ef6ad0526a68f14',1,'alterarEvento():&#160;Functions.cpp'],['../Functions_8h.html#a011558fc14db65ae6ef6ad0526a68f14',1,'alterarEvento():&#160;Functions.cpp']]],
   ['ano',['ano',['../Functions_8cpp.html#acae7987316f4939a8d93fe831f97edd2',1,'ano():&#160;Functions.cpp'],['../Functions_8h.html#acae7987316f4939a8d93fe831f97edd2',1,'ano():&#160;Functions.cpp']]],
   ['area',['Area',['../classArea.html#aa92851fcffb0a9f1c6c8c283204f7003',1,'Area::Area()'],['../classArea.html#afd32499f2246ef8007fd135d7503da16',1,'Area::Area(std::string file_string)']]],
-  ['associate',['Associate',['../classAssociate.html#a624e687ad91b6311e7e493adab0a9adc',1,'Associate::Associate()'],['../classAssociate.html#ad27f76fd03a10e75d1b2660e60ba009f',1,'Associate::Associate(Association *asso, std::string name, std::string institution, std::vector&lt; Area *&gt; interests)'],['../classAssociate.html#a6265187f56438fd128bb56ad67bab04f',1,'Associate::Associate(Association *association, std::string file_string)']]],
+  ['associate',['Associate',['../classAssociate.html#a624e687ad91b6311e7e493adab0a9adc',1,'Associate::Associate()'],['../classAssociate.html#abe5c3e0d0f938dd44924e9d488aad870',1,'Associate::Associate(int uniqueID)'],['../classAssociate.html#ad27f76fd03a10e75d1b2660e60ba009f',1,'Associate::Associate(Association *asso, std::string name, std::string institution, std::vector&lt; Area *&gt; interests)'],['../classAssociate.html#acf0e7ad78370aef9d72896cd3385fd7c',1,'Associate::Associate(Association *asso, std::string name, std::string institution, std::vector&lt; Area *&gt; interests, float personalWallet, std::string status, std::vector&lt; int &gt; paidYears, int uniqueID, int divulgations)'],['../classAssociate.html#a6265187f56438fd128bb56ad67bab04f',1,'Associate::Associate(Association *association, std::string file_string)']]],
   ['association',['Association',['../classAssociation.html#abf287524f5ab9abf66059e5fa959340b',1,'Association::Association()'],['../classAssociation.html#a0773254cf0a1377e144a39b36c99d74d',1,'Association::Association(std::string name)'],['../classAssociation.html#aaf75146fc564138ae2ae2430eb7926a2',1,'Association::Association(std::string file, Network *rede)']]]
 ];

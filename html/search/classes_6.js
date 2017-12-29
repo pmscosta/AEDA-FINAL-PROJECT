@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['trainer',['Trainer',['../classTrainer.html',1,'']]]
+  ['subarea',['SubArea',['../classSubArea.html',1,'']]],
+  ['summerschool',['SummerSchool',['../classSummerSchool.html',1,'']]]
 ];
