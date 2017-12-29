@@ -264,6 +264,8 @@ void Association::updateAllAssociates() {
 
 	for (Associate * elem : this->inactiveAssociates)
 		elem->updateStatus();
+
+	moveAssociates();
 }
 
 Associate * Association::getAssoById(int uniqueID) {
@@ -290,7 +292,6 @@ Associate * Association::getAssoById(int uniqueID) {
 	}
 
 }
-
 
 //Association Type Functions
 
@@ -379,6 +380,7 @@ string Association::updatePayment() {
 
 	}
 
+	moveAssociates();
 
 	return log;
 }
@@ -415,6 +417,47 @@ vector<Associate *> Association::sortAssociates(string type) {
 		sort(toReturn.begin(), toReturn.end(), cmpMoney);
 
 	return toReturn;
+}
+
+void Association::moveAssociates() {
+
+	Associate * keep_it = new Associate();
+
+	for (auto it = this->associates_set.begin();
+			it != this->associates_set.end();) {
+
+		if ((*it)->getStatus() == "normal") {
+
+			(*keep_it) = (**it);
+
+			it = this->associates_set.erase(it);
+
+			this->inactiveAssociates.insert(keep_it);
+
+		} else
+
+			it++;
+
+	}
+
+	for (auto it = this->inactiveAssociates.begin();
+			it != this->inactiveAssociates.end();) {
+
+		if ((*it)->getStatus() == "contributor"
+				|| (*it)->getStatus() == "subscriber") {
+
+			(*keep_it) = (**it);
+
+			it = this->inactiveAssociates.erase(it);
+
+			this->associates_set.insert(keep_it);
+
+		} else
+
+			it++;
+
+	}
+
 }
 
 //Area Type Functions
