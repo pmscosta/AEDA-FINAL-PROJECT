@@ -747,7 +747,7 @@ void alterarAssociado() {
 		break;
 	}
 	case 1: {
-		cout << "Qual a nova area de interesse do associado? ";
+		cout << "Qual a nova Instituicao do associado? ";
 		string institution;
 		getline(cin, institution);
 		alterar->setInstitution(institution);
@@ -1405,9 +1405,9 @@ void verInfoEvento() {
 					return;
 				}
 
-				Event * evento;
+				vector<Event *> eventos;
 				try {
-					evento = Associacao->getEventByDate(data);
+					eventos = Associacao->getEventByDate(data);
 				} catch (const NoSuchDate & e) {
 					cout << "\nNao existe nenhum evento com a data "
 							<< e.getDate() << endl;
@@ -1416,7 +1416,9 @@ void verInfoEvento() {
 				}
 
 				cout << endl;
-				cout << evento->showInfo();
+				for(size_t i = 0; i < eventos.size(); i++){
+					cout << eventos.at(i)->showInfo();
+				}
 
 				cout << endl << endl;
 				break;
