@@ -25,11 +25,11 @@ void \mbox{\hyperlink{classAssociation_a8bd23fd6c727963237bf85a6374ab6d8}{set\+N
 void \mbox{\hyperlink{classAssociation_acbeba5c80457ba1c307c212bcad08b82}{set\+Fund}} (long double \mbox{\hyperlink{classAssociation_a891f18ca3dbbbdfa2e8fab54b1683133}{fund}})
 \begin{DoxyCompactList}\small\item\em Sets/\+Changes the main\+Fund of the association. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classAssociation_a4279bd391a3110e4110d3f300b3423a3}{set\+Annual\+Pay}} (float \mbox{\hyperlink{classAssociation_a19f8a7aad1491bc14f558b0b852da0a4}{annual\+Pay}})
-\item 
+\begin{DoxyCompactList}\small\item\em Sets/\+Changes the annual pay for every associate. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classAssociation_a5611bc364e24e70f110332d1b2c63a08}{set\+Events}} (std\+::vector$<$ \mbox{\hyperlink{classEvent}{Event}} $\ast$$>$ all\+\_\+events)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets/\+Changes the vector containing the pointers to the events. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classAssociation_afa9bdcebf905cddc52870dd156a14d54}{set\+Net\+Work}} (\mbox{\hyperlink{classNetwork}{Network}} $\ast$\mbox{\hyperlink{classAssociation_a6747cedd4ce14a3b890c8ac87f676192}{network}})
-\item 
+\begin{DoxyCompactList}\small\item\em Sets/\+Changes the network of the association. \end{DoxyCompactList}\item 
 std\+::string \mbox{\hyperlink{classAssociation_ab9b849706f996d80ed3439d43d06a958}{get\+Name}} () const
 \begin{DoxyCompactList}\small\item\em Returns the name of the association. \end{DoxyCompactList}\item 
 long double \mbox{\hyperlink{classAssociation_a4834d8fe0057ca4c55fa3e83bc47aae5}{get\+Fund}} () const
@@ -296,7 +296,7 @@ Throws an exception, \mbox{\hyperlink{classNoSuchID}{No\+Such\+ID}}, if no \mbox
 
 
 \begin{DoxyParams}{Parameters}
-{\em ID} & -\/ an integer representing the unique\+ID of each \mbox{\hyperlink{classAssociate}{Associate}} \\
+{\em unique\+ID} & -\/ an integer representing the unique\+ID of each \mbox{\hyperlink{classAssociate}{Associate}} \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classAssociation_a7ef9441d3b0a176012f393453344fdf1}\label{classAssociation_a7ef9441d3b0a176012f393453344fdf1}} 
@@ -486,7 +486,9 @@ Removes an event in the vector containing all the events.
 \subsubsection{\texorpdfstring{set\+Annual\+Pay()}{setAnnualPay()}}
 {\footnotesize\ttfamily void Association\+::set\+Annual\+Pay (\begin{DoxyParamCaption}\item[{float}]{annual\+Pay }\end{DoxyParamCaption})}
 
-Sets/\+Changes the annual pay for every associate
+
+
+Sets/\+Changes the annual pay for every associate. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -499,7 +501,9 @@ Sets/\+Changes the annual pay for every associate
 \subsubsection{\texorpdfstring{set\+Events()}{setEvents()}}
 {\footnotesize\ttfamily void Association\+::set\+Events (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classEvent}{Event}} $\ast$$>$}]{all\+\_\+events }\end{DoxyParamCaption})}
 
-Sets/\+Changes the vector containing the pointers to the events
+
+
+Sets/\+Changes the vector containing the pointers to the events. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -542,7 +546,9 @@ Sets/\+Changes the name of the association.
 \subsubsection{\texorpdfstring{set\+Net\+Work()}{setNetWork()}}
 {\footnotesize\ttfamily void Association\+::set\+Net\+Work (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classNetwork}{Network}} $\ast$}]{network }\end{DoxyParamCaption})}
 
-Sets/\+Changes the network of the association
+
+
+Sets/\+Changes the network of the association. 
 
 
 \begin{DoxyParams}{Parameters}

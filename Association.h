@@ -219,21 +219,21 @@ public:
 	void setFund(long double fund);
 
 	/**
-	 * @briefs Sets/Changes the annual pay for every associate
+	 * @brief Sets/Changes the annual pay for every associate
 	 *
 	 * @param annualPay - The new Association's annual pay
 	 */
 	void setAnnualPay(float annualPay);
 
 	/**
-	 * @briefs Sets/Changes the vector containing the pointers to the events
+	 * @brief Sets/Changes the vector containing the pointers to the events
 	 *
 	 * @param all_events - The new vector with all the Association's events
 	 */
 	void setEvents(std::vector<Event *> all_events);
 
 	/**
-	 * @briefs Sets/Changes the network of the association
+	 * @brief Sets/Changes the network of the association
 	 *
 	 * @param network - The new Association's network
 	 */
@@ -317,7 +317,7 @@ public:
 	 *
 	 * Throws an exception, NoSuchID, if no Associate has that ID
 	 *
-	 * @param ID - an integer representing the uniqueID of each Associate
+	 * @param uniqueID - an integer representing the uniqueID of each Associate
 	 */
 	Associate * getAssoById(int uniqueID);
 
