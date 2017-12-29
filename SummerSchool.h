@@ -16,7 +16,7 @@ class Associate;
 /*!
  * Trainers are the people who lecture during the summerschools
  */
-class Trainer{
+class Trainer {
 public:
 	/**
 	 * @brief Full Trainer Constructor
@@ -24,7 +24,10 @@ public:
 	 * @param name - The name of the trainer
 	 * @param institution - The institution of the trainer
 	 */
-	Trainer(std::string name, std::string institution) : name(name), institution(institution){};
+	Trainer(std::string name, std::string institution) :
+			name(name), institution(institution) {
+	}
+	;
 
 	/**
 	 * @brief Default Trainer Destructor
@@ -44,13 +47,15 @@ public:
 	 * @brief Returns the institution of the trainer
 	 *
 	 */
-	std::string getInstitution() const {return this->institution;};
+	std::string getInstitution() const {
+		return this->institution;
+	}
+	;
 
 private:
 	std::string name; ///< The name of the trainer
 	std::string institution; ///< The institution of the trainer
 };
-
 
 //!  The SummerSchool Class - Derived Class from the Super Event Class
 /*!
@@ -80,9 +85,8 @@ public:
 	 */
 	SummerSchool(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
-			std::string local, std::string theme, int phase, Association * association,
-			std::list<Trainer *> trainers);
-
+			std::string local, std::string theme, int phase,
+			Association * association, std::list<Trainer *> trainers);
 
 	/**
 	 * @brief Full SummerSchool Constructor
@@ -98,9 +102,10 @@ public:
 	 * @param give_support - The amount the Association gives to promote de event
 	 */
 	SummerSchool(std::vector<Associate *> event_request,
-				std::vector<Associate *> event_organizers, std::string date,
-				std::string local, std::string theme, int phase, Association * association,
-				std::list<Trainer *> trainers, long double given_support);
+			std::vector<Associate *> event_organizers, std::string date,
+			std::string local, std::string theme, int phase,
+			Association * association, std::list<Trainer *> trainers,
+			long double given_support);
 
 	//=========================DESTRUCTORS================================
 
@@ -110,8 +115,6 @@ public:
 	 * @brief Default SummerSchool Destructor
 	 */
 	virtual ~SummerSchool();
-
-
 
 	//=========================GET METHODS================================
 
@@ -140,22 +143,19 @@ public:
 	 */
 	int getEstimative() const;
 
-
-
-
 	//=========================GENERAL METHODS============================
 
 	//====================================================================
 
 	/**
-		 * @brief Returns (in a string) all the information about a summerSchool
-		 *
-		 */
+	 * @brief Returns (in a string) all the information about a summerSchool
+	 *
+	 */
 	std::string showInfo() const;
 
 private:
 	std::string type = "SummerSchool";///< The type of the Event (SummerSchool)
-	std::list<Trainer *> trainers;///< All trainers in the SummerSchool
+	std::list<Trainer *> trainers;	///< All trainers in the SummerSchool
 	long double given_support; ///< The value of the monetary support given by the association
 };
 
