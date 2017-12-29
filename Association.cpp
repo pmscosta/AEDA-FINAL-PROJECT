@@ -136,8 +136,6 @@ Association::Association(string file, Network * rede) {
 	input >> annualPay;
 	input >> garbage;
 
-
-
 	input >> year;
 	Association::currentYear = year;
 
@@ -188,7 +186,7 @@ int Association::getCurrentYear() {
 	return Association::currentYear / 1;
 }
 
-float Association::getCurrentSemester(){
+float Association::getCurrentSemester() {
 	return fmod(Association::currentYear, 1);
 }
 
@@ -205,17 +203,17 @@ HashTabInactiveAssociate Association::getInactiveAssociates() const {
 
 }
 
-priority_queue<Event *> Association::getQueue1() const{
+priority_queue<Event *> Association::getQueue1() const {
 	return this->queue1;
 }
 
-priority_queue<Event *> Association::getQueue2() const{
+priority_queue<Event *> Association::getQueue2() const {
 	return this->queue2;
 }
 
-void Association::pushToQueue(Event * evento){
+void Association::pushToQueue(Event * evento) {
 
-	if(evento->getPhase() == 1)
+	if (evento->getPhase() == 1)
 		this->queue1.push(evento);
 	else
 		this->queue2.push(evento);
@@ -251,18 +249,20 @@ void Association::removeAssociate(int uniqueID) {
 		if (it_un != this->inactiveAssociates.end()) {
 			this->inactiveAssociates.erase(it_un);
 			delete (temp);
-		} else
+		} else {
+			delete (temp);
 			throw NoSuchID(uniqueID);
+		}
 
 	}
 
 }
 
 void Association::updateAllAssociates() {
-	for(Associate * elem : this->associates_set)
+	for (Associate * elem : this->associates_set)
 		elem->updateStatus();
 
-	for(Associate * elem : this->inactiveAssociates)
+	for (Associate * elem : this->inactiveAssociates)
 		elem->updateStatus();
 }
 
@@ -290,6 +290,7 @@ Associate * Association::getAssoById(int uniqueID) {
 	}
 
 }
+
 
 //Association Type Functions
 
@@ -377,6 +378,8 @@ string Association::updatePayment() {
 		}
 
 	}
+
+
 	return log;
 }
 
@@ -462,17 +465,20 @@ void Association::acceptEvents() {
 			if (eventCounter < maxEventsPerPhase) {	//did not create too many events
 				if ((supportCounter + first_queue.top()->getSupport())
 						< maxSupportPerPhase) {  //did not spend too much money
-					if (this->getFund() > first_queue.top()->getSupport()) {//did not spend money the association didn't have
+					if (this->getFund() > first_queue.top()->getSupport()) { //did not spend money the association didn't have
 
-						//if the function reaches here, this event will happen
+							//if the function reaches here, this event will happen
 						this->events.push_back(first_queue.top());
 						eventCounter++;
 						supportCounter += first_queue.top()->getSupport();
 
 						//if event is successful each requester receives 200
-						for (size_t i = 0; i < first_queue.top()->getRequest().size(); i++){
+						for (size_t i = 0;
+								i < first_queue.top()->getRequest().size();
+								i++) {
 
-							first_queue.top()->getRequest().at(i)->addToWallet(200);
+							first_queue.top()->getRequest().at(i)->addToWallet(
+									200);
 						}
 						this->fund -= first_queue.top()->getSupport();
 					}
@@ -488,7 +494,6 @@ void Association::acceptEvents() {
 
 		priority_queue<Event *> second_queue = this->getQueue2();
 
-
 		while (!second_queue.empty()) {
 
 			if (eventCounter < maxEventsPerPhase) {	//did not create too many events
@@ -496,15 +501,18 @@ void Association::acceptEvents() {
 						< maxSupportPerPhase) {  //did not spend too much money
 					if (this->getFund() > second_queue.top()->getSupport()) { //did not spend money the association didn't have
 
-						//if the function reaches here, this event will happen
+							//if the function reaches here, this event will happen
 						this->events.push_back(second_queue.top());
 						eventCounter++;
 						supportCounter += second_queue.top()->getSupport();
 
 						//if event is successful each requester receives 200
-						for(size_t i = 0; i < second_queue.top()->getRequest().size(); i++){
+						for (size_t i = 0;
+								i < second_queue.top()->getRequest().size();
+								i++) {
 
-							second_queue.top()->getRequest().at(i)->addToWallet(200);
+							second_queue.top()->getRequest().at(i)->addToWallet(
+									200);
 						}
 						this->fund -= second_queue.top()->getSupport();
 					}
@@ -528,6 +536,41 @@ string Association::showEvents() const {
 	return info;
 }
 
+string Association::showRequests() const {
+
+	string info = "";
+
+	priority_queue<Event *> queue_one = this->queue1;
+	priority_queue<Event *> queue_two = this->queue2;
+
+	info += "Pedidos de eventos da Primeira Fase:\n";
+
+	while (!queue_one.empty()) {
+
+		Event * evento = queue_one.top();
+
+		info += evento->showInfo() + '\n';
+
+		queue_one.pop();
+
+	}
+
+	info += "\nPedidos de eventos da Segunda Fase:\n";
+
+	while (!queue_two.empty()) {
+
+		Event * evento = queue_two.top();
+
+		info += evento->showInfo() + '\n';
+
+		queue_two.pop();
+
+	}
+
+	return info;
+
+}
+
 void Association::removeEvent(string date, int phase) {
 
 	priority_queue<Event *> temp;
@@ -541,21 +584,19 @@ void Association::removeEvent(string date, int phase) {
 
 			if (first_queue.top()->getDate() == date) {
 				found = true;
-			}
-			else
+			} else
 				temp.push(first_queue.top());
 
 			first_queue.pop();
 		}
 		this->queue1 = temp;
-	}
-	else{
+	} else {
 
 		priority_queue<Event *> second_queue = this->getQueue2();
 
-		while(!second_queue.empty()){
+		while (!second_queue.empty()) {
 
-			if(second_queue.top()->getDate() == date)
+			if (second_queue.top()->getDate() == date)
 				found = true;
 			else
 				temp.push(second_queue.top());
@@ -565,7 +606,7 @@ void Association::removeEvent(string date, int phase) {
 		this->queue2 = temp;
 	}
 
-	if(!found)
+	if (!found)
 		throw NoSuchDate(date);
 }
 
@@ -590,7 +631,6 @@ Event * Association::getEventByDate(string date) {
 	this->queue1 = temp;
 	if (found)
 		return retorno;
-
 
 	priority_queue<Event *> second_queue = this->getQueue2();
 
