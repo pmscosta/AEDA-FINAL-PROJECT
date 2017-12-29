@@ -2,7 +2,7 @@
 \label{classEvent}\index{Event@{Event}}
 
 
-The Super \hyperlink{classEvent}{Event} Class.  
+The Super \mbox{\hyperlink{classEvent}{Event}} Class.  
 
 
 
@@ -18,61 +18,69 @@ Inheritance diagram for Event\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classEvent_a5a40dd4708297f7031e29b39e039ae10}{Event} ()
+\mbox{\hyperlink{classEvent_a5a40dd4708297f7031e29b39e039ae10}{Event}} ()
 \begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
-\hyperlink{classEvent_af5dc5a200023c83243ab755e69eb4827}{Event} (std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$$>$ \hyperlink{classEvent_a6cec387dca85f0a0e8419cfc94eb320e}{event\+\_\+request}, std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$$>$ \hyperlink{classEvent_ad35e04c759fdbfad75aed0b6e2eef63c}{event\+\_\+organizers}, std\+::string \hyperlink{classEvent_a9a93c9d38211f84cd6e347690e177f11}{date}, std\+::string \hyperlink{classEvent_a3d1f28a3bde9ab718d5b0003f8ab5129}{local}, std\+::string \hyperlink{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}{theme}, \hyperlink{classAssociation}{Association} $\ast$\hyperlink{classEvent_a3c8694833e50dbd2e37943eff1f5c9b1}{association})
-\begin{DoxyCompactList}\small\item\em Full \hyperlink{classEvent}{Event} Constructor The given support by the association will be any value between 5-\/15\% of the association main fund. \end{DoxyCompactList}\item 
-virtual \hyperlink{classEvent_a7704ec01ce91e673885792054214b3d2}{$\sim$\+Event} ()
-\begin{DoxyCompactList}\small\item\em Default \hyperlink{classEvent}{Event} Destructor. \end{DoxyCompactList}\item 
-void \hyperlink{classEvent_a21f01e4574335753b415d3445f1ebdff}{set\+Date} (std\+::string \hyperlink{classEvent_a9a93c9d38211f84cd6e347690e177f11}{date})
+\mbox{\hyperlink{classEvent_a2fb2bff37e364023fe54d0f86e49e696}{Event}} (std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$$>$ \mbox{\hyperlink{classEvent_a6cec387dca85f0a0e8419cfc94eb320e}{event\+\_\+request}}, std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$$>$ \mbox{\hyperlink{classEvent_ad35e04c759fdbfad75aed0b6e2eef63c}{event\+\_\+organizers}}, std\+::string \mbox{\hyperlink{classEvent_a9a93c9d38211f84cd6e347690e177f11}{date}}, std\+::string \mbox{\hyperlink{classEvent_a3d1f28a3bde9ab718d5b0003f8ab5129}{local}}, std\+::string \mbox{\hyperlink{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}{theme}}, int \mbox{\hyperlink{classEvent_a4059db56458a92ddb5bd1d1443631b02}{phase}}, \mbox{\hyperlink{classAssociation}{Association}} $\ast$\mbox{\hyperlink{classEvent_a3c8694833e50dbd2e37943eff1f5c9b1}{association}})
+\begin{DoxyCompactList}\small\item\em Full \mbox{\hyperlink{classEvent}{Event}} Constructor The given support by the association will be any value between 5-\/15\% of the association main fund. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classEvent_a7704ec01ce91e673885792054214b3d2}{$\sim$\+Event}} ()
+\begin{DoxyCompactList}\small\item\em Default \mbox{\hyperlink{classEvent}{Event}} Destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classEvent_a21f01e4574335753b415d3445f1ebdff}{set\+Date}} (std\+::string \mbox{\hyperlink{classEvent_a9a93c9d38211f84cd6e347690e177f11}{date}})
 \begin{DoxyCompactList}\small\item\em Sets/\+Changes the event\textquotesingle{}s date. \end{DoxyCompactList}\item 
-void \hyperlink{classEvent_ab4e1fd7cd5e56f58d3cd36a69e475054}{set\+Local} (std\+::string \hyperlink{classEvent_a3d1f28a3bde9ab718d5b0003f8ab5129}{local})
+void \mbox{\hyperlink{classEvent_ab4e1fd7cd5e56f58d3cd36a69e475054}{set\+Local}} (std\+::string \mbox{\hyperlink{classEvent_a3d1f28a3bde9ab718d5b0003f8ab5129}{local}})
 \begin{DoxyCompactList}\small\item\em Sets/\+Changes the event\textquotesingle{}s local. \end{DoxyCompactList}\item 
-void \hyperlink{classEvent_abdd2c869f0231002c2a16813923586fb}{set\+Theme} (std\+::string \hyperlink{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}{theme})
+void \mbox{\hyperlink{classEvent_abdd2c869f0231002c2a16813923586fb}{set\+Theme}} (std\+::string \mbox{\hyperlink{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}{theme}})
 \begin{DoxyCompactList}\small\item\em Sets/\+Changes the event\textquotesingle{}s theme. \end{DoxyCompactList}\item 
-std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$ $>$ \hyperlink{classEvent_a424a2862591a8437b0d18366c7aee247}{get\+Request} () const
+void \mbox{\hyperlink{classEvent_ab630975b378bad5230ae550b3e9ffc9a}{set\+Phase}} (int \mbox{\hyperlink{classEvent_a4059db56458a92ddb5bd1d1443631b02}{phase}})
+\begin{DoxyCompactList}\small\item\em Sets/\+Changes the event\textquotesingle{}s phase. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$ $>$ \mbox{\hyperlink{classEvent_a424a2862591a8437b0d18366c7aee247}{get\+Request}} () const
 \begin{DoxyCompactList}\small\item\em Returns the associates that gave the initial request to the event. \end{DoxyCompactList}\item 
-std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$ $>$ \hyperlink{classEvent_a7e09dd7707422e30104727a069573e88}{get\+Organizers} () const
+std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$ $>$ \mbox{\hyperlink{classEvent_a7e09dd7707422e30104727a069573e88}{get\+Organizers}} () const
 \begin{DoxyCompactList}\small\item\em Returns all the associates that are involved in the event. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_a42abbf59c83e3fa6c964463a5e65ea00}{get\+Date} () const
+std\+::string \mbox{\hyperlink{classEvent_a42abbf59c83e3fa6c964463a5e65ea00}{get\+Date}} () const
 \begin{DoxyCompactList}\small\item\em Returns the Date of the event. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_aa2b3aee8416f68b890083a09eecfea8b}{get\+Local} () const
+std\+::string \mbox{\hyperlink{classEvent_aa2b3aee8416f68b890083a09eecfea8b}{get\+Local}} () const
 \begin{DoxyCompactList}\small\item\em Returns the Local of the event. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_ad83e88dd2fe78a6840dd2c71d217b490}{get\+Theme} () const
+std\+::string \mbox{\hyperlink{classEvent_ad83e88dd2fe78a6840dd2c71d217b490}{get\+Theme}} () const
 \begin{DoxyCompactList}\small\item\em Returns the Theme of the event. \end{DoxyCompactList}\item 
-virtual long double \hyperlink{classEvent_a9170bfcbd9b00015dafc5d5cc69a2cfe}{get\+Support} () const =0
+int \mbox{\hyperlink{classEvent_a1f6eac3425718082f5445a46a236b837}{get\+Phase}} () const
+\begin{DoxyCompactList}\small\item\em Returns the Phase of the event. \end{DoxyCompactList}\item 
+virtual long double \mbox{\hyperlink{classEvent_a9170bfcbd9b00015dafc5d5cc69a2cfe}{get\+Support}} () const =0
 \begin{DoxyCompactList}\small\item\em Returns the value of the monetary support given by the association to the e event. \end{DoxyCompactList}\item 
-virtual std\+::string \hyperlink{classEvent_a224dbd9a9aee5937ba0c8ea1a056af1f}{get\+Type} () const =0
+virtual std\+::string \mbox{\hyperlink{classEvent_a224dbd9a9aee5937ba0c8ea1a056af1f}{get\+Type}} () const =0
 \begin{DoxyCompactList}\small\item\em Returns the Type of the event. \end{DoxyCompactList}\item 
-virtual std\+::list$<$ \hyperlink{classTrainer}{Trainer} $\ast$ $>$ \hyperlink{classEvent_a11aad3e5a7ee85bc61b6811d050c5d70}{get\+Trainers} () const =0
+virtual std\+::list$<$ \mbox{\hyperlink{classTrainer}{Trainer}} $\ast$ $>$ \mbox{\hyperlink{classEvent_a11aad3e5a7ee85bc61b6811d050c5d70}{get\+Trainers}} () const =0
 \begin{DoxyCompactList}\small\item\em Returns the trainers that will attend the event. \end{DoxyCompactList}\item 
-virtual int \hyperlink{classEvent_a18ac55c239f648fc0ad5687c426f2a8f}{get\+Estimative} () const =0
+virtual int \mbox{\hyperlink{classEvent_a18ac55c239f648fc0ad5687c426f2a8f}{get\+Estimative}} () const =0
 \begin{DoxyCompactList}\small\item\em Returns the estimative of the people who will attend the event. \end{DoxyCompactList}\item 
-virtual std\+::string \hyperlink{classEvent_aaa38f467e933c57190d43351bdb817be}{show\+Info} () const =0
+virtual std\+::string \mbox{\hyperlink{classEvent_aaa38f467e933c57190d43351bdb817be}{show\+Info}} () const =0
 \begin{DoxyCompactList}\small\item\em Returns all the information of the event. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_a36453ab5a21b660a61f2a0369e2689e8}{get\+Name} () const
-\begin{DoxyCompactList}\small\item\em Returns the name of the event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+std\+::string \mbox{\hyperlink{classEvent_a36453ab5a21b660a61f2a0369e2689e8}{get\+Name}} () const
+\begin{DoxyCompactList}\small\item\em Returns the name of the event. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classEvent_a9a62a5f6528c63c84c30fa9edd50ddb1}{operator$<$}} (\mbox{\hyperlink{classEvent}{Event}} $\ast$ev1) const
+\begin{DoxyCompactList}\small\item\em operator for both priority queues \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$ $>$ \hyperlink{classEvent_a6cec387dca85f0a0e8419cfc94eb320e}{event\+\_\+request}
+std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$ $>$ \mbox{\hyperlink{classEvent_a6cec387dca85f0a0e8419cfc94eb320e}{event\+\_\+request}}
 \begin{DoxyCompactList}\small\item\em The Associates that gave the initial request. \end{DoxyCompactList}\item 
-std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$ $>$ \hyperlink{classEvent_ad35e04c759fdbfad75aed0b6e2eef63c}{event\+\_\+organizers}
+std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$ $>$ \mbox{\hyperlink{classEvent_ad35e04c759fdbfad75aed0b6e2eef63c}{event\+\_\+organizers}}
 \begin{DoxyCompactList}\small\item\em All the associates involved with the event. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_a9a93c9d38211f84cd6e347690e177f11}{date}
+std\+::string \mbox{\hyperlink{classEvent_a9a93c9d38211f84cd6e347690e177f11}{date}}
 \begin{DoxyCompactList}\small\item\em The event\textquotesingle{}s date. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_a3d1f28a3bde9ab718d5b0003f8ab5129}{local}
+std\+::string \mbox{\hyperlink{classEvent_a3d1f28a3bde9ab718d5b0003f8ab5129}{local}}
 \begin{DoxyCompactList}\small\item\em The event\textquotesingle{}s local. \end{DoxyCompactList}\item 
-std\+::string \hyperlink{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}{theme}
+std\+::string \mbox{\hyperlink{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}{theme}}
 \begin{DoxyCompactList}\small\item\em The event\textquotesingle{}s theme. \end{DoxyCompactList}\item 
-\hyperlink{classAssociation}{Association} $\ast$ \hyperlink{classEvent_a3c8694833e50dbd2e37943eff1f5c9b1}{association}
-\begin{DoxyCompactList}\small\item\em The connection to the \hyperlink{classAssociation}{Association}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{classEvent_a4059db56458a92ddb5bd1d1443631b02}{phase}}
+\begin{DoxyCompactList}\small\item\em The event\textquotesingle{}s phase. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAssociation}{Association}} $\ast$ \mbox{\hyperlink{classEvent_a3c8694833e50dbd2e37943eff1f5c9b1}{association}}
+\begin{DoxyCompactList}\small\item\em The connection to the \mbox{\hyperlink{classAssociation}{Association}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-The Super \hyperlink{classEvent}{Event} Class. 
+The Super \mbox{\hyperlink{classEvent}{Event}} Class. 
 
-An \hyperlink{classEvent}{Event} must be requested by at least 3 Associates. The given monetary support given by the association is determined randomly, taking in consideration the association main fund. In this case, we chose to give it a value between 5-\/15\% of the total Fund; This given monetary support will be later used to calculate the total number of organizers (then selected randomly between all the associates) and trainers. 
+An \mbox{\hyperlink{classEvent}{Event}} must be requested by at least 3 Associates. The given monetary support given by the association is determined randomly, taking in consideration the association main fund. In this case, we chose to give it a value between 5-\/15\% of the total Fund; This given monetary support will be later used to calculate the total number of organizers (then selected randomly between all the associates) and trainers. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classEvent_a5a40dd4708297f7031e29b39e039ae10}\label{classEvent_a5a40dd4708297f7031e29b39e039ae10}} 
@@ -85,15 +93,15 @@ An \hyperlink{classEvent}{Event} must be requested by at least 3 Associates. The
 
 Default Constructor. 
 
-\mbox{\Hypertarget{classEvent_af5dc5a200023c83243ab755e69eb4827}\label{classEvent_af5dc5a200023c83243ab755e69eb4827}} 
+\mbox{\Hypertarget{classEvent_a2fb2bff37e364023fe54d0f86e49e696}\label{classEvent_a2fb2bff37e364023fe54d0f86e49e696}} 
 \index{Event@{Event}!Event@{Event}}
 \index{Event@{Event}!Event@{Event}}
 \subsubsection{\texorpdfstring{Event()}{Event()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Event\+::\+Event (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$$>$}]{event\+\_\+request,  }\item[{std\+::vector$<$ \hyperlink{classAssociate}{Associate} $\ast$$>$}]{event\+\_\+organizers,  }\item[{std\+::string}]{date,  }\item[{std\+::string}]{local,  }\item[{std\+::string}]{theme,  }\item[{\hyperlink{classAssociation}{Association} $\ast$}]{association }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Event\+::\+Event (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$$>$}]{event\+\_\+request,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$$>$}]{event\+\_\+organizers,  }\item[{std\+::string}]{date,  }\item[{std\+::string}]{local,  }\item[{std\+::string}]{theme,  }\item[{int}]{phase,  }\item[{\mbox{\hyperlink{classAssociation}{Association}} $\ast$}]{association }\end{DoxyParamCaption})}
 
 
 
-Full \hyperlink{classEvent}{Event} Constructor The given support by the association will be any value between 5-\/15\% of the association main fund. 
+Full \mbox{\hyperlink{classEvent}{Event}} Constructor The given support by the association will be any value between 5-\/15\% of the association main fund. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -107,7 +115,7 @@ Full \hyperlink{classEvent}{Event} Constructor The given support by the associat
 \hline
 {\em theme} & -\/ The theme of the event \\
 \hline
-{\em association} & -\/ The \hyperlink{classAssociation}{Association} that promotes the event \\
+{\em association} & -\/ The \mbox{\hyperlink{classAssociation}{Association}} that promotes the event \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classEvent_a7704ec01ce91e673885792054214b3d2}\label{classEvent_a7704ec01ce91e673885792054214b3d2}} 
@@ -118,7 +126,7 @@ Full \hyperlink{classEvent}{Event} Constructor The given support by the associat
 
 
 
-Default \hyperlink{classEvent}{Event} Destructor. 
+Default \mbox{\hyperlink{classEvent}{Event}} Destructor. 
 
 
 
@@ -145,7 +153,7 @@ Returns the estimative of the people who will attend the event.
 
 
 
-Implemented in \hyperlink{classSummerSchool_a019b9e38108b7dd31cd93cab285d0d00}{Summer\+School}, and \hyperlink{classConference_a9d96f80eb37bdbf57bf318c8bd484e88}{Conference}.
+Implemented in \mbox{\hyperlink{classSummerSchool_a019b9e38108b7dd31cd93cab285d0d00}{Summer\+School}}, and \mbox{\hyperlink{classConference_a9d96f80eb37bdbf57bf318c8bd484e88}{Conference}}.
 
 \mbox{\Hypertarget{classEvent_aa2b3aee8416f68b890083a09eecfea8b}\label{classEvent_aa2b3aee8416f68b890083a09eecfea8b}} 
 \index{Event@{Event}!get\+Local@{get\+Local}}
@@ -171,17 +179,27 @@ Returns the name of the event.
 \index{Event@{Event}!get\+Organizers@{get\+Organizers}}
 \index{get\+Organizers@{get\+Organizers}!Event@{Event}}
 \subsubsection{\texorpdfstring{get\+Organizers()}{getOrganizers()}}
-{\footnotesize\ttfamily vector$<$ \hyperlink{classAssociate}{Associate} $\ast$ $>$ Event\+::get\+Organizers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$ $>$ Event\+::get\+Organizers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
 Returns all the associates that are involved in the event. 
 
+\mbox{\Hypertarget{classEvent_a1f6eac3425718082f5445a46a236b837}\label{classEvent_a1f6eac3425718082f5445a46a236b837}} 
+\index{Event@{Event}!get\+Phase@{get\+Phase}}
+\index{get\+Phase@{get\+Phase}!Event@{Event}}
+\subsubsection{\texorpdfstring{get\+Phase()}{getPhase()}}
+{\footnotesize\ttfamily int Event\+::get\+Phase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the Phase of the event. 
+
 \mbox{\Hypertarget{classEvent_a424a2862591a8437b0d18366c7aee247}\label{classEvent_a424a2862591a8437b0d18366c7aee247}} 
 \index{Event@{Event}!get\+Request@{get\+Request}}
 \index{get\+Request@{get\+Request}!Event@{Event}}
 \subsubsection{\texorpdfstring{get\+Request()}{getRequest()}}
-{\footnotesize\ttfamily vector$<$ \hyperlink{classAssociate}{Associate} $\ast$ $>$ Event\+::get\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$ $>$ Event\+::get\+Request (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -199,7 +217,7 @@ Returns the value of the monetary support given by the association to the e even
 
 
 
-Implemented in \hyperlink{classSummerSchool_a86f34a2f39dcd33171e77c386165219c}{Summer\+School}, and \hyperlink{classConference_a6ca3f0f7b2714881dbc108ea7f08646f}{Conference}.
+Implemented in \mbox{\hyperlink{classSummerSchool_a86f34a2f39dcd33171e77c386165219c}{Summer\+School}}, and \mbox{\hyperlink{classConference_a6ca3f0f7b2714881dbc108ea7f08646f}{Conference}}.
 
 \mbox{\Hypertarget{classEvent_ad83e88dd2fe78a6840dd2c71d217b490}\label{classEvent_ad83e88dd2fe78a6840dd2c71d217b490}} 
 \index{Event@{Event}!get\+Theme@{get\+Theme}}
@@ -215,7 +233,7 @@ Returns the Theme of the event.
 \index{Event@{Event}!get\+Trainers@{get\+Trainers}}
 \index{get\+Trainers@{get\+Trainers}!Event@{Event}}
 \subsubsection{\texorpdfstring{get\+Trainers()}{getTrainers()}}
-{\footnotesize\ttfamily virtual std\+::list$<$\hyperlink{classTrainer}{Trainer} $\ast$$>$ Event\+::get\+Trainers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual std\+::list$<$\mbox{\hyperlink{classTrainer}{Trainer}} $\ast$$>$ Event\+::get\+Trainers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 
 
@@ -223,7 +241,7 @@ Returns the trainers that will attend the event.
 
 
 
-Implemented in \hyperlink{classSummerSchool_aba18410ee9fbafd26858232104b5b39f}{Summer\+School}, and \hyperlink{classConference_aae9e92d48205a80fa42e94564e3568c5}{Conference}.
+Implemented in \mbox{\hyperlink{classSummerSchool_aba18410ee9fbafd26858232104b5b39f}{Summer\+School}}, and \mbox{\hyperlink{classConference_aae9e92d48205a80fa42e94564e3568c5}{Conference}}.
 
 \mbox{\Hypertarget{classEvent_a224dbd9a9aee5937ba0c8ea1a056af1f}\label{classEvent_a224dbd9a9aee5937ba0c8ea1a056af1f}} 
 \index{Event@{Event}!get\+Type@{get\+Type}}
@@ -237,8 +255,23 @@ Returns the Type of the event.
 
 
 
-Implemented in \hyperlink{classSummerSchool_a2ba547411ca8f161c2c579f9f55f913e}{Summer\+School}, and \hyperlink{classConference_ad1cf07b29a4c4cc36483603ef9536186}{Conference}.
+Implemented in \mbox{\hyperlink{classSummerSchool_a2ba547411ca8f161c2c579f9f55f913e}{Summer\+School}}, and \mbox{\hyperlink{classConference_ad1cf07b29a4c4cc36483603ef9536186}{Conference}}.
 
+\mbox{\Hypertarget{classEvent_a9a62a5f6528c63c84c30fa9edd50ddb1}\label{classEvent_a9a62a5f6528c63c84c30fa9edd50ddb1}} 
+\index{Event@{Event}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Event@{Event}}
+\subsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Event\+::operator$<$ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{ev1 }\end{DoxyParamCaption}) const}
+
+
+
+operator for both priority queues 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ev1} & -\/ \mbox{\hyperlink{classEvent}{Event}} to be compared \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classEvent_a21f01e4574335753b415d3445f1ebdff}\label{classEvent_a21f01e4574335753b415d3445f1ebdff}} 
 \index{Event@{Event}!set\+Date@{set\+Date}}
 \index{set\+Date@{set\+Date}!Event@{Event}}
@@ -269,6 +302,21 @@ Sets/\+Changes the event\textquotesingle{}s local.
 {\em local} & -\/ The new event\textquotesingle{}s local \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classEvent_ab630975b378bad5230ae550b3e9ffc9a}\label{classEvent_ab630975b378bad5230ae550b3e9ffc9a}} 
+\index{Event@{Event}!set\+Phase@{set\+Phase}}
+\index{set\+Phase@{set\+Phase}!Event@{Event}}
+\subsubsection{\texorpdfstring{set\+Phase()}{setPhase()}}
+{\footnotesize\ttfamily void Event\+::set\+Phase (\begin{DoxyParamCaption}\item[{int}]{phase }\end{DoxyParamCaption})}
+
+
+
+Sets/\+Changes the event\textquotesingle{}s phase. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em theme} & -\/ The new event\textquotesingle{}s phase \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classEvent_abdd2c869f0231002c2a16813923586fb}\label{classEvent_abdd2c869f0231002c2a16813923586fb}} 
 \index{Event@{Event}!set\+Theme@{set\+Theme}}
 \index{set\+Theme@{set\+Theme}!Event@{Event}}
@@ -296,7 +344,7 @@ Returns all the information of the event.
 
 
 
-Implemented in \hyperlink{classSummerSchool_a61ac7307840f787e3de639d431248e26}{Summer\+School}, and \hyperlink{classConference_a7a2f7b38c728f487d82356d3c671ef88}{Conference}.
+Implemented in \mbox{\hyperlink{classSummerSchool_a61ac7307840f787e3de639d431248e26}{Summer\+School}}, and \mbox{\hyperlink{classConference_a7a2f7b38c728f487d82356d3c671ef88}{Conference}}.
 
 
 
@@ -305,11 +353,11 @@ Implemented in \hyperlink{classSummerSchool_a61ac7307840f787e3de639d431248e26}{S
 \index{Event@{Event}!association@{association}}
 \index{association@{association}!Event@{Event}}
 \subsubsection{\texorpdfstring{association}{association}}
-{\footnotesize\ttfamily \hyperlink{classAssociation}{Association}$\ast$ Event\+::association\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAssociation}{Association}}$\ast$ Event\+::association\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
-The connection to the \hyperlink{classAssociation}{Association}. 
+The connection to the \mbox{\hyperlink{classAssociation}{Association}}. 
 
 \mbox{\Hypertarget{classEvent_a9a93c9d38211f84cd6e347690e177f11}\label{classEvent_a9a93c9d38211f84cd6e347690e177f11}} 
 \index{Event@{Event}!date@{date}}
@@ -325,7 +373,7 @@ The event\textquotesingle{}s date.
 \index{Event@{Event}!event\+\_\+organizers@{event\+\_\+organizers}}
 \index{event\+\_\+organizers@{event\+\_\+organizers}!Event@{Event}}
 \subsubsection{\texorpdfstring{event\+\_\+organizers}{event\_organizers}}
-{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classAssociate}{Associate} $\ast$$>$ Event\+::event\+\_\+organizers\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classAssociate}{Associate}} $\ast$$>$ Event\+::event\+\_\+organizers\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -335,7 +383,7 @@ All the associates involved with the event.
 \index{Event@{Event}!event\+\_\+request@{event\+\_\+request}}
 \index{event\+\_\+request@{event\+\_\+request}!Event@{Event}}
 \subsubsection{\texorpdfstring{event\+\_\+request}{event\_request}}
-{\footnotesize\ttfamily std\+::vector$<$\hyperlink{classAssociate}{Associate} $\ast$$>$ Event\+::event\+\_\+request\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classAssociate}{Associate}} $\ast$$>$ Event\+::event\+\_\+request\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -351,6 +399,16 @@ The Associates that gave the initial request.
 
 The event\textquotesingle{}s local. 
 
+\mbox{\Hypertarget{classEvent_a4059db56458a92ddb5bd1d1443631b02}\label{classEvent_a4059db56458a92ddb5bd1d1443631b02}} 
+\index{Event@{Event}!phase@{phase}}
+\index{phase@{phase}!Event@{Event}}
+\subsubsection{\texorpdfstring{phase}{phase}}
+{\footnotesize\ttfamily int Event\+::phase\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The event\textquotesingle{}s phase. 
+
 \mbox{\Hypertarget{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}\label{classEvent_aa9cc4378d5cecaadc8e6de92b313e6f8}} 
 \index{Event@{Event}!theme@{theme}}
 \index{theme@{theme}!Event@{Event}}
@@ -365,5 +423,5 @@ The event\textquotesingle{}s theme.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{Event_8h}{Event.\+h}\item 
-\hyperlink{Event_8cpp}{Event.\+cpp}\end{DoxyCompactItemize}
+\mbox{\hyperlink{Event_8h}{Event.\+h}}\item 
+\mbox{\hyperlink{Event_8cpp}{Event.\+cpp}}\end{DoxyCompactItemize}

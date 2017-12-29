@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mail',['Mail',['../classMail.html',1,'']]]
+  ['inactiveassociatehash',['inactiveAssociateHash',['../structinactiveAssociateHash.html',1,'']]],
+  ['invalidrequest',['InvalidRequest',['../classInvalidRequest.html',1,'']]]
 ];

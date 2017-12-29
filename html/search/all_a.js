@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['name',['name',['../classArea.html#a24201719de9d9dfef7a720c036529dd7',1,'Area::name()'],['../classAssociate.html#ad52875abacf1836cd879b7dffb88d589',1,'Associate::name()'],['../classAssociation.html#a165477d8d99c99a659d2f193b39ba1f8',1,'Association::name()'],['../classSubArea.html#aa1b0997da15caea7144ae73963da9f82',1,'SubArea::name()'],['../classTrainer.html#a6b58d4cfdb8d3482cb2c09dd366a6350',1,'Trainer::name()']]],
-  ['network',['Network',['../classNetwork.html',1,'Network'],['../classNetwork.html#a3cc2fb4f8fa4d507077e8da85ce5a1c8',1,'Network::Network()'],['../classNetwork.html#a6c20a000b0a40b33b39b26874a4d50dd',1,'Network::Network(std::vector&lt; Mail *&gt; mails)'],['../classAssociation.html#a6747cedd4ce14a3b890c8ac87f676192',1,'Association::network()']]],
-  ['network_2ecpp',['Network.cpp',['../Network_8cpp.html',1,'']]],
-  ['network_2eh',['Network.h',['../Network_8h.html',1,'']]],
-  ['nosuchdate',['NoSuchDate',['../classNoSuchDate.html',1,'NoSuchDate'],['../classNoSuchDate.html#a0cad1c9e0d0a034a885b2529d6f79811',1,'NoSuchDate::NoSuchDate()']]],
-  ['nosuchid',['NoSuchID',['../classNoSuchID.html',1,'NoSuchID'],['../classNoSuchID.html#a3b85ef775a99d9f93eabaa21ef29e950',1,'NoSuchID::NoSuchID()']]],
-  ['nosupportgiven',['NoSupportGiven',['../classNoSupportGiven.html',1,'NoSupportGiven'],['../classNoSupportGiven.html#a85c20af147aefa12cfa30903d6b6b499',1,'NoSupportGiven::NoSupportGiven()']]],
-  ['notenoughmoney',['NotEnoughMoney',['../classNotEnoughMoney.html',1,'NotEnoughMoney'],['../classNotEnoughMoney.html#a8d626cbca191437e4c16f3d058a7d204',1,'NotEnoughMoney::NotEnoughMoney()']]],
-  ['notuptodate',['NotUpToDate',['../classNotUpToDate.html',1,'NotUpToDate'],['../classNotUpToDate.html#a61d903e6816ad8d5f5b496a72047df45',1,'NotUpToDate::NotUpToDate()']]]
+  ['mail',['Mail',['../classMail.html',1,'Mail'],['../classMail.html#acd3d916cd6a769cdaf6e91dbc2c85699',1,'Mail::Mail()'],['../classMail.html#a5801c10c9e03a2ea2f0def9f5a957e18',1,'Mail::Mail(Associate *associate, std::string title, std::string body, std::string date)']]],
+  ['mail_2ecpp',['Mail.cpp',['../Mail_8cpp.html',1,'']]],
+  ['mail_2eh',['Mail.h',['../Mail_8h.html',1,'']]],
+  ['mails',['mails',['../classNetwork.html#a7d870918668129e7853c5374785955b1',1,'Network']]],
+  ['main',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['menu',['menu',['../menu_8cpp.html#a2a0e843767aeea4f433a28b9c54f573a',1,'menu():&#160;menu.cpp'],['../menu_8h.html#a2a0e843767aeea4f433a28b9c54f573a',1,'menu():&#160;menu.cpp']]],
+  ['menu_2ecpp',['menu.cpp',['../menu_8cpp.html',1,'']]],
+  ['menu_2eh',['menu.h',['../menu_8h.html',1,'']]],
+  ['menu2',['menu2',['../menu_8cpp.html#a850dcd293fa06f0b488371b86313ee63',1,'menu2():&#160;menu.cpp'],['../menu_8h.html#a850dcd293fa06f0b488371b86313ee63',1,'menu2():&#160;menu.cpp']]],
+  ['moveassociates',['moveAssociates',['../classAssociation.html#ae3c5683c5fb9d62f5bf2b9d38be3c8dc',1,'Association']]]
 ];

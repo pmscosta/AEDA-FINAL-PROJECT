@@ -1,13 +1,7 @@
 var searchData=
 [
-  ['_7earea',['~Area',['../classArea.html#ace0975982b61a16746c564a0d43a4cc8',1,'Area']]],
-  ['_7eassociate',['~Associate',['../classAssociate.html#ae7f51b6f8b7e33af9e5218a2c7319a32',1,'Associate']]],
-  ['_7eassociation',['~Association',['../classAssociation.html#adc0ad6a21b904d08c1d392550df9da59',1,'Association']]],
-  ['_7econference',['~Conference',['../classConference.html#aad7fc5f411279abc70d4ff3c30d2bdd8',1,'Conference']]],
-  ['_7eevent',['~Event',['../classEvent.html#a7704ec01ce91e673885792054214b3d2',1,'Event']]],
-  ['_7email',['~Mail',['../classMail.html#a7f59d642ff71033500e1fac06ce9b3b1',1,'Mail']]],
-  ['_7enetwork',['~Network',['../classNetwork.html#a7a4e19cdb4bf0c7ecf82baa643831492',1,'Network']]],
-  ['_7esubarea',['~SubArea',['../classSubArea.html#a0423d8d6d9f297cc1ceff557279d9be8',1,'SubArea']]],
-  ['_7esummerschool',['~SummerSchool',['../classSummerSchool.html#ad3c3df760cfaee1042fe5290fa487b2c',1,'SummerSchool']]],
-  ['_7etrainer',['~Trainer',['../classTrainer.html#aa3d993d1eb090f4111e12a710fe9d3f6',1,'Trainer']]]
+  ['verassociadoscotas',['verAssociadosCotas',['../Functions_8cpp.html#a8211df3ec39e837aa133dd0978e92b56',1,'verAssociadosCotas():&#160;Functions.cpp'],['../Functions_8h.html#a8211df3ec39e837aa133dd0978e92b56',1,'verAssociadosCotas():&#160;Functions.cpp']]],
+  ['veremails',['verEmails',['../Functions_8cpp.html#a7d78ac3371b342922783ddebbf6cd0ac',1,'verEmails():&#160;Functions.cpp'],['../Functions_8h.html#a7d78ac3371b342922783ddebbf6cd0ac',1,'verEmails():&#160;Functions.cpp']]],
+  ['verinfoassociado',['verInfoAssociado',['../Functions_8cpp.html#a8ad4cc87189bf547b579382a88150a35',1,'verInfoAssociado():&#160;Functions.cpp'],['../Functions_8h.html#a8ad4cc87189bf547b579382a88150a35',1,'verInfoAssociado():&#160;Functions.cpp']]],
+  ['verinfoevento',['verInfoEvento',['../Functions_8cpp.html#a5ea7d20808c05e4872121318395bcdd3',1,'verInfoEvento():&#160;Functions.cpp'],['../Functions_8h.html#a5ea7d20808c05e4872121318395bcdd3',1,'verInfoEvento():&#160;Functions.cpp']]]
 ];

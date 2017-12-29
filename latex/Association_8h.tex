@@ -3,30 +3,52 @@
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+set$>$}\newline
+{\ttfamily \#include \char`\"{}Associate.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$queue$>$}\newline
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classNoSuchID}{No\+Such\+ID}
-\begin{DoxyCompactList}\small\item\em The \hyperlink{classNoSuchID}{No\+Such\+ID} Class. \end{DoxyCompactList}\item 
-class \hyperlink{classNoSuchDate}{No\+Such\+Date}
-\begin{DoxyCompactList}\small\item\em The \hyperlink{classNoSuchDate}{No\+Such\+Date} Class. \end{DoxyCompactList}\item 
-class \hyperlink{classAssociation}{Association}
-\begin{DoxyCompactList}\small\item\em The \hyperlink{classAssociation}{Association} Class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+struct \mbox{\hyperlink{structinactiveAssociateHash}{inactive\+Associate\+Hash}}
+\item 
+class \mbox{\hyperlink{classNoSuchID}{No\+Such\+ID}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classNoSuchID}{No\+Such\+ID}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classNoSuchDate}{No\+Such\+Date}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classNoSuchDate}{No\+Such\+Date}} Class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classAssociation}{Association}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classAssociation}{Association}} Class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classAssociate}{Associate}} $\ast$, \mbox{\hyperlink{structinactiveAssociateHash}{inactive\+Associate\+Hash}}, \mbox{\hyperlink{structinactiveAssociateHash}{inactive\+Associate\+Hash}} $>$ \mbox{\hyperlink{Association_8h_a867982abd2e9432d5bed2574754bad3c}{Hash\+Tab\+Inactive\+Associate}}
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{Association_8h_a7212dfc6bb07893e23fa977f18309ded}{cmp\+ID} (\hyperlink{classAssociate}{Associate} $\ast$rhs, \hyperlink{classAssociate}{Associate} $\ast$lhs)
+bool \mbox{\hyperlink{Association_8h_a7212dfc6bb07893e23fa977f18309ded}{cmp\+ID}} (\mbox{\hyperlink{classAssociate}{Associate}} $\ast$rhs, \mbox{\hyperlink{classAssociate}{Associate}} $\ast$lhs)
 \begin{DoxyCompactList}\small\item\em compares the ID of 2 different associates \end{DoxyCompactList}\item 
-bool \hyperlink{Association_8h_acd1fd4877ff6b5bf584be877a13d0588}{cmp\+Money} (\hyperlink{classAssociate}{Associate} $\ast$rhs, \hyperlink{classAssociate}{Associate} $\ast$lhs)
+bool \mbox{\hyperlink{Association_8h_acd1fd4877ff6b5bf584be877a13d0588}{cmp\+Money}} (\mbox{\hyperlink{classAssociate}{Associate}} $\ast$rhs, \mbox{\hyperlink{classAssociate}{Associate}} $\ast$lhs)
 \begin{DoxyCompactList}\small\item\em compares the money of 2 different associates \end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\bool \hyperlink{Association_8h_a49e957f0e7f022406e6c81895eed79b7}{cmp\+Name} (T $\ast$rhs, T $\ast$lhs)
+{\footnotesize template$<$class T $>$ }\\bool \mbox{\hyperlink{Association_8h_a49e957f0e7f022406e6c81895eed79b7}{cmp\+Name}} (T $\ast$rhs, T $\ast$lhs)
 \begin{DoxyCompactList}\small\item\em compares the name of 2 different associates \end{DoxyCompactList}\item 
-bool \hyperlink{Association_8h_a0d94d17cdf7ce760c4d131d58d6eb48a}{cmp\+Date} (\hyperlink{classEvent}{Event} $\ast$rhs, \hyperlink{classEvent}{Event} $\ast$lhs)
+bool \mbox{\hyperlink{Association_8h_a0d94d17cdf7ce760c4d131d58d6eb48a}{cmp\+Date}} (\mbox{\hyperlink{classEvent}{Event}} $\ast$rhs, \mbox{\hyperlink{classEvent}{Event}} $\ast$lhs)
 \begin{DoxyCompactList}\small\item\em compares 2 dates \end{DoxyCompactList}\item 
-bool \hyperlink{Association_8h_aec8efa10619563981c3aaf91e3889b18}{cmp\+Local} (\hyperlink{classEvent}{Event} $\ast$rhs, \hyperlink{classEvent}{Event} $\ast$lhs)
+bool \mbox{\hyperlink{Association_8h_aec8efa10619563981c3aaf91e3889b18}{cmp\+Local}} (\mbox{\hyperlink{classEvent}{Event}} $\ast$rhs, \mbox{\hyperlink{classEvent}{Event}} $\ast$lhs)
 \begin{DoxyCompactList}\small\item\em compares 2 locals \end{DoxyCompactList}\item 
-bool \hyperlink{Association_8h_a02d68dc36b7585e8b71298fa2f21d610}{cmp\+Theme} (\hyperlink{classEvent}{Event} $\ast$rhs, \hyperlink{classEvent}{Event} $\ast$lhs)
-\begin{DoxyCompactList}\small\item\em compares 2 themes \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{Association_8h_a02d68dc36b7585e8b71298fa2f21d610}{cmp\+Theme}} (\mbox{\hyperlink{classEvent}{Event}} $\ast$rhs, \mbox{\hyperlink{classEvent}{Event}} $\ast$lhs)
+\begin{DoxyCompactList}\small\item\em compares 2 themes \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{Association_8h_ad5331fecba4e7bf3bec969637428aabb}{cmp\+Phase}} (\mbox{\hyperlink{classEvent}{Event}} $\ast$rhs, \mbox{\hyperlink{classEvent}{Event}} $\ast$lhs)
+\begin{DoxyCompactList}\small\item\em compares 2 phases \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{Association_8h_a867982abd2e9432d5bed2574754bad3c}\label{Association_8h_a867982abd2e9432d5bed2574754bad3c}} 
+\index{Association.\+h@{Association.\+h}!Hash\+Tab\+Inactive\+Associate@{Hash\+Tab\+Inactive\+Associate}}
+\index{Hash\+Tab\+Inactive\+Associate@{Hash\+Tab\+Inactive\+Associate}!Association.\+h@{Association.\+h}}
+\subsubsection{\texorpdfstring{Hash\+Tab\+Inactive\+Associate}{HashTabInactiveAssociate}}
+{\footnotesize\ttfamily typedef std\+::unordered\+\_\+set$<$\mbox{\hyperlink{classAssociate}{Associate}}$\ast$, \mbox{\hyperlink{structinactiveAssociateHash}{inactive\+Associate\+Hash}}, \mbox{\hyperlink{structinactiveAssociateHash}{inactive\+Associate\+Hash}}$>$ \mbox{\hyperlink{Association_8h_a867982abd2e9432d5bed2574754bad3c}{Hash\+Tab\+Inactive\+Associate}}}
+
 
 
 \subsection{Function Documentation}
@@ -34,7 +56,7 @@ bool \hyperlink{Association_8h_a02d68dc36b7585e8b71298fa2f21d610}{cmp\+Theme} (\
 \index{Association.\+h@{Association.\+h}!cmp\+Date@{cmp\+Date}}
 \index{cmp\+Date@{cmp\+Date}!Association.\+h@{Association.\+h}}
 \subsubsection{\texorpdfstring{cmp\+Date()}{cmpDate()}}
-{\footnotesize\ttfamily bool cmp\+Date (\begin{DoxyParamCaption}\item[{\hyperlink{classEvent}{Event} $\ast$}]{rhs,  }\item[{\hyperlink{classEvent}{Event} $\ast$}]{lhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool cmp\+Date (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{rhs,  }\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{lhs }\end{DoxyParamCaption})}
 
 
 
@@ -51,7 +73,7 @@ compares 2 dates
 \index{Association.\+h@{Association.\+h}!cmp\+ID@{cmp\+ID}}
 \index{cmp\+ID@{cmp\+ID}!Association.\+h@{Association.\+h}}
 \subsubsection{\texorpdfstring{cmp\+I\+D()}{cmpID()}}
-{\footnotesize\ttfamily bool cmp\+ID (\begin{DoxyParamCaption}\item[{\hyperlink{classAssociate}{Associate} $\ast$}]{rhs,  }\item[{\hyperlink{classAssociate}{Associate} $\ast$}]{lhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool cmp\+ID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAssociate}{Associate}} $\ast$}]{rhs,  }\item[{\mbox{\hyperlink{classAssociate}{Associate}} $\ast$}]{lhs }\end{DoxyParamCaption})}
 
 
 
@@ -68,7 +90,7 @@ compares the ID of 2 different associates
 \index{Association.\+h@{Association.\+h}!cmp\+Local@{cmp\+Local}}
 \index{cmp\+Local@{cmp\+Local}!Association.\+h@{Association.\+h}}
 \subsubsection{\texorpdfstring{cmp\+Local()}{cmpLocal()}}
-{\footnotesize\ttfamily bool cmp\+Local (\begin{DoxyParamCaption}\item[{\hyperlink{classEvent}{Event} $\ast$}]{rhs,  }\item[{\hyperlink{classEvent}{Event} $\ast$}]{lhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool cmp\+Local (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{rhs,  }\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{lhs }\end{DoxyParamCaption})}
 
 
 
@@ -85,7 +107,7 @@ compares 2 locals
 \index{Association.\+h@{Association.\+h}!cmp\+Money@{cmp\+Money}}
 \index{cmp\+Money@{cmp\+Money}!Association.\+h@{Association.\+h}}
 \subsubsection{\texorpdfstring{cmp\+Money()}{cmpMoney()}}
-{\footnotesize\ttfamily bool cmp\+Money (\begin{DoxyParamCaption}\item[{\hyperlink{classAssociate}{Associate} $\ast$}]{rhs,  }\item[{\hyperlink{classAssociate}{Associate} $\ast$}]{lhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool cmp\+Money (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAssociate}{Associate}} $\ast$}]{rhs,  }\item[{\mbox{\hyperlink{classAssociate}{Associate}} $\ast$}]{lhs }\end{DoxyParamCaption})}
 
 
 
@@ -116,11 +138,28 @@ compares the name of 2 different associates
 {\em lhs} & -\/ Second associate \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{Association_8h_ad5331fecba4e7bf3bec969637428aabb}\label{Association_8h_ad5331fecba4e7bf3bec969637428aabb}} 
+\index{Association.\+h@{Association.\+h}!cmp\+Phase@{cmp\+Phase}}
+\index{cmp\+Phase@{cmp\+Phase}!Association.\+h@{Association.\+h}}
+\subsubsection{\texorpdfstring{cmp\+Phase()}{cmpPhase()}}
+{\footnotesize\ttfamily bool cmp\+Phase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{rhs,  }\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{lhs }\end{DoxyParamCaption})}
+
+
+
+compares 2 phases 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & -\/ First theme \\
+\hline
+{\em lhs} & -\/ Second theme \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{Association_8h_a02d68dc36b7585e8b71298fa2f21d610}\label{Association_8h_a02d68dc36b7585e8b71298fa2f21d610}} 
 \index{Association.\+h@{Association.\+h}!cmp\+Theme@{cmp\+Theme}}
 \index{cmp\+Theme@{cmp\+Theme}!Association.\+h@{Association.\+h}}
 \subsubsection{\texorpdfstring{cmp\+Theme()}{cmpTheme()}}
-{\footnotesize\ttfamily bool cmp\+Theme (\begin{DoxyParamCaption}\item[{\hyperlink{classEvent}{Event} $\ast$}]{rhs,  }\item[{\hyperlink{classEvent}{Event} $\ast$}]{lhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool cmp\+Theme (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{rhs,  }\item[{\mbox{\hyperlink{classEvent}{Event}} $\ast$}]{lhs }\end{DoxyParamCaption})}
 
 
 

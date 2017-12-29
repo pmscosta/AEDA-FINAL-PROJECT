@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['rede',['Rede',['../Functions_8cpp.html#a4b3c121b06e5f95bcf915cd09812b1b2',1,'Functions.cpp']]],
-  ['regressar',['regressar',['../menu_8cpp.html#a598ae7dd4fcee49bf42c6ad53ebe8a50',1,'regressar():&#160;menu.cpp'],['../menu_8h.html#a598ae7dd4fcee49bf42c6ad53ebe8a50',1,'regressar():&#160;menu.cpp']]],
-  ['removeassociate',['removeAssociate',['../classAssociation.html#ab0f1b461051c5a7844e6ce490b7caea1',1,'Association']]],
-  ['removeevent',['removeEvent',['../classAssociation.html#a6d9cb24e51d87063ce0235c9ecd56866',1,'Association']]],
-  ['removerassociado',['removerAssociado',['../Functions_8cpp.html#aaba149a36548e3c78e5e71487a7bcc59',1,'removerAssociado():&#160;Functions.cpp'],['../Functions_8h.html#aaba149a36548e3c78e5e71487a7bcc59',1,'removerAssociado():&#160;Functions.cpp']]],
-  ['removerevento',['removerEvento',['../Functions_8cpp.html#a4e110450c59f583dc9543d3aec64df44',1,'removerEvento():&#160;Functions.cpp'],['../Functions_8h.html#a4e110450c59f583dc9543d3aec64df44',1,'removerEvento():&#160;Functions.cpp']]]
+  ['pagarcotas',['pagarCotas',['../Functions_8cpp.html#ac9bddac225ddfcab44badef5156284fa',1,'pagarCotas():&#160;Functions.cpp'],['../Functions_8h.html#ac9bddac225ddfcab44badef5156284fa',1,'pagarCotas():&#160;Functions.cpp']]],
+  ['pagartodascotas',['pagarTodasCotas',['../Functions_8cpp.html#a9eef1f32c4e3502b464f261f754a58bb',1,'pagarTodasCotas():&#160;Functions.cpp'],['../Functions_8h.html#a9eef1f32c4e3502b464f261f754a58bb',1,'pagarTodasCotas():&#160;Functions.cpp']]],
+  ['paidyears',['paidYears',['../classAssociate.html#ad7d373d77a5c49eb845e89729962c30d',1,'Associate']]],
+  ['payfromwallet',['payFromWallet',['../classAssociate.html#a81f6e7e09ce00a9bf2a805d47d542b90',1,'Associate']]],
+  ['payyear',['payYear',['../classAssociate.html#ac5d76c7a552e5ad9149fc968511532bf',1,'Associate']]],
+  ['personalwallet',['personalWallet',['../classAssociate.html#adc7e2decb409cd226e1508c1c5df3b90',1,'Associate']]],
+  ['phase',['phase',['../classEvent.html#a4059db56458a92ddb5bd1d1443631b02',1,'Event']]],
+  ['pushtoqueue',['pushToQueue',['../classAssociation.html#aaf6b3eabb3b20c31a56f69913cb3fdb3',1,'Association']]]
 ];

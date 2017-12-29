@@ -1,12 +1,15 @@
 var searchData=
 [
-  ['lastpaid',['lastPaid',['../classNotUpToDate.html#a728feda5151336575cd80a9b52a7a7d3',1,'NotUpToDate']]],
-  ['late',['late',['../classNoSupportGiven.html#a4f1413a35ad22fe50bc1d5dc08414784',1,'NoSupportGiven']]],
-  ['lerficheiroareas',['lerficheiroAreas',['../Functions_8cpp.html#a41cd4f7a2a848d3217e5dcecfb8961d0',1,'lerficheiroAreas():&#160;Functions.cpp'],['../Functions_8h.html#a41cd4f7a2a848d3217e5dcecfb8961d0',1,'lerficheiroAreas():&#160;Functions.cpp']]],
-  ['lerficheiroassociacao',['lerficheiroAssociacao',['../Functions_8cpp.html#a9f2791d0f806b3a3ab26b6414988adbf',1,'lerficheiroAssociacao():&#160;Functions.cpp'],['../Functions_8h.html#a9f2791d0f806b3a3ab26b6414988adbf',1,'lerficheiroAssociacao():&#160;Functions.cpp']]],
-  ['lerficheiroassociados',['lerficheiroAssociados',['../Functions_8cpp.html#aee07a5bdef41ae759533dd62c9c65ceb',1,'lerficheiroAssociados():&#160;Functions.cpp'],['../Functions_8h.html#aee07a5bdef41ae759533dd62c9c65ceb',1,'lerficheiroAssociados():&#160;Functions.cpp']]],
-  ['lerficheiroeventos',['lerficheiroEventos',['../Functions_8cpp.html#aeedc642f834087c1106c2609214645df',1,'lerficheiroEventos():&#160;Functions.cpp'],['../Functions_8h.html#aeedc642f834087c1106c2609214645df',1,'lerficheiroEventos():&#160;Functions.cpp']]],
-  ['lerficheiromails',['lerficheiroMails',['../Functions_8cpp.html#a9edf8f79597c2a76bc8aad3a9ca0d0d5',1,'lerficheiroMails():&#160;Functions.cpp'],['../Functions_8h.html#a9edf8f79597c2a76bc8aad3a9ca0d0d5',1,'lerficheiroMails():&#160;Functions.cpp']]],
-  ['limparficheiros',['limparficheiros',['../Functions_8cpp.html#afe709ccbc9c795576eba67d767729d0c',1,'limparficheiros():&#160;Functions.cpp'],['../Functions_8h.html#afe709ccbc9c795576eba67d767729d0c',1,'limparficheiros():&#160;Functions.cpp']]],
-  ['local',['local',['../classEvent.html#a3d1f28a3bde9ab718d5b0003f8ab5129',1,'Event']]]
+  ['id',['ID',['../classNoSuchID.html#a1b0c95e546b2147a298230f33d3dbeec',1,'NoSuchID']]],
+  ['id_5fprovider',['id_provider',['../classAssociate.html#a9fcd0a229b70369a3f6beaf7a02fe58f',1,'Associate']]],
+  ['inactiveassociatehash',['inactiveAssociateHash',['../structinactiveAssociateHash.html',1,'']]],
+  ['inactiveassociates',['inactiveAssociates',['../classAssociation.html#a13bdee38cb61374825f440c6015f1846',1,'Association']]],
+  ['incdivulgations',['incDivulgations',['../classAssociate.html#a5d298ea460b494edc46c015af7e1a932',1,'Associate']]],
+  ['initialize',['initialize',['../Functions_8cpp.html#a25a40b6614565f755233080a384c35f1',1,'initialize():&#160;Functions.cpp'],['../Functions_8h.html#a25a40b6614565f755233080a384c35f1',1,'initialize():&#160;Functions.cpp']]],
+  ['initialize2',['initialize2',['../Functions_8cpp.html#adb44d25bc81080212dff24b3c4fe2e24',1,'initialize2():&#160;Functions.cpp'],['../Functions_8h.html#adb44d25bc81080212dff24b3c4fe2e24',1,'initialize2():&#160;Functions.cpp']]],
+  ['initials',['initials',['../classSubArea.html#a3e0a456f5ce325e2a778a17d1929b5d0',1,'SubArea']]],
+  ['institution',['institution',['../classAssociate.html#a25b82eab07e159a91ebdc64fa4d656ab',1,'Associate::institution()'],['../classTrainer.html#ae895aa7f146d8bf271399215d4ede36b',1,'Trainer::institution()']]],
+  ['interestareas',['interestAreas',['../classAssociate.html#aa4083f0fff7ce7d580f7e2df8f9dbaf2',1,'Associate']]],
+  ['invalidrequest',['InvalidRequest',['../classInvalidRequest.html',1,'InvalidRequest'],['../classInvalidRequest.html#aff6963764c0246d2af135fc810cd98b1',1,'InvalidRequest::InvalidRequest()']]],
+  ['is_5fnumber',['is_number',['../Functions_8cpp.html#a53d02df1713071578c4b6a030269739b',1,'Functions.cpp']]]
 ];
