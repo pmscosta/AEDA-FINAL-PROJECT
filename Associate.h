@@ -390,10 +390,16 @@ public:
 
 	/**
 	 * @brief Overloading  < operator
-	 * An associate is small than the other if his uniqueID is smaller.
+	 * If two associates have the same status, they will be ordered accordingly to their name, otherwise:
+	 *  contributor > subscribe > normal
+	 *
 	 */
 
 	bool operator<(const Associate & lhs) const;
+
+	/**
+	 * @brief Overloading = operator
+	 */
 
 	Associate &  operator=( const Associate & lhs);
 

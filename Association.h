@@ -456,14 +456,13 @@ private:
 	std::string name; ///< The Association name
 	long double fund; ///< The Association initial fund to manage events,associates etc..
 	float annualPay; ///< The annual pay given by each and every associate
-	std::set<Associate *> associates_set;
+	std::set<Associate *> associates_set; ///< Binary Tree with the Associates whose payments are considered up to date
 	HashTabInactiveAssociate inactiveAssociates; ///< Hash Table with the Associates who haven't payed for more than 5 years
 	std::vector<Area *> areas; ///< Vector of pointers to all the Scientific Areas from the Association
 	std::vector<Event *> events; ///< Vector of pointers to all the events done by the Associates
 	std::priority_queue<Event *> queue1; ///< Priority queue of pointers to all the events done by the Associates in phase 1
 	std::priority_queue<Event *> queue2; ///< Priority queue of pointers to all the events done by the Associates in phase 2
 	static float currentYear; ///< The current year. the integer part represents the year, the decimal part the semester. 0-> 1º semester, 0.5->2º semester
-
 	Network * network; ///< A pointer to the association network
 
 };
