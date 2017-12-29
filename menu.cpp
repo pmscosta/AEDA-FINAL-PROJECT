@@ -109,14 +109,13 @@ void submenu1() {
 	cout << " 2 - Remover Associado" << endl;
 	cout << " 3 - Alterar informacoes de um Associado" << endl;
 	cout << " 4 - Ver informacoes sobre os Associado" << endl;
-	cout << " 5 - Organizar Associados" << endl;
-	cout << " 6 - Anterior" << endl;
-	cout << " 7 - Sair" << endl;
+	cout << " 5 - Anterior" << endl;
+	cout << " 6 - Sair" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 7) {
+	while (opcao < 1 || opcao > 6) {
 		if (cin >> opcao) {
 
 			switch (opcao) {
@@ -137,13 +136,9 @@ void submenu1() {
 				regressar();
 				break;
 			case 5:
-				organizarAssociados();
-				regressar();
-				break;
-			case 6:
 				menu2();
 				break;
-			case 7:
+			case 6:
 				sair();
 				break;
 			default:

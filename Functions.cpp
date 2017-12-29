@@ -773,13 +773,14 @@ void verInfoAssociado() {
 	cout << " 1 - Procurar por Identificador Unico" << endl;
 	cout << " 2 - Procurar por interesse numa área" << endl;
 	cout << " 3 - Mostrar todos" << endl;
-	cout << " 4 - Listagem parcial em funcao do ID" << endl;
-	cout << " 5 - Listagem parcial em funcao do dinheiro disponivel" << endl;
+	cout << " 4 - Mostrar por ordem alfabetica de nome" << endl;
+	cout << " 5 - Listagem parcial em funcao do ID" << endl;
+	cout << " 6 - Listagem parcial em funcao do dinheiro disponivel" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 5) {
+	while (opcao < 1 || opcao > 6) {
 		cin >> opcao;
 		switch (opcao) {
 		case 1: {
@@ -829,16 +830,23 @@ void verInfoAssociado() {
 				return;
 			}
 
+			int counter = 0;
+
 			for (auto it = Associacao->getAssociates().begin();
 					it != Associacao->getAssociates().end(); it++) {
 
 				for (size_t t = 0; t < (*it)->getInterestAreas().size(); t++) {
 					if ((*it)->getInterestAreas().at(t) == areas.at(opcao)) {
 						cout << endl;
+						counter++;
 						cout << (*it)->showInfo();
 					}
 				}
 
+			}
+
+			if(counter == 0){
+				cout << "\nNao ha Associados interessados na area " << areas.at(opcao)->getName() << "." << endl;
 			}
 
 			break;
@@ -849,7 +857,46 @@ void verInfoAssociado() {
 			cout << output;
 			break;
 		}
-		case 4: {
+		case 4:{
+			string ordem;
+			cout << endl;
+			cin.clear();
+			cin.ignore(10000, '\n');
+			cout << "Ordem crescente ou decrescente? ";
+			getline(cin, ordem);
+
+			vector<Associate *> associados;
+
+			for (Associate * elem : Associacao->getAssociates()) {
+				associados.push_back(elem);
+			}
+
+			for (Associate * elem : Associacao->getInactiveAssociates()) {
+				associados.push_back(elem);
+			}
+
+			if (ordem == "crescente") {
+				sort(associados.begin(), associados.end(), cmpName<Associate>);
+			} else if (ordem == "decrescente") {
+				sort(associados.begin(), associados.end(), cmpName<Associate>);
+				reverse(associados.begin(), associados.end());
+			} else {
+				cout << "Opcao inválida";
+				break;
+			}
+			if (associados.empty()) {
+				cout
+						<< "Nao existem associados que cumpram esses requisitos.\n";
+			} else {
+				for (size_t i = 0; i < associados.size(); i++) {
+					cout << endl;
+					string retorno = associados.at(i)->showInfo();
+					cout << retorno;
+				}
+			}
+			break;
+		}
+		case 5: {
 			int maximo, minimo;
 			string ordem;
 			cout << endl;
@@ -912,7 +959,7 @@ void verInfoAssociado() {
 			}
 			break;
 		}
-		case 5: {
+		case 6: {
 			float maximo, minimo;
 			string ordem;
 			cout << endl;
@@ -973,44 +1020,6 @@ void verInfoAssociado() {
 			cout << "Opcao invalida. Introduza uma nova opcao: ";
 		}
 	}
-}
-
-void organizarAssociados() {
-	cout << endl << endl;
-	cout << "--------------------------------------------- " << endl;
-	cout << "ASSOCIACAO PORTUGUESA INVESTIGACAO CIENTIFICA" << endl;
-	cout << "--------------------------------------------- " << endl;
-	cout << endl << endl;
-	cout << "Qual o criterio para organizar associados: " << endl;
-	cout << "0 - Nome\n";
-	cout << "1 - ID\n";
-	cout << "2 - Dinheiro\n";
-
-	int opcao;
-	cout << "\nIntroduza uma opcao: ";
-	cin >> opcao;
-	cin.clear();
-	cin.ignore(1000, '\n');
-	if (cin.fail() || opcao > 2 || opcao < 0) {
-		cout << "\nO valor introduzido nao e valido.\n";
-		return;
-	}
-
-	string type;
-
-	if (opcao == 0)
-		type = "name";
-	else if (opcao == 1)
-		type = "id";
-	else if (opcao == 2)
-		type = "money";
-
-	Associacao->sortAssociates(type);
-
-	cout << "\nAssociados organizados com sucesso!\n";
-
-	sleep(1);
-
 }
 
 //-----------------------EVENTOS----------------------//
@@ -1810,6 +1819,11 @@ void verEmails() {
 
 	size_t t = 0;
 	cin >> t;
+
+	if((t < 0) || (t > (Rede->getMails().size() - 1))){
+		cout << "\nOpcao invalida.\n";
+		return;
+	}
 
 	cout << "\nMensagem partilhada por "
 			<< Rede->getMails().at(t)->getAuthor()->getName() << ": \n";
