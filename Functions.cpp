@@ -1229,7 +1229,7 @@ void alterarEvento() {
 	cin.ignore(10000, '\n');
 
 	int fase;
-	cout << "Introduza a fase do evento a remover (1 ou 2): ";
+	cout << "Introduza a fase do evento a alterar (1 ou 2): ";
 	cin >> fase;
 	if ((fase < 1) || (fase > 2)) {
 		cout << "Nao introduziu uma fase válida.\n";
