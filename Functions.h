@@ -136,14 +136,6 @@ void alterarAssociado();
 void verInfoAssociado();
 
 
-/**
- * @brief - Organizes the vector containing all the associates accordingly to some
- * criteria specified by the user.
- *
- */
-void organizarAssociados();
-
-
 //----------------------EVENTS-------------------------//
 /**
  * @brief - Deals with user input, through iostream, in order
