@@ -433,7 +433,7 @@ public:
 	 *
 	 * @param date - The date of the event to be found
 	 */
-	Event * getEventByDate(std::string date);
+	std::vector<Event *> getEventByDate(std::string date);
 
 	/**
 	 * @brief return the event of a certain date and phase

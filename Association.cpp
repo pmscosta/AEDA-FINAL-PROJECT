@@ -610,46 +610,18 @@ void Association::removeEvent(string date, int phase) {
 		throw NoSuchDate(date);
 }
 
-Event * Association::getEventByDate(string date) {
+vector<Event *> Association::getEventByDate(string date) {
 
-	priority_queue<Event *> temp;
-	bool found = false;
-	Event * retorno;
 
-	priority_queue<Event *> first_queue = this->getQueue1();
+	vector<Event *> temp;
 
-	while (!first_queue.empty()) {
+	for(size_t i = 0; i < this->events.size(); i++){
 
-		if (first_queue.top()->getDate() == date) {
-			retorno = first_queue.top();
-			found = true;
-		}
-
-		temp.push(first_queue.top());
-		first_queue.pop();
+		if(this->events.at(i)->getDate() == date)
+			temp.push_back(this->events.at(i));
 	}
-	this->queue1 = temp;
-	if (found)
-		return retorno;
 
-	priority_queue<Event *> second_queue = this->getQueue2();
-
-	while (!second_queue.empty()) {
-
-		if (second_queue.top()->getDate() == date) {
-			retorno = second_queue.top();
-			found = true;
-		}
-
-		temp.push(second_queue.top());
-		second_queue.pop();
-	}
-	this->queue2 = temp;
-
-	if (found)
-		return retorno;
-	else
-		throw NoSuchDate(date);
+	return temp;
 }
 
 Event * Association::getEventByDatePhase(string date, int phase) {
