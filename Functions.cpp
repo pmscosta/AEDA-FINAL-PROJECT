@@ -1420,7 +1420,10 @@ void verInfoEvento() {
 					cout << eventos.at(i)->showInfo();
 				}
 
-				cout << endl << endl;
+				if(eventos.size() == 0)
+					cout << "\nNao existem eventos para essa data.\n";
+
+				cout << endl;
 				break;
 			}
 			case 2: {
