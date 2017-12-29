@@ -70,8 +70,9 @@ void ano() {
 
 	char opcao;
 	cout << "Ano atual: " << Associacao->getCurrentYear()
-			<< "\t Semestre Atual: " << fixed << setprecision(1) << Associacao->getCurrentSemester()
-			<< "\nFundo Atual: " << Associacao->getFund() << endl;
+			<< "\t Semestre Atual: " << fixed << setprecision(1)
+			<< Associacao->getCurrentSemester() << "\nFundo Atual: "
+			<< Associacao->getFund() << endl;
 	cout << "\nIncrementar um semestre? (S/N): ";
 	while (opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N') {
 		cin >> opcao;
@@ -1054,7 +1055,8 @@ void criarEvento() {
 	cout << "\nIntroduza o numero de Associados que querem criar o Evento: ";
 	cin >> numAsso;
 	if (numAsso < 3) {
-		cout << "O numero de Associados que querem criar o evento deve ser superior a 3.";
+		cout
+				<< "O numero de Associados que querem criar o evento deve ser superior a 3.";
 		return;
 	}
 
@@ -1369,11 +1371,12 @@ void verInfoEvento() {
 	cout << " 3 - Mostrar todos" << endl;
 	cout << " 4 - Listagem parcial em funcao da data" << endl;
 	cout << " 5 - Listagem parcial em funcao do tipo de evento" << endl;
+	cout << " 6 - Mostrar Pedidos de Eventos" << endl;
 
 	int opcao = 0;
 	cout << endl;
 	cout << "Introduza uma opcao: ";
-	while (opcao < 1 || opcao > 5) {
+	while (opcao < 1 || opcao > 6) {
 		if (cin >> opcao) {
 			switch (opcao) {
 			case 1: {
@@ -1538,6 +1541,11 @@ void verInfoEvento() {
 						cout << eventos.at(i)->showInfo();
 					}
 				}
+				break;
+			}
+			case 6: {
+
+				cout << Associacao->showRequests() << endl;
 				break;
 			}
 			default:

@@ -8,14 +8,17 @@
 #include "Association.h"
 #include <sstream>
 #include <iostream>
+#include <string>
 #include <iomanip>
 using namespace std;
 
 int Associate::id_provider = 0;
 
 //Constructors
-Associate::Associate() :
-		uniqueID(++id_provider) {
+Associate::Associate() {
+
+	this->name = "";
+
 }
 
 Associate::Associate(int uniqueID) {
@@ -32,6 +35,21 @@ Associate::Associate(Association * asso, string name, string institution,
 	this->personalWallet = 500.0;  //DEFAULT FOR EVERY ASSOCIATE
 	this->divulgations = 0;
 	this->paidYears.push_back(asso->getCurrentYear()); //THE ASSOCIATE DOES NOT NEED TO PAY THE FIRST YEAR, IT IS GIVEN
+}
+
+Associate::Associate(Association * asso, std::string name,
+		std::string institution, vector<Area*> interests, float personalWallet,
+		string status, vector<int> paidYears, int uniqueID, int divulgations) {
+	this->association = asso;
+	this->name = name;
+	this->institution = institution;
+	this->interestAreas = interests;
+	this->personalWallet = personalWallet;
+	this->divulgations = divulgations;
+	this->paidYears = paidYears;
+	this->uniqueID = uniqueID;
+	this->status = status;
+
 }
 
 Associate::Associate(Association * association, string file_string) {
@@ -257,17 +275,21 @@ void Associate::updateStatus() {
 	else
 		this->status = "normal";
 
+//	Associate * temp = new Associate(this->association, this->name,
+//			this->institution, this->interestAreas, this->personalWallet,
+//			this->status, this->paidYears, this->uniqueID, this->divulgations);
+//
 //	if (statustemp == "normal") {
 //		if ((this->status == "subscriber") || (this->status == "contributor")) {
-//			Associate * temp = this;
+//
 //			this->association->removeAssociate(this->uniqueID);
-//			this->association->addAssociate(this);
+//			this->association->addAssociate(temp);
 //		}
 //	} else if ((statustemp == "subscriber") || (statustemp == "contributor")) {
 //		if (this->status == "normal") {
-//			Associate * temp = this;
+//
 //			this->association->removeAssociate(this->uniqueID);
-//			this->association->addAssociate(this);
+//			this->association->addAssociate(temp);
 //		}
 //	}
 
@@ -356,3 +378,18 @@ bool Associate::operator<(const Associate & lhs) const {
 
 }
 
+Associate &  Associate::operator=( const Associate & lhs) {
+
+	this->association = lhs.association;
+	this->divulgations = lhs.divulgations;
+	this->institution = lhs.institution;
+	this->interestAreas = lhs.interestAreas;
+	this->name = lhs.name;
+	this->paidYears = lhs.paidYears;
+	this->personalWallet = lhs.personalWallet;
+	this->status = lhs.status;
+	this->uniqueID = lhs.uniqueID;
+
+	return *this;
+
+}

@@ -13,7 +13,6 @@ class Area;
 class SubArea;
 class Association;
 
-
 //! The NotUpToDate Class
 /*!
  * NotUpToDate is a class which instances are called when an associate decides to pay the annual pay, but he still has not
@@ -57,11 +56,10 @@ public:
 	}
 
 private:
-	int uniqueID; 		///< The id of the associate who is trying to pay the annual pay
+	int uniqueID; ///< The id of the associate who is trying to pay the annual pay
 	int triedYear;		///< The year the associate is trying to pay
 	int lastPaid;		///< The last year the associate has paid
 };
-
 
 //! The NotEnoughMoney Class
 /*!
@@ -71,7 +69,7 @@ private:
  */
 class NotEnoughMoney {
 private:
-	int uniqueID;	///< The id of the associate who is trying to pay the annual pay
+	int uniqueID;///< The id of the associate who is trying to pay the annual pay
 
 public:
 	/**
@@ -81,7 +79,8 @@ public:
 	 */
 	NotEnoughMoney(int uniqueID) :
 			uniqueID(uniqueID) {
-	};
+	}
+	;
 
 	/**
 	 * @brief Returns the id of the associate trying to pay the annual pay
@@ -92,17 +91,16 @@ public:
 
 };
 
-
 //! The NotAlreadyPaid Class
 /*!
  * AlreadyPaid is a class which instances are called when an associate tries to pay the annual pay of an year
  * he has already paid.
  * Its useful in throwing exceptions, outside of that it has no real use.
  */
-class AlreadyPaid{
+class AlreadyPaid {
 private:
 	int year;		///< The year the associate is trying to pay
-	int uniqueID;	///< The id of the associate who is trying to pay the annual pay
+	int uniqueID;///< The id of the associate who is trying to pay the annual pay
 public:
 	/**
 	 * @brief Full AlreadyPaid Constructor
@@ -112,7 +110,8 @@ public:
 	 */
 	AlreadyPaid(int year, int uniqueID) :
 			uniqueID(uniqueID), year(year) {
-	};
+	}
+	;
 
 	/**
 	 * @brief Returns the id of the associate trying to pay the annual pay
@@ -128,7 +127,6 @@ public:
 		return this->year;
 	}
 };
-
 
 //!  The Associate Class
 /*!
@@ -161,6 +159,20 @@ public:
 
 
 	/**
+		 * @brief Full Associate Constructor
+		 *
+		 * The uniqueID is given automatically and incrementally.
+		 * Every associate has a predefined 500 personal Wallet start.
+		 *
+		 * @param asso - The Association the associate belongs to
+		 * @param name - The associate's name
+		 * @param institution - The associate's institution
+		 * @param interests - The associate's areas of interest
+		 */
+		Associate(Association * asso, std::string name, std::string institution,
+				std::vector<Area*> interests);
+
+	/**
 	 * @brief Full Associate Constructor
 	 *
 	 * The uniqueID is given automatically and incrementally.
@@ -170,11 +182,12 @@ public:
 	 * @param name - The associate's name
 	 * @param institution - The associate's institution
 	 * @param interests - The associate's areas of interest
+	 * @param status
 	 */
 	Associate(Association * asso, std::string name, std::string institution,
-			std::vector<Area*> interests);
-
-
+			std::vector<Area*> interests, float personalWallet,
+			std::string status, std::vector<int> paidYears, int uniqueID,
+			int divulgations);
 
 	/**
 	 * @brief Associate Constructor
@@ -371,7 +384,6 @@ public:
 	 */
 	std::string showInfo() const;
 
-
 	//=============================================Operators================================================
 
 	//=======================================================================================================
@@ -381,21 +393,21 @@ public:
 	 * An associate is small than the other if his uniqueID is smaller.
 	 */
 
-	bool operator< (const Associate & lhs) const;
+	bool operator<(const Associate & lhs) const;
 
-
+	Associate &  operator=( const Associate & lhs);
 
 private:
-	Association * association; 			///< The connection between the associate and the association
+	Association * association; ///< The connection between the associate and the association
 	std::string name; 					///< The associate's name
-	float personalWallet;  				///< The amount of money the associate has
-	std::string institution; 			///< The institution to which the associate is connected
-	std::vector<Area *> interestAreas;  ///< A vector containing pointers to all the Associate interest areas
-	std::string status; 				///< contributor, subscriber, normal, the possible status
-	std::vector<int> paidYears; 		///< A vector of integers containing all the year the Associate has paid
+	float personalWallet;  			///< The amount of money the associate has
+	std::string institution; ///< The institution to which the associate is connected
+	std::vector<Area *> interestAreas; ///< A vector containing pointers to all the Associate interest areas
+	std::string status; ///< contributor, subscriber, normal, the possible status
+	std::vector<int> paidYears; ///< A vector of integers containing all the year the Associate has paid
 	int uniqueID;  						///< The unique Identifier
-	static int id_provider; 			///< Will ensure that every instance of this class gets a unique identifier
-	int divulgations; 					///< The number of divulgations to the network
+	static int id_provider; ///< Will ensure that every instance of this class gets a unique identifier
+	int divulgations; 			///< The number of divulgations to the network
 
 };
 
