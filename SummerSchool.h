@@ -99,7 +99,7 @@ public:
 	 * @param phase - The phase of the summerschool
 	 * @param association - The Association that promotes the summerschool
 	 * @param trainers - A list of all the trainers that will lecture during the summerschool
-	 * @param give_support - The amount the Association gives to promote de event
+	 * @param given_support - The amount the Association gives to promote de event
 	 */
 	SummerSchool(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,

@@ -182,7 +182,12 @@ public:
 	 * @param name - The associate's name
 	 * @param institution - The associate's institution
 	 * @param interests - The associate's areas of interest
-	 * @param status
+	 * @param status - The associate's status
+	 * @param paidYears - The Yeas Paid
+	 * @param uniqueID - the copied ID
+	 * @param divulgations - number of divulgations
+	 * @param personalWallet - the money
+	 *
 	 */
 	Associate(Association * asso, std::string name, std::string institution,
 			std::vector<Area*> interests, float personalWallet,

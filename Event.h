@@ -85,6 +85,7 @@ public:
 	 * @param local - The local of the event
 	 * @param theme - The theme of the event
 	 * @param association - The Association that promotes the event
+	 * @param phase - the phase request
 	 */
 	Event(std::vector<Associate *> event_request,
 			std::vector<Associate *> event_organizers, std::string date,
@@ -125,7 +126,7 @@ public:
 	/**
 	 * @brief Sets/Changes the event's phase
 	 *
-	 * @param theme - The new event's phase
+	 * @param phase - The new event's phase
 	 */
 	void setPhase(int phase);
 
