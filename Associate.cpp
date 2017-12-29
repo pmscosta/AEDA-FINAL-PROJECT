@@ -257,6 +257,8 @@ void Associate::payYear(int year) {
 
 		this->updateStatus();
 
+		this->association->moveAssociates();
+
 	}
 }
 
@@ -378,7 +380,7 @@ bool Associate::operator<(const Associate & lhs) const {
 
 }
 
-Associate &  Associate::operator=( const Associate & lhs) {
+Associate & Associate::operator=(const Associate & lhs) {
 
 	this->association = lhs.association;
 	this->divulgations = lhs.divulgations;
